@@ -9,4 +9,4 @@ Currently, two official plugins are available:
 
 ## Environment variables
 
-Add a MONGO_URL to your .env file
+Add a MONGO_URL to your .env file in the server side
