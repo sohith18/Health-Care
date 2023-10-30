@@ -15,6 +15,12 @@ const registerUser = async (req, res) => {
             return res.json({
                 error: "Password is required and atleast 6 characters long"
             });
+        if(!email) return res.json({error: "Email is required"});
+        //check for email has @ or not
+        if(!email.includes('@'))
+            return res.json({
+                error: "Email id is invalid"
+        });
         const exist = await User.findOne({email});
         if(exist)
             return res.json({
@@ -53,6 +59,10 @@ const loginUser = async (req, res) => {
         const match = await comparePassword(password, user.password);
         if(match)
             return res.json('Passwords match');
+        if(!match)
+            return res.json({
+        error: "Passwords do not match"
+        })
     } catch (error) {
         console.log(error);
     }

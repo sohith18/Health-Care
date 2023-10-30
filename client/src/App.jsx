@@ -4,6 +4,7 @@ import Navbar from '../src/components/Navbar';
 import Home from '../src/pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import VideoCall from './pages/VideoCall';
 import axios from 'axios';
 import {Toaster } from 'react-hot-toast'
 
@@ -19,6 +20,7 @@ function App () {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path= "/video-call" element ={<VideoCall />} />
         </Routes>
         </>
     );

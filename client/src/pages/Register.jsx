@@ -19,6 +19,7 @@ export default function Register() {
         });
         if(data.error){
             toast.error(data.error);
+            console.log("there is error");
         } else{
             setData({});
             console.log("Success");
