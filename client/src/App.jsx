@@ -1,17 +1,20 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom';
+import { Component } from 'react';
 import Navbar from '../src/components/Navbar';
 import Home from '../src/pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import VideoCall from './pages/VideoCall';
+import Video from './pages/meeting';
+import JoinRoom from "./pages/join";
 import axios from 'axios';
 import {Toaster } from 'react-hot-toast'
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 
-function App () {
+class App extends Component {
+    render(){
     return (
         <>
         <Navbar />
@@ -20,10 +23,13 @@ function App () {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path= "/video-call" element ={<VideoCall />} />
+            <Route path= "/video-call-room" component ={JoinRoom} />
+            <Route path= "/video/:id" component={Video} />
+
         </Routes>
         </>
     );
+    }
 }
 
 export default App;

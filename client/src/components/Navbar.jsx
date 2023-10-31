@@ -5,7 +5,7 @@ export default function Navbar() {
         <Link to ="/">Home</Link>
         <Link to ="/login"> Login</Link>
         <Link to ="/register">  Register</Link>
-        <Link to ="/video-call">  Video-Call</Link>
+        <Link to ="/video-call-room">  Video-Call</Link>
     </nav>
   )
 }
