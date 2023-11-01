@@ -1,42 +1,115 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  margin: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+   /* Gradient background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.navbar{
+  min-height: 10vh;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.Content {
+  min-height: 90vh;
+  min-width: 100vw;
+  background: linear-gradient(135deg, #f0f0f0, #d4e1f2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+.login-form,.register-form{
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 80%; /* Adjust the width to your preference (e.g., 80%) */
+  max-width: 30vw; /* Set a maximum width to maintain readability */
+  margin: 0 auto; /* Center the box horizontally on the screen */
+  transform: scale(0.98); /* Slight scaling effect */
+  transition: transform 0.3s;
 }
 
-.card {
-  padding: 2em;
+.login-form:hover {
+  transform: scale(1);
 }
 
-.read-the-docs {
-  color: #888;
+.register-form:hover{
+  transform: scale(1);
 }
+
+.register{
+  max-width: 100vw;
+}
+
+input {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+input:hover {
+  background-color: #d4e1f2; /* Light blue on hover */
+  transform: scale(1.01); /* Slight scaling effect on hover */
+}
+
+label{
+  text-align: left;
+  padding: 0.5rem 0;
+  color: #7439db; /* Purple label color */
+  font-weight: bold;
+}
+
+a {
+  font-weight: 500;
+  color: #7439db;;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #5e25c0;;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border: none;
+  background: linear-gradient(135deg, #7439db, #512e6e); /* Gradient button background */
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #512e6e, #7439db); /* Gradient on hover */
+  transform: scale(1.03); /* Slight scaling effect on hover */
+}
+
