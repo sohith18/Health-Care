@@ -25,7 +25,6 @@ class App extends Component {
             <Route path="/register" element={<Register />} />
             <Route path= "/video-call-room" component ={JoinRoom} />
             <Route path= "/video/:id" component={Video} />
-
         </Routes>
         </>
     );
