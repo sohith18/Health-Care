@@ -30,20 +30,20 @@ export default function Register() {
         }
     }
   return (
-    <>
+    <div className="register-div">
         <form onSubmit={registerUser} className="register-form"> 
-            <label> Name </label>
-            <input type="text" placeholder='enter name ...' value={data.name} onChange={(e)=> setData({...data, name: e.target.value})}/>
-            <label> Email </label>
-            <input type="email" placeholder='enter email ...' value={data.email} onChange={(e)=> setData({...data, email: e.target.value})}/>
-            <label> Password </label>
-            <input type="password" placeholder='enter password ...' value={data.password} onChange={(e)=> setData({...data, password: e.target.value})}/>
+            <label className="label-css"> Name </label>
+            <input className="input-css" type="text" placeholder='enter name ...' value={data.name} onChange={(e)=> setData({...data, name: e.target.value})}/>
+            <label className="label-css"> Email </label>
+            <input className="input-css" type="email" placeholder='enter email ...' value={data.email} onChange={(e)=> setData({...data, email: e.target.value})}/>
+            <label className="label-css"> Password </label>
+            <input className="input-css" type="password" placeholder='enter password ...' value={data.password} onChange={(e)=> setData({...data, password: e.target.value})}/>
             <button type='submit'> Submit </button>
 
         </form>
         
         
         
-    </>
+    </div>
   )
 }
