@@ -2,13 +2,13 @@ import {Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <nav>
-      <div className='navbar'>
-        <Link to ="/">Home</Link>
-        <Link to="/medicines">Medicines</Link>
-        
-        <Link to ="/login">Login</Link>
-        <Link to ="/register">Register</Link>
+    <nav className='nav-outer'>
+      <div className='nav-bar'>
+        <Link className="a-css" to ="/">Home</Link>
+        <Link className="a-css" to="/medicines">Medicines</Link>
+        <Link className="a-css" to="/video-call">Video Call</Link>
+        <Link className="a-css" to ="/login">Login</Link>
+        <Link className="a-css" to ="/register">Register</Link>
         
       </div> 
     </nav>
