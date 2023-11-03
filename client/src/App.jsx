@@ -7,7 +7,6 @@ import Login from './pages/Login';
 import axios from 'axios';
 import {Toaster } from 'react-hot-toast'
 import Medicine from './pages/Medicines';
-import VideoCall from './pages/VideoCall';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -21,7 +20,6 @@ function App () {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/medicines" element={<Medicine/>}/>
-                <Route path="/video-call" element={<VideoCall/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
             </Routes>

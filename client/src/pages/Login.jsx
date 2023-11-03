@@ -28,15 +28,15 @@ export default function Login() {
         }
     }
   return (
-        <>
+        <div className="login-div">
         <form onSubmit={loginUser} className="login-form">
-            <label> Email </label>
-            <input type="email" placeholder='enter email ...' value={data.email} onChange={(e)=> setData({...data, email: e.target.value})}/>
-            <label> Password </label>
-            <input type="password" placeholder='enter password ...' value={data.password} onChange={(e)=> setData({...data, password: e.target.value})}/>
+            <label className="label-css"> Email </label>
+            <input className="input-css" type="email" placeholder='enter email ...' value={data.email} onChange={(e)=> setData({...data, email: e.target.value})}/>
+            <label className="label-css"> Password </label>
+            <input className="input-css" type="password" placeholder='enter password ...' value={data.password} onChange={(e)=> setData({...data, password: e.target.value})}/>
             <button type='submit'> Login </button>
         </form>
-        </>
+        </div>
   
   )
 }
