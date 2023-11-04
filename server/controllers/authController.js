@@ -41,7 +41,7 @@ const registerUser = async (req, res) => {
             });
 
     } catch (error) {
-        
+        res.json("Server error").status(500);
     }
 }
 //Login endpoint
