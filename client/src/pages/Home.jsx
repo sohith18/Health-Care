@@ -8,7 +8,7 @@ import photo2 from '../assets/depression.png'
 import photo3 from '../assets/eye.png'
 import photo4 from '../assets/pigment.png'
 import { Link } from 'react-router-dom';
-import ColdDoctors from './ColdDoctors';
+import ColdDoctors from './Specialized_doctors/ColdDoctors';
 
 export default function Home() {
   return (
