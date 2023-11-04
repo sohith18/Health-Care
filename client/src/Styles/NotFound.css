@@ -1,0 +1,24 @@
+.not-found-container {
+    background: #6B52AE; /* Purple background color */
+    color: #ffffff; /* White text color */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .not-found-content {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  a {
+    color: #ffffff; /* White link color */
+    text-decoration: none;
+    border-bottom: 1px dashed #ffffff; /* White dashed underline for links */
+  }
+  
