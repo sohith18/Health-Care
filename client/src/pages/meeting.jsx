@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import DailyIframe from '@daily-co/daily-js';
 
-export default function VideoCall({ match }) {
-  const id = match.params.id;
-    console.log("The id is " + id);
+export default function VideoCall() {
+  const { id } = useParams();
+  console.log("The id is " + id);
+
   useEffect(() => {
     const domain = "https://our-sub-domain-test.daily.co/";
 
@@ -11,22 +14,21 @@ export default function VideoCall({ match }) {
       .get(`/video-call/${id}`)
       .then((res) => {
         if (res.status === 200) {
-          const script = document.createElement("script");
-          script.innerHTML = `window.DailyIframe.createFrame({
-            iframeStyle: {
-              position: "relative",
-              width: "100%",
-              height: "100%",
-              border: "0",
-              zIndex: 9999  
-            },
-            showLeaveButton: true,
+          const callFrame = DailyIframe.createFrame({
             showFullscreenButton: true,
-          }).join({
-            url: "${domain}${id}",
-          });`;
+            iframeStyle: {
+              position: 'fixed',
+              border: '1px solid black',
+              width: '375px',
+              height: '450px',
+              right: '1em',
+              bottom: '1em',
+            },
+          });
 
-          document.body.appendChild(script);
+          callFrame.join({
+            url: `${domain}${id}`,
+          });
         }
       })
       .catch((err) => console.log(err));
@@ -34,3 +36,5 @@ export default function VideoCall({ match }) {
 
   return <div></div>;
 }
+
+
