@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 
-export default function Video({ match }) {
+export default function VideoCall({ match }) {
   const id = match.params.id;
     console.log("The id is " + id);
   useEffect(() => {
