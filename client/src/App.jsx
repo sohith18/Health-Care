@@ -31,7 +31,6 @@ function App () {
                 <Route path="/" element={<Home />} />
                 <Route path="/medicines" element={<Medicine/>}/>
                 <Route path="/login" element={<Login />} />
-                {/* <Route path="/video-call/*" element={<Video/>}/> */}
                 <Route exact path="/video-call" element={<JoinRoom />} />
                 <Route exact path="/video-call/meeting/:id" element={<VideoCall/>} />
                 <Route path="/register" element={<Register />} />
