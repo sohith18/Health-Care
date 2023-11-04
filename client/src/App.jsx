@@ -35,6 +35,11 @@ function App () {
                 <Route exact path="/video-call" element={<JoinRoom />} />
                 <Route exact path="/video-call/meeting/:id" element={<VideoCall/>} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/doctors" element={<Doctors/>}/>
+                <Route path="/cough-doctors" element={<ColdDoctors/>}/>
+                <Route path="/mental-health-doctors" element={<DepressionDoctors/>}/>
+                <Route path="/allergy-doctors" element={<AllergyDoctors/>}/>
+                <Route path="/skin-doctors" element={<SkinDoctors/>}/>
                 <Route path="/500" element={<ServerError />} />
                 <Route path="*" element={<NotFound />} />
                 
