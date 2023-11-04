@@ -8,7 +8,8 @@ import axios from 'axios';
 import {Toaster } from 'react-hot-toast'
 import Medicine from './pages/Medicines';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import VideoCall from './pages/VideoCall';
+import JoinRoom from './pages/join';
+import VideoCall from "./pages/meeting"
 import Doctors from './pages/Doctors';
 import ColdDoctors from './pages/Specialized_doctors/ColdDoctors';
 import DepressionDoctors from './pages/Specialized_doctors/DepressionDoctors';
@@ -29,16 +30,14 @@ function App () {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/medicines" element={<Medicine/>}/>
-                <Route path="/video-call" element={<VideoCall/>}/>
-                <Route path="/cough-doctors" element={<ColdDoctors/>}/>
-                <Route path="/mental-health-doctors" element={<DepressionDoctors/>}/>
-                <Route path="/allergy-doctors" element={<AllergyDoctors/>}/>
-                <Route path="/skin-doctors" element={<SkinDoctors/>}/>
-                <Route path="/video-call/doctors" element={<Doctors/>}/>
                 <Route path="/login" element={<Login />} />
+                {/* <Route path="/video-call/*" element={<Video/>}/> */}
+                <Route exact path="/video-call" element={<JoinRoom />} />
+                <Route exact path="/video-call/meeting/:id" element={<VideoCall/>} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/500" element={<ServerError />} />
                 <Route path="*" element={<NotFound />} />
+                
             </Routes>
             </div>
         </div>

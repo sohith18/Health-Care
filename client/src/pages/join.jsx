@@ -4,7 +4,7 @@ export default function JoinRoom() {
   const [room, setRoom] = useState(null);
 
   const onSubmit = () => {
-    window.location.assign(`/video/${room}`);
+    window.location.assign(`/video-call/meeting/${room}`);
   };
 
   return (

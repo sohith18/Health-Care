@@ -16,7 +16,6 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', require('./routes/authRoutes'));
-
 app.get("/video-call/:id", async function (req, res) {
     const roomId = req.params.id;
   
@@ -36,3 +35,4 @@ app.use((err, req, res, next) => {
   
 const port = 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+module.exports=app;
