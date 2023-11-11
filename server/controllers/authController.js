@@ -45,7 +45,8 @@ const registerUser = async (req, res) => {
     }
 }
 //Login endpoint
-const loginUser = async (req, res) => {
+const loginUser = async (req, res) => 
+{
     try {
         const {email, password} = req.body;
 
@@ -67,9 +68,40 @@ const loginUser = async (req, res) => {
         console.log(error);
     }
 }
+// Middleware to check if the user is authenticated
+const isAuthenticated = (req, res, next) => {
+    const sessionToken = req.cookies.sessionToken; // Assuming you store the token in a cookie
+  
+    if (!sessionToken) {
+      return res.status(401).json({ error: 'Unauthorized: No session token provided' });
+    }
+  
+    // Check the validity of the session token (pseudo-code)
+    if (isValidSessionToken(sessionToken)) {
+      next();
+    } else {
+      return res.status(401).json({ error: 'Unauthorized: Invalid session token' });
+    }
+  };
+  // fetch the user from the database
+  const fetch_user = async (req, res, next) => {
+    const sessionToken = req.cookies.sessionToken;
+    console.log(sessionToken);
+    if (!sessionToken) {
+      req.user = null;
+      return next();
+    }
+  
+    const user = await User.findOne({ sessionToken });
+    req.user = user;
+    next();
+  }
+  
 
 module.exports = {
     test,
     registerUser,
-    loginUser
+    loginUser,
+    isAuthenticated,
+    fetch_user
 }

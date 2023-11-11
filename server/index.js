@@ -32,7 +32,8 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Internal Server Error' });
 });
-  
+
+
 const port = 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 module.exports=app;
