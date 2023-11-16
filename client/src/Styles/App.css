@@ -249,9 +249,6 @@ button {
 }
 
 
-.nav-button{
-
-}
 
 button:hover {
   background: linear-gradient(135deg, #512e6e, #7439db); /* Gradient on hover */
