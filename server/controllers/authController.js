@@ -58,15 +58,19 @@ const loginUser = async (req, res) =>
             })
         //check if password matches
         const match = await comparePassword(password, user.password);
-        if(match)
-            return res.json('Passwords match');
+        if(match){
+            return res.json(user.name);
+        }
         if(!match)
             return res.json({
         error: "Passwords do not match"
         })
     } catch (error) {
         console.log(error);
+        res.status(404);
     }
+    
+
 }
 // Middleware to check if the user is authenticated
 const isAuthenticated = (req, res, next) => {

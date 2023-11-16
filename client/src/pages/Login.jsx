@@ -20,6 +20,7 @@ export default function Login() {
         if(data.error){
             toast.error(data.error);
         } else {
+            window.localStorage.setItem("user",data)
             setData({});
             navigate('/');
         }
