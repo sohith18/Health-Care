@@ -16,6 +16,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
 img{
   height:90vh;
 
@@ -245,6 +246,11 @@ button {
   color: white;
   font-weight: bold;
   transition: background 0.3s;
+}
+
+
+.nav-button{
+
 }
 
 button:hover {
