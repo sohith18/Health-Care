@@ -10,11 +10,14 @@ const  LiveCall=()=>{
     window.location.assign(`/video-call`)
   }
 }
+const Chat=()=>{
+  window.location.assign(`/chatbot`)
+}
 export default function ColdDoctors() {
   return (
     <div>
       <div className  = 'chat-box'>
-        <button> Chat with us </button>
+        <button onClick={Chat}> Chat with us </button>
       </div>
       <button onClick={LiveCall}>Video Call</button>
     </div>

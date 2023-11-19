@@ -18,7 +18,7 @@ export default function JoinRoom() {
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
       .then(() => toast.success("Meeting ID copied to clipboard"))
-      .catch((error) => console.error("Unable to copy to clipboard", error));
+      .catch((error) => toast.error("Unable to copy to clipboard", error));
   };
 
   const onSubmit = () => {
@@ -40,12 +40,13 @@ export default function JoinRoom() {
     <div>
       {!showRules && (
         <div>
+          <br/>
           {/* Display your rules here */}
           <l>
             <li>
               Joining ID: {randomNumber}{" "}
               <button
-                style={{ fontSize: "12px", padding: "5px" }} // Adjust the size as needed
+                style={{ fontSize: "12px", padding: "5px" }} 
                 onClick={() => copyToClipboard(randomNumber)}
               >
                 Copy to Clipboard
@@ -53,7 +54,8 @@ export default function JoinRoom() {
             </li>
             <li>Rule 1</li>
             <li>Rule 2</li>
-            <li>Terms and conditions</li>
+            <li>Terms and conditions applied</li>
+            <br/>
           </l>
         </div>
       )}

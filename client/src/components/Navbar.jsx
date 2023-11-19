@@ -36,6 +36,7 @@ export default function Navbar() {
         <Link className="a-css" to ="/">Home</Link>
         <Link className="a-css" to="/medicines">Medicines</Link>
         <Link className="a-css" to={val}>Video Call</Link>
+        {/* <Link className="a-css" to="/chatbot">Chatbot</Link> */}
         {login_details}
         {log_out}
         
