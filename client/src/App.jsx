@@ -17,6 +17,7 @@ import AllergyDoctors from './pages/Specialized_doctors/AllergyDoctors';
 import SkinDoctors from './pages/Specialized_doctors/SkinDoctors';
 import NotFound from './pages/ErrPage/NotFound';
 import ServerError from './pages/ErrPage/ServerError';
+import Chatbot from './pages/Chatbot';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -29,6 +30,7 @@ function App () {
             <div className='Content'>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/chatbot" element={<Chatbot />} />
                 <Route path="/medicines" element={<Medicine/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route exact path="/video-call" element={<JoinRoom />} />
