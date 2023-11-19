@@ -20,10 +20,14 @@ export default function Navbar() {
     login_details =  <Link className="a-css" to ="/login">Login</Link>
   }
   else{
-    login_details = <div className="a-css">
+    login_details = 
+      <div className="a-css">
           {displalog_out_name}
-        </div>
-    log_out = <button className='nav-button' style={{fontSize:13}}  onClick={()=>{setdisplalog_out_name(window.localStorage.removeItem("user"))}}>Log Out</button>   
+      </div>
+    log_out = 
+    <button className='nav-button' style={{fontSize:13}}  onClick={()=>{setdisplalog_out_name(window.localStorage.removeItem("user"))
+    window.location.assign(`/`)}}>Log Out
+    </button>   
   }
 
   return (
