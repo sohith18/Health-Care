@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {Link } from 'react-router-dom';
 
+
 export default function Navbar() {
   const [displalog_out_name,setdisplalog_out_name] = useState(window.localStorage.getItem("user"));
   console.log(displalog_out_name);

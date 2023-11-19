@@ -9,11 +9,19 @@ import photo3 from '../assets/eye.png'
 import photo4 from '../assets/pigment.png'
 import { Link } from 'react-router-dom';
 import ColdDoctors from './Specialized_doctors/ColdDoctors';
+import { Take_to_Chat } from '../Controllers/HomeController';
 
 export default function Home() {
   return (
     <>
       <div className='slider'><Slider slides={slides}/></div>
+      <div className  = 'chat-box'>
+        <ul>
+        <div className = 'chat-box-wrapper'> 
+          <h3>Feeling Unwell ?</h3></div><br/>
+        <button type='submit' onClick={Take_to_Chat}> Chat with us </button>
+        </ul>
+      </div>
       <div className='why'>
         <label className='label-css-home'>Why Connect</label>
         <div className='reasons'>
@@ -30,9 +38,6 @@ export default function Home() {
             <div className='inside-reason'>Specialities</div>
           </div>
         </div>
-      </div>
-      <div className  = 'chat-box'>
-        <button> Chat with us </button>
       </div>
       <div className='Boxes'>
         <Box cardImage={photo1} cardDestination="/cough-doctors" cardTitle="Cough,Cold or Fever"/>
