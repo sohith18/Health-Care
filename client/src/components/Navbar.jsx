@@ -3,7 +3,6 @@ import {Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [displalog_out_name,setdisplalog_out_name] = useState(window.localStorage.getItem("user"));
-  //window.localStorage.removeItem("user")
   console.log(displalog_out_name);
   let loggedin = displalog_out_name?true:false;
   let val;
