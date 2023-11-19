@@ -40,6 +40,7 @@ export default function JoinRoom() {
     <div>
       {!showRules && (
         <div>
+          <br/>
           {/* Display your rules here */}
           <l>
             <li>
@@ -54,6 +55,7 @@ export default function JoinRoom() {
             <li>Rule 1</li>
             <li>Rule 2</li>
             <li>Terms and conditions applied</li>
+            <br/>
           </l>
         </div>
       )}

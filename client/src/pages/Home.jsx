@@ -20,7 +20,7 @@ export default function Home() {
         <ul>
           <div className='chat-box-wrapper'>
             <h3>Feeling Unwell ?</h3></div><br />
-          <button type='submit' onClick={Take_to_Chat}> Chat with us </button>
+          <button type='submit' onClick={Take_to_Chat}> Chat with us for free </button>
         </ul>
       </div>
       <div className='why'>
