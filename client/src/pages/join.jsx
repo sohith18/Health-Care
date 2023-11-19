@@ -15,6 +15,12 @@ export default function JoinRoom() {
     setRandomNumber(randomNumber);
   }
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+      .then(() => toast.success("Meeting ID copied to clipboard"))
+      .catch((error) => console.error("Unable to copy to clipboard", error));
+  };
+
   const onSubmit = () => {
     if (room === randomNumber.toString()) {
       console.log(`Meeting ID ${room} matches the random number`);
@@ -22,7 +28,7 @@ export default function JoinRoom() {
     } else {
       // Display an error message using react-hot-toast
       console.log("Meeting ID does not match the random number");
-      toast.error("Plz enter the meeting id given to you.");
+      toast.error("Please enter the correct meeting ID.");
     }
   };
 
@@ -36,7 +42,15 @@ export default function JoinRoom() {
         <div>
           {/* Display your rules here */}
           <l>
-            <li>Joining ID: {randomNumber}</li>
+            <li>
+              Joining ID: {randomNumber}{" "}
+              <button
+                style={{ fontSize: "12px", padding: "5px" }} // Adjust the size as needed
+                onClick={() => copyToClipboard(randomNumber)}
+              >
+                Copy to Clipboard
+              </button>
+            </li>
             <li>Rule 1</li>
             <li>Rule 2</li>
             <li>Terms and conditions</li>
