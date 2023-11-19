@@ -31,6 +31,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className  = 'chat-box'>
+        <button> Chat with us </button>
+      </div>
       <div className='Boxes'>
         <Box cardImage={photo1} cardDestination="/cough-doctors" cardTitle="Cough,Cold or Fever"/>
         <Box cardImage={photo2} cardDestination="/mental-health-doctors" cardTitle="Depression or Anxiety" />
