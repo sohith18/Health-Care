@@ -110,6 +110,7 @@ Run the server like this:
 
 - Abhinav Deshpande [@Abhinav-gh](https://www.github.com/Abhinav-gh)
 - Shreyas S [@Shreyas0S](https://www.github.com/Shreyas0S)
+- Sohith [@sohith18](https://github.com/sohith18)
     
     Open source contributions are most welcome.
 
