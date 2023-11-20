@@ -109,6 +109,7 @@ Run the server like this:
 ## Authors
 
 - Abhinav Deshpande [@Abhinav-gh](https://www.github.com/Abhinav-gh)
+- Shreyas S [@Shreyas0S](https://www.github.com/Shreyas0S)
     
     Open source contributions are most welcome.
 
