@@ -6,25 +6,33 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Register() {
     const navigate = useNavigate();
     const [data, setData] = useState({
-        name: '',
+        first_name: '',
+        last_name: 'Dave',
         email: '',
-        password: ''
+        password: '',
+        role: 'Human',
     });
     const registerUser = async (e) => {
         e.preventDefault();
-        const {name, email, password} = data;
         try {
-            const {data} = await axios.post('/register', {
-            name, email, password
-        });
-        if(data.error){
-            toast.error(data.error);
-        } else{
-            setData({});
-            console.log("Success");
-            toast.success("Login Successfull");
-            navigate('/login');
-         }
+            // console.log(userData);
+            const response = await fetch("http://localhost:3000/auth/signup", { 
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data), 
+            })
+            const userData = await response.json();
+            console.log(userData);
+            alert(userData.msg);
+            if (response.ok) {
+                localStorage.setItem('AuthToken', userData.token);
+                // setToken(userData.token);
+                // setUser(userData.user);
+                navigate('/');
+                window.location.reload();
+            }
         } catch (error) {
             console.log(error);
         }
@@ -33,7 +41,7 @@ export default function Register() {
     <div className="register-div">
         <form onSubmit={registerUser} className="register-form"> 
             <label className="label-css"> Name </label>
-            <input className="input-css" type="text" placeholder='enter name ...' value={data.name} onChange={(e)=> setData({...data, name: e.target.value})}/>
+            <input className="input-css" type="text" placeholder='enter name ...' value={data.name} onChange={(e)=> setData({...data, first_name: e.target.value})}/>
             <label className="label-css"> Email </label>
             <input className="input-css" type="email" placeholder='enter email ...' value={data.email} onChange={(e)=> setData({...data, email: e.target.value})}/>
             <label className="label-css"> Password </label>
