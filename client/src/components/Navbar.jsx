@@ -31,6 +31,13 @@ const fetchUserData = async (AuthToken, setUser) => {
 export default function Navbar() {
   const [user, setUser] = useState(null);
   const [displalog_out_name, setdisplalog_out_name] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      setdisplalog_out_name(user.first_name); 
+    }
+  }, [user]);
+
   let login_details;
   let log_out;
   useEffect(() => {
@@ -47,7 +54,7 @@ export default function Navbar() {
           {displalog_out_name}
       </div>
     log_out = 
-    <button className='nav-button' style={{fontSize:13}}  onClick={()=>{setdisplalog_out_name(window.localStorage.removeItem("user"))
+    <button className='nav-button' style={{fontSize:13}}  onClick={()=>{setdisplalog_out_name(window.localStorage.removeItem("AuthToken"))
     window.location.assign(`/`)}}>Log Out
     </button>   
   }
