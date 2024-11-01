@@ -11,10 +11,10 @@ export default function Register() {
     const [isdoctor, setisdoctor] = useState(false);
     const [data, setData] = useState({
         first_name: '',
-        last_name: 'Dave',
+        last_name: ' ',
         email: '',
         password: '',
-        role: 'Human',
+        role: '',
     });
     const registerUser = async (e) => {
         e.preventDefault();
@@ -59,11 +59,11 @@ export default function Register() {
                     <h2 className={classes.title}>Create Your Account</h2>
                     {isdoctor ? <p className={classes.subtitle}>Join our health platform and connect with patients</p>:<p className={classes.subtitle}>Start your health journey today</p>}
                     <label className={classes.label}> Name </label>
-                    <input className={classes.input} type="text" placeholder='enter name ...' value={data.name} onChange={(e) => setData({ ...data, first_name: e.target.value })} />
+                    <input className={classes.input} required type="text" placeholder='enter name ...' value={data.name} onChange={(e) => setData({ ...data, first_name: e.target.value, role: isdoctor ? "DOCTOR" : "PATIENT" })} />
                     <label className={classes.label}> Email </label>
-                    <input className={classes.input} type="email" placeholder='enter email ...' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+                    <input className={classes.input} required type="email" placeholder='enter email ...' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
                     <label className={classes.label}> Password </label>
-                    <input className={classes.input} type="password" placeholder='enter password ...' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
+                    <input className={classes.input} required type="password" placeholder='enter password ...' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
                     <button className={classes.button} type='submit'> Submit </button>
                     <p className={classes.footer}>Have an account? <Link to="/login">Sign In</Link> here.</p>
 
