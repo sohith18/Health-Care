@@ -2,9 +2,12 @@ import { useState } from "react";
 import axios from 'axios';
 import {toast} from 'react-hot-toast';
 import { Link, useNavigate } from "react-router-dom";
+import classes from '../Styles/Register.module.css';
+import image from '../assets/register.jpg';
 
 export default function Register() {
     const navigate = useNavigate();
+    const [isdoctor, setisdoctor] = useState(false);
     const [data, setData] = useState({
         first_name: '',
         last_name: 'Dave',
@@ -37,18 +40,32 @@ export default function Register() {
             console.log(error);
         }
     }
+
+
   return (
-    <div className="register-div">
-        <form onSubmit={registerUser} className="register-form"> 
-            <label className="label-css"> Name </label>
-            <input className="input-css" type="text" placeholder='enter name ...' value={data.name} onChange={(e)=> setData({...data, first_name: e.target.value})}/>
-            <label className="label-css"> Email </label>
-            <input className="input-css" type="email" placeholder='enter email ...' value={data.email} onChange={(e)=> setData({...data, email: e.target.value})}/>
-            <label className="label-css"> Password </label>
-            <input className="input-css" type="password" placeholder='enter password ...' value={data.password} onChange={(e)=> setData({...data, password: e.target.value})}/>
-            <button type='submit'> Submit </button>
+    <div className={classes.container}>
+        
+        <div className={classes.left}>
+            <img src={image} alt="Hero" className={classes.img} />
+                    {/*<div className={classes.overlayText}>Where patients and doctors meet for better health outcomes. Log in to continue your journey.</div>*/}
+        </div>
+        <div className={classes.formcon}>
+        <form onSubmit={registerUser} className={classes.form}> 
+            <button className={classes.doctor} onClick={()=> setisdoctor(!isdoctor)}>Doctor</button>
+            <button className={classes.doctor} onClick={()=> setisdoctor(!isdoctor)}>Patient</button>
+            <h2 className={classes.title}>Create Your Account</h2>
+            <p className={classes.subtitle}>Start your health journey today</p>
+            <label className={classes.label}> Name </label>
+            <input className={classes.input} type="text" placeholder='enter name ...' value={data.name} onChange={(e)=> setData({...data, first_name: e.target.value})}/>
+            <label className={classes.label}> Email </label>
+            <input className={classes.input} type="email" placeholder='enter email ...' value={data.email} onChange={(e)=> setData({...data, email: e.target.value})}/>
+            <label className={classes.label}> Password </label>
+            <input className={classes.input} type="password" placeholder='enter password ...' value={data.password} onChange={(e)=> setData({...data, password: e.target.value})}/>
+            <button className={classes.button} type='submit'> Submit </button>
+            <p className={classes.footer}>Have an account? <Link to ="/login">Sign In</Link> here.</p>
 
         </form>
+        </div>
         
         
         

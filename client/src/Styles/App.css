@@ -69,29 +69,10 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#937871", en
 
 
 
-.register-div{
-  min-height: 90vh;
-  min-width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.login-form,.register-form{
-
-}
-
-
-
-.register-form:hover{
-  transform: scale(1);
-}
 
 .register{
   max-width: 100vw;
 }
-
 
 
 .reasons {
