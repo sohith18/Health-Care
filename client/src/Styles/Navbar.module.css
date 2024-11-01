@@ -2,14 +2,10 @@
     position: absolute;
     top: 0;
     width: 100vw;
-    /* Ensures full width */
     z-index: 3;
-    /* Keeps it on top of other elements */
     background: transparent;
-    /* Transparent to overlay on hero section */
 }
 
-/* Inner navbar styling */
 .bar {
     min-height: 10vh;
     display: flex;
@@ -17,20 +13,21 @@
     justify-content: space-around;
     width: 100%;
     background: transparent;
-    /* Keep this transparent */
 }
 
-/* Link styling to ensure visibility */
-.bar a {
-    color: white;
-    /* Adjust color as needed */
+.insidebar{
+    color: #ffffff; /* Consistent text color */
     text-decoration: none;
     font-size: 1rem;
-    border-bottom: none;
     font-weight: 400;
+    padding: 10px 15px; /* Added padding for clickable area */
+    transition: color 0.3s, background-color 0.3s; /* Smooth transition for background */
+    border-radius: 5px; /* Rounded corners for links */
+    border-bottom: none;
 }
 
-.bar a:hover {
-    color: rgba(170, 156, 145, 255);
-    /* Optional hover color */
+.insidebar:hover {
+    background-color: rgba(170, 156, 145, 0.2); /* Subtle background on hover */
+    color: rgb(196, 180, 167); /* Change text color on hover */
 }
+

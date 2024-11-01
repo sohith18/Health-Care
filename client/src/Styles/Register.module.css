@@ -1,3 +1,4 @@
+/* Main container to hold the image and form side-by-side */
 .container {
     display: flex;
     min-height: 100vh;
@@ -38,6 +39,36 @@
     max-width: 28vw;
     border: 1px solid #D1D5DB;
 }
+
+/* Button container styling */
+.buttonContainer {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    margin-bottom: 20px; /* Space below the buttons */
+}
+
+.roleButton {
+    background-color: #8F7671; /* Default background color */
+    color: #ffffff; /* Default text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for button-like appearance */
+    margin: 0 10px; /* Space between buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+/* Style for the selected button */
+.selected {
+    background-color: #4a3b38; /* Color for the selected button */
+    transform: scale(1.05); /* Slightly enlarge the selected button */
+}
+
+/* Hover effect */
+.roleButton:hover {
+    background-color: #4a3b38;
+}
+
 
 /* Form title styling */
 .title {
@@ -98,6 +129,7 @@
     background-color: #6C5A56;
 }
 
+/* Form footer styling */
 .footer {
     font-size: 0.9rem;
     color: #666666;
@@ -115,14 +147,6 @@
     text-decoration: underline;
 }
 
-
 .form a {
     border-bottom: none;
 }
-
-.doctor{
-    
-}
-
-  
-  

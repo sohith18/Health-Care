@@ -1,0 +1,95 @@
+.linkButton {
+    display: inline-block; /* Allow padding and margin */
+    padding: 10px 15px; /* Padding for button-like appearance */
+    color: #ffffff; /* Text color */
+    background-color: #2c2c2c; /* Dark background color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    width: 100%; /* Optional: full width */
+    text-align: center; /* Center the text */
+}
+
+.linkButton:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Lighten background on hover */
+}
+
+.dropdown {
+    position: relative; /* To position the dropdown correctly */
+}
+
+.dropbtn {
+    background: transparent; /* Button transparent background */
+    color: #ffffff; /* Text color for button */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    padding: 10px 15px; /* Padding for button */
+    transition: background-color 0.3s, border 0.3s, color 0.3s; /* Smooth transitions */
+    border: none;
+}
+
+.dropbtn:hover {
+    background-color: rgba(170, 156, 145, 0.2); /* Subtle background on hover */
+    color: rgb(196, 180, 167); 
+}
+
+.dropbox {
+    display: none; /* Initially hide the dropdown */
+    position: absolute;
+    top: 100%; /* Position below the button */
+    right: 0; /* Align to the right */
+    width: 220px; /* Set a width */
+    background-color: #2c2c2c; /* Darker background for the dropdown */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    z-index: 1000; /* Ensure it appears above other elements */
+    transition: opacity 0.3s ease; /* Smooth transition for dropdown */
+    opacity: 0; /* Set initial opacity */
+    visibility: hidden; /* Ensure the dropdown is not visible */
+}
+
+.dropdown:hover .dropbox {
+    display: block; /* Show the dropdown on hover */
+    opacity: 1; /* Fade in effect */
+    visibility: visible; /* Make it visible */
+}
+
+
+
+
+.dropitem {
+    padding: 12px 15px; /* Increased padding for items */
+    color: #ffffff; /* Item text color */
+    text-decoration: none; /* Remove underline */
+    transition: background 0.3s; /* Transition for hover effect */
+    
+    border-radius: 8px;
+   
+}
+
+.dropitem a{
+    border-bottom: none;
+}
+
+
+.dropitem:hover {
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Optional: Add a subtle animation for smoother appearance */
+.show {
+    animation: slideIn 0.3s ease forwards; /* Animation for showing the dropdown */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px); /* Start from above */
+        opacity: 0; /* Start hidden */
+    }
+    to {
+        transform: translateY(0); /* End in place */
+        opacity: 1; /* Fully visible */
+    }
+}

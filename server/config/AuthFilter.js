@@ -29,6 +29,10 @@ const AuthFilter = (req, res, next) => {
         next();
     else {
         const header = req.headers;
+        if (header.authorization == undefined) {
+            res.status(401);
+            res.send({ msg: "Unautherized access" });
+        }
         const token = header.authorization.substring(7);
         if (!isValid(token) || isExpired(token)) {
             res.status(401);
