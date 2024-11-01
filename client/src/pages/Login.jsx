@@ -3,6 +3,8 @@ import axios from 'axios';
 import { toast } from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
 import {Link } from 'react-router-dom';
+import classes from '../Styles/Login.module.css';
+import image from '../assets/login.jpg';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -34,15 +36,27 @@ export default function Login() {
     }
     return (
         <>
-            <div className="login-div">
-                <form onSubmit={loginUser} className="login-form">
-                    <label className="label-css"> Email </label>
-                    <input className="input-css" type="email" placeholder='enter email ...' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
-                    <label className="label-css"> Password </label>
-                    <input className="input-css" type="password" placeholder='enter password ...' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
-                    <button type='submit'> Login </button>
-                    <Link className="a-css" to ="/register">Don't have an account? Register here</Link>
-                </form>
+            <div className={classes.container}>
+                <div className={classes.left}>
+                    <img src={image} alt="Hero" className={classes.img} />
+                    {/*<div className={classes.overlayText}>Where patients and doctors meet for better health outcomes. Log in to continue your journey.</div>*/}
+                </div>
+                <div className={classes.formcon}>
+                    
+                    <form onSubmit={loginUser} className={classes.form}>
+                        <h2 className={classes.title}>Welcome Back</h2>
+                        <p className={classes.subtitle}>Please login to your account</p>
+                        <label className={classes.label}> Email </label>
+                        <input className={classes.input} type="email" placeholder='enter email ...' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+                        <label className={classes.label}> Password </label>
+                        <input className={classes.input} type="password" placeholder='enter password ...' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
+                        <button type='submit' className={classes.button}> Login </button>
+                        <p className={classes.footer}>Don't have an account? <Link to ="/register">Sign Up</Link></p>
+                        
+                    </form>
+
+                </div>
+                
             </div>
         </>
 

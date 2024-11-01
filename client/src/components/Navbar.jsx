@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {Link } from 'react-router-dom';
+import classes from '../Styles/Navbar.module.css';
 
 
 export default function Navbar() {
@@ -17,7 +18,7 @@ export default function Navbar() {
   let login_details,log_out;
 
   if(!displalog_out_name){
-    login_details =  <Link className="a-css" to ="/login">Login</Link>
+    login_details =  <Link to ="/login">Login</Link>
   }
   else{
     login_details = 
@@ -31,11 +32,11 @@ export default function Navbar() {
   }
 
   return (
-    <nav className='nav-outer'>
-      <div className='nav-bar'>
-        <Link className="a-css" to ="/">Home</Link>
-        <Link className="a-css" to="/medicines">Medicines</Link>
-        <Link className="a-css" to={val}>Video Call</Link>
+    <nav className={classes.outer}>
+      <div className={classes.bar}>
+        <Link to ="/">Home</Link>
+        <Link to="/medicines">Medicines</Link>
+        <Link to={val}>Video Call</Link>
         {/* <Link className="a-css" to="/chatbot">Chatbot</Link> */}
         {login_details}
         {log_out}

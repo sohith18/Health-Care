@@ -1,5 +1,5 @@
 import './Styles/App.css';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Navbar from '../src/components/Navbar';
 import Home from '../src/pages/Home';
 import Register from './pages/Register';
@@ -18,17 +18,40 @@ import SkinDoctors from './pages/Specialized_doctors/SkinDoctors';
 import NotFound from './pages/ErrPage/NotFound';
 import ServerError from './pages/ErrPage/ServerError';
 import Chatbot from './pages/Chatbot';
+import RootLayout from './RootLayout';
+import { Children } from 'react';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 
+const router = createBrowserRouter([
+    {   path: '/', element: <RootLayout />,
+        children:[
+            {path: '/', element: <Home />},
+            {path: '/medicines', element: <Medicine />},
+            {path: '/login', element: <Login />},
+            {path: '/register', element: <Register />},
+            {path: '/video-call', element: <JoinRoom />},
+            {path: '/video-call/meeting/:id', element: <VideoCall />},
+            {path: '/doctors', element: <Doctors />},
+            {path: '/cough-doctors', element: <ColdDoctors />},
+            {path: '/mental-health-doctors', element: <DepressionDoctors />},
+            {path: '/allergy-doctors', element: <AllergyDoctors />},
+            {path: '/skin-doctors', element: <SkinDoctors />},
+            {path: '/500', element: <ServerError />},
+            {path: '*', element: <NotFound />},
+            {path: '/chatbot', element: <Chatbot />}
+            
+        ]
+    },
+])
+
 function App () {
     return (
         <div className='App'>
-            <Navbar />
             <Toaster position='bottom-right' toastOptions={{duration:2000}}/>
             <div className='Content'>
-            <Routes>
+            {/* <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/chatbot" element={<Chatbot />} />
                 <Route path="/medicines" element={<Medicine/>}/>
@@ -44,7 +67,8 @@ function App () {
                 <Route path="/500" element={<ServerError />} />
                 <Route path="*" element={<NotFound />} />
                 
-            </Routes>
+            </Routes> */}
+            <RouterProvider router={router}/>
             </div>
         </div>
         

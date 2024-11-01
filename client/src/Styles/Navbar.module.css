@@ -1,0 +1,36 @@
+.outer {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    /* Ensures full width */
+    z-index: 3;
+    /* Keeps it on top of other elements */
+    background: transparent;
+    /* Transparent to overlay on hero section */
+}
+
+/* Inner navbar styling */
+.bar {
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    background: transparent;
+    /* Keep this transparent */
+}
+
+/* Link styling to ensure visibility */
+.bar a {
+    color: white;
+    /* Adjust color as needed */
+    text-decoration: none;
+    font-size: 1rem;
+    border-bottom: none;
+    font-weight: 400;
+}
+
+.bar a:hover {
+    color: rgba(170, 156, 145, 255);
+    /* Optional hover color */
+}

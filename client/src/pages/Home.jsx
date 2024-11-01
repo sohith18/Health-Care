@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from '../components/Slider';
+import Hero from '../components/Hero';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import slides from '../assets/images.json';
@@ -10,19 +10,12 @@ import photo3 from '../assets/eye.png';
 import photo4 from '../assets/pigment.png';
 import { Link } from 'react-router-dom';
 import ColdDoctors from './Specialized_doctors/ColdDoctors';
-import { Take_to_Chat } from '../Controllers/HomeController';
+
 
 export default function Home() {
   return (
     <>
-      <div className='slider'><Slider slides={slides} /></div>
-      <div className='chat-box'>
-        <ul>
-          <div className='chat-box-wrapper'>
-            <h3>Feeling Unwell ?</h3></div><br />
-          <button type='submit' onClick={Take_to_Chat}> Chat with us for free </button>
-        </ul>
-      </div>
+      <div><Hero/></div>
       <div className='why'>
         <label className='label-css-home'>Why Connect</label>
         <div className='reasons'>
