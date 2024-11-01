@@ -2,7 +2,7 @@
 .heading {
     text-align: left;
     margin: 20px 0;
-    padding-left: 20px;
+    padding: 30px;
     font-size: 28px; /* Increased font size for the heading */
     color: black; /* Set the heading color to black */
     font-weight: 450; /* Reduced weight for a lighter appearance */
@@ -28,7 +28,7 @@
     width: 100%; /* Make boxes take full width of the grid cell */
     font-size: 20px; /* Increase font size for better readability */
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
-    height: 150px; /* Fixed height to increase the length of each box */
+    height: 225px; /* Fixed height to increase the length of each box */
     color: #937871; /* Default text color */
 }
 

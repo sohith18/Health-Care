@@ -14,19 +14,6 @@ export default function Home() {
     <>
       <Hero/>
       <DoctorBoxes />
-      
-      <div className='follow-us'>
-        <h2 className="text-center">Follow Us</h2>
-        <div className='d-flex justify-content-center'>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark mx-2">
-            <i className="fa fa-instagram"></i> Instagram
-          </a>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark mx-2">
-            <i className="fa fa-youtube"></i> YouTube
-          </a>
-          {/* Add more social media links/icons as needed */}
-        </div>
-      </div>
     </>
   )
 }

@@ -3,41 +3,16 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
-  
+
 }
 
-/* Outer wrapper for fixed positioning */
-
-
-.why{
-  display: flex;
-  flex-direction: column;
-  background-color: #5c3b96;
-  padding: 2rem;
-  height: 36vh;
-  margin-top: 90px;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card-img, .card-img-bottom, .card-img-top {
-  width: 50vw;
-  height: 125px;
-}
-
-.Boxes{
-  margin-top: 90px;
+.chat-box-wrapper {
   margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.chat-box-wrapper{
-  margin-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
+
 .chat-box {
   margin-top: 90px;
   margin-bottom: 20px;
@@ -57,122 +32,13 @@ body {
   min-width: 100vw;
   background: hsla(12, 14%, 51%, 1);
 
-background: linear-gradient(90deg, hsla(12, 14%, 51%, 1) 0%, hsla(350, 14%, 36%, 1) 100%);
+  background: linear-gradient(90deg, hsla(12, 14%, 51%, 1) 0%, hsla(350, 14%, 36%, 1) 100%);
 
-background: -moz-linear-gradient(90deg, hsla(12, 14%, 51%, 1) 0%, hsla(350, 14%, 36%, 1) 100%);
+  background: -moz-linear-gradient(90deg, hsla(12, 14%, 51%, 1) 0%, hsla(350, 14%, 36%, 1) 100%);
 
-background: -webkit-linear-gradient(90deg, hsla(12, 14%, 51%, 1) 0%, hsla(350, 14%, 36%, 1) 100%);
+  background: -webkit-linear-gradient(90deg, hsla(12, 14%, 51%, 1) 0%, hsla(350, 14%, 36%, 1) 100%);
 
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#937871", endColorstr="#695054", GradientType=1 );
-  
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#937871", endColorstr="#695054", GradientType=1);
+
 }
-
-
-
-
-.reasons {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  
-  /* Add animation */
-  animation: animate 5s linear infinite;
-}
-
-/* Define the hover effect */
-.reasons:hover {
-  /* Pause the animation */
-  animation-play-state: paused;
-  /* Make the cursor default */
-  cursor: default;
-  /* Add any other styles you want to change on hover */
-}
-
-/* Define the animation */
-@keyframes animate {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.reason {
-  font-weight: 600;
-  font-size: 5vw;
-  color: #ffffff;
-}
-
-.inside-reason {
-  font-size: large;
-  text-align: center;
-  color: #ffffff;
-  /* Add shadow */
-  text-shadow: 2px 2px 4px #000000;
-  /* Add weight to font */
-  font-weight: 500;
-  /* Beautify more */
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 500;
-  /* Add animation */
-  animation: animate 3s linear infinite;
-  /* Add on hover event */
-  transition: all 0.3s ease-in-out;
-  /* More beautify */
-  padding: 10px;
-  border-radius: 10px;
-  /* The text should animate and become visible slowly when seen */
-  opacity: 0.7; /* Initially set to transparent */
-}
-
-/* Add the opacity transition on hover */
-.inside-reason:hover {
-  animation-play-state: paused;
-  cursor: default;
-  opacity: 1; /* Make it visible on hover */
-}
-
-.a-css{
-  font-weight: 500;
-  color: #7439db;;
-  text-decoration: inherit;
-}
-
-.a-css:hover {
-  color: #5e25c0;;
-}
-
-.a-css-card{
-  font-weight: 500;
-  color: white;;
-  text-decoration: inherit;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-/* button {
-  border: none;
-  background: linear-gradient(135deg, #7439db, #512e6e); 
-  padding: 1rem 2rem;
-  border-radius: 15px;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-
-
-button:hover {
-  background: linear-gradient(135deg, #512e6e, #7439db); 
-  transform: scale(1.03); /* Slight scaling effect on hover 
-} */
 
