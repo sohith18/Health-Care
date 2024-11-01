@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
-import {Link } from 'react-router-dom';
+import { useState, useEffect } from 'react'; 
+import { NavLink } from 'react-router-dom'; // Use NavLink instead of Link
 import classes from '../Styles/Navbar.module.css';
 import ProfileDropdown from './ProfileDropDown';
-import { useRef } from 'react';
 
 const fetchUserData = async (AuthToken, setUser) => {
   if (AuthToken) {
@@ -33,11 +32,10 @@ const fetchUserData = async (AuthToken, setUser) => {
 export default function Navbar() {
   const [user, setUser] = useState(null);
   const [displalog_out_name, setdisplalog_out_name] = useState(null);
- 
 
   useEffect(() => {
     if (user) {
-      setdisplalog_out_name(user.first_name); 
+      setdisplalog_out_name(user.first_name);
     }
   }, [user]);
 
@@ -46,18 +44,40 @@ export default function Navbar() {
     fetchUserData(AuthToken, setUser);
   }, []);
 
-
   return (
     <nav className={classes.outer}>
       <div className={classes.bar}>
-        <Link className={classes.insidebar} to ="/">Home</Link>
-        <Link className={classes.insidebar} to="/medicines">Medicines</Link>
-        <Link className={classes.insidebar} to="/">Video Call</Link>
+        <NavLink 
+          className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
+          to="/" 
+        >
+          Home
+        </NavLink>
+        <NavLink 
+          className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
+          to="/medicines"
+        >
+          Medicines
+        </NavLink>
+        <NavLink 
+          className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
+          to="/video-call"
+        >
+          Video Call
+        </NavLink>
 
-        {displalog_out_name ? 
-          <ProfileDropdown handleDisplalog_out_name={setdisplalog_out_name}/>  :<Link className={classes.insidebar}  to ="/login">Login</Link>}
-
+        {displalog_out_name ? (
+          <ProfileDropdown handleDisplalog_out_name={setdisplalog_out_name} />
+        ) : (
+          <NavLink 
+            className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
+            to="/login"
+          >
+            Login
+          </NavLink>
+        )}
       </div>
     </nav>
   );
 }
+

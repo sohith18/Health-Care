@@ -15,19 +15,47 @@
     background: transparent;
 }
 
-.insidebar{
+.insidebar {
     color: #ffffff; /* Consistent text color */
     text-decoration: none;
     font-size: 1rem;
     font-weight: 400;
     padding: 10px 15px; /* Added padding for clickable area */
-    transition: color 0.3s, background-color 0.3s; /* Smooth transition for background */
+    transition: color 0.3s, background-color 0.3s; /* Smooth transition */
     border-radius: 5px; /* Rounded corners for links */
+    position: relative; /* For the line indicator */
     border-bottom: none;
 }
 
 .insidebar:hover {
     background-color: rgba(170, 156, 145, 0.2); /* Subtle background on hover */
     color: rgb(196, 180, 167); /* Change text color on hover */
+}
+
+.activeLink {
+    color: #c4b4a7; /* Highlight color for active link */
+    font-weight: 500; /* Make active link stand out */
+}
+
+.activeLink::after {
+    content: '';
+    display: block;
+    width: 100%; /* Full width of the link */
+    height: 2px; /* Thickness of the underline */
+    background-color: #c4b4a7; /* Color of the underline */
+    position: absolute;
+    bottom: 0; /* Position at the bottom of the link */
+    left: 0;
+    animation-name: showline;
+    animation-duration: 0.5s;
+}
+
+@keyframes showline {
+    0%{
+        transform: scaleX(0);
+    }
+    100%{
+        transform: scaleX(1);
+    }
 }
 
