@@ -31,9 +31,13 @@
     position: relative; /* To position the active line */
 }
 
-.dropbtn:hover, .dropbtn.active {
+.dropbtn:hover{
     color: rgb(196, 180, 167);
     background-color: rgba(170, 156, 145, 0.2);
+}
+
+.dropbtn.active {
+    color: rgb(196, 180, 167);
 }
 
 .dropbtn.active::after {
