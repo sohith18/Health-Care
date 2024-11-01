@@ -15,21 +15,40 @@ export default function Login() {
 
     const loginUser = async (e) => {
         e.preventDefault();
-        const { email, password } = data;
+        // const { email, password } = data;
         //const [loggedin, setloggedin] = useState(false);
         try {
-            const { data } = await axios.post('/login', {
-                email, password
-            });
-            if (data.error) {
-                toast.error(data.error);
-            } else {
-                window.localStorage.setItem("user",data)
-                setData({});
-                //setloggedin(true);
+            // console.log(userData);
+            const response = await fetch("http://localhost:3000/auth/login", { 
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data), 
+            })
+            const userData = await response.json();
+            console.log(userData);
+            alert(userData.msg);
+            if (response.ok) {
+                localStorage.setItem('AuthToken', userData.token);
+                // setToken(userData.token);
+                // setUser(userData.user);
                 navigate('/');
                 window.location.reload()
             }
+            
+            // const { data } = await axios.post('/login', {
+            //     email, password
+            // });
+            // if (data.error) {
+            //     toast.error(data.error);
+            // } else {
+            //     window.localStorage.setItem("user",data)
+            //     setData({});
+            //     //setloggedin(true);
+            //     navigate('/');
+            //     window.location.reload()
+            // }
         } catch (error) {
             console.log(error);
         }
