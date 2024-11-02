@@ -106,3 +106,25 @@
     color: #e8cba2;
     font-weight: 450;
 }
+
+@media (max-width: 768px) {
+    .image {
+        display: none;
+    }
+
+    .leftPart {
+        width: 0px;
+        height: 0px;
+        padding: 0px;
+    }
+
+    .rightPart {
+        margin-right: 30%;
+    }
+
+    .dotsContainer {
+        left: 50%;
+    }
+
+    
+}

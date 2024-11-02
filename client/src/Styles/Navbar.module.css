@@ -30,14 +30,14 @@
 .hamburger div {
     width: 30px; /* Width for visibility */
     height: 3px; /* Thickness of the bars */
-    background-color: #ffffff; /* Color of the hamburger bars */
+    background-color: rgb(196, 180, 167)    ; /* Color of the hamburger bars */
     margin: 5px 0; /* Spacing between the bars */
     transition: all 0.3s ease-in-out; /* Smooth transition for animations */
 }
 
 .hamburger:hover{
     background-color: rgba(170, 156, 145, 0.2);
-    color: rgb(196, 180, 167);
+   
 }
 
 /* Active hamburger styles */

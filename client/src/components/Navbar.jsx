@@ -61,18 +61,21 @@ export default function Navbar() {
           <NavLink 
             className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
             to="/" 
+            onClick={toggleMenu}
           >
             Home
           </NavLink>
           <NavLink 
             className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
             to="/medicines"
+            onClick={toggleMenu}
           >
             Medicines
           </NavLink>
           <NavLink 
             className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
             to="/video-call"
+            onClick={toggleMenu}
           >
             Video Call
           </NavLink>
