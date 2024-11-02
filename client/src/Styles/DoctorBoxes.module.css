@@ -3,62 +3,89 @@
     text-align: left;
     margin: 20px 0;
     padding: 30px;
-    font-size: 28px; /* Increased font size for the heading */
-    color: #e8cba2; /* Set the heading color to black */
-    font-weight: 450; /* Reduced weight for a lighter appearance */
+    font-size: 28px;
+    color: #e8cba2;
+    font-weight: 450;
 }
 
 .doctorContainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 boxes per row */
-    gap: 0; /* No gap between boxes */
-    width: 100%; /* Full width of the container */
-    padding: 0; /* No padding around the container */
-    margin: 0; /* No margin around the container */
+    grid-template-columns: repeat(3, 1fr); /* Default: 3 boxes per row */
+    gap: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .doctorBox {
-    position: relative; /* Position relative for hover line */
-    background-color: #392E36; /* Background color for the boxes */
-    border: 0.75px solid #937871; /* Border around each box */
-    border-radius: 0; /* No rounded corners */
-    padding: 50px; /* Increased padding inside the boxes */
-    text-align: center; /* Center text inside the boxes */
-    cursor: pointer; /* Change cursor to pointer */
-    width: 100%; /* Make boxes take full width of the grid cell */
-    font-size: 20px; /* Increase font size for better readability */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
-    height: 225px; /* Fixed height to increase the length of each box */
-    color: #937871; /* Default text color */
+    position: relative;
+    background-color: #392E36;
+    border: 0.75px solid #937871;
+    border-radius: 0;
+    padding: 50px;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 20px;
+    transition: background-color 0.3s, color 0.3s;
+    height: 225px;
+    color: #937871;
 }
 
 .boxContent {
-    position: relative; /* Position relative for the arrow */
-    transition: color 0.3s; /* Smooth transition for text color */
+    position: relative;
+    transition: color 0.3s;
 }
 
 .arrow {
-    margin-left: 10px; /* Space between text and arrow */
-    font-weight: bold; /* Make the arrow bold */
-    font-size: 22px; /* Increase arrow size for visibility */
-    color: inherit; /* Inherit color from the parent for smooth transition */
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    color: inherit;
 }
 
 .hoverLine {
     position: absolute;
-    top: 0; /* Position line at the top of the box */
-    left: 50%; /* Center the line horizontally */
-    transform: translateX(-50%); /* Center align the line */
-    width: 12%; /* Adjust the width of the line */
-    height: 5px; /* Height of the line */
-    background-color: #937871; /* Default line color */
-    transition: background-color 0.3s; /* Smooth transition for line color */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12%;
+    height: 5px;
+    background-color: #937871;
+    transition: background-color 0.3s;
 }
 
 .doctorBox:hover {
-    color: white; /* Change text color to white on hover */
+    color: white;
 }
 
 .doctorBox:hover .hoverLine {
-    background-color: #fff; /* Change line color to white on hover */
+    background-color: #fff;
+}
+
+/* Media Queries for Responsive Design */
+
+/* For screens smaller than 1200px (2 boxes per row) */
+@media (max-width: 1200px) {
+    .doctorContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* For screens smaller than 768px (1 box per row) */
+@media (max-width: 768px) {
+    .doctorContainer {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .heading {
+        font-size: 24px; /* Adjust heading size */
+        padding: 20px;
+    }
+
+    .doctorBox {
+        padding: 40px; /* Adjust padding for smaller screens */
+        font-size: 18px; /* Adjust font size */
+        height: 200px; /* Adjust height */
+    }
 }
