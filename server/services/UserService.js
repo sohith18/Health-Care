@@ -1,5 +1,8 @@
 import { jwtDecode } from 'jwt-decode';
 import User from '../models/User.js'
+import bcrypt from 'bcrypt'
+
+const saltRounds = 10;
 
 const getUserFromToken = async (token) => {
     try {
@@ -39,7 +42,33 @@ const getUser = async (token) => {
     return userRes;
 } 
 
+const updateUser = async (userData) => {
+    try {
+        if (userData.password) {
+            const pass = userData.password;
+            const hash = await bcrypt.hash(pass, saltRounds);
+            userData.password = hash;
+        }
+        const newUser = await User.findOneAndUpdate(userData);
+        return {
+            user: newUser,
+            msg: 'updated user',
+            status: 200
+        }
+    }
+    catch (err) {
+        
+        return {
+            user: null,
+            msg: err.message,
+            status: 500
+        }
+    }
+    
+}
+
 export {
     getUserFromToken,
     getUser,
+    updateUser
 }
