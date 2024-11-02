@@ -10,10 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import JoinRoom from './pages/join';
 import VideoCall from "./pages/meeting"
 import Doctors from './pages/Doctors';
-import ColdDoctors from './pages/Specialized_doctors/ColdDoctors';
-import DepressionDoctors from './pages/Specialized_doctors/DepressionDoctors';
-import AllergyDoctors from './pages/Specialized_doctors/AllergyDoctors';
-import SkinDoctors from './pages/Specialized_doctors/SkinDoctors';
 import NotFound from './pages/ErrPage/NotFound';
 import ServerError from './pages/ErrPage/ServerError';
 import Chatbot from './pages/Chatbot';
@@ -33,10 +29,6 @@ const router = createBrowserRouter([
             {path: '/video-call', element: <JoinRoom />},
             {path: '/video-call/meeting/:id', element: <VideoCall />},
             {path: '/doctors', element: <Doctors />},
-            {path: '/cough-doctors', element: <ColdDoctors />},
-            {path: '/mental-health-doctors', element: <DepressionDoctors />},
-            {path: '/allergy-doctors', element: <AllergyDoctors />},
-            {path: '/skin-doctors', element: <SkinDoctors />},
             {path: '/500', element: <ServerError />},
             {path: '*', element: <NotFound />},
             {path: '/chatbot', element: <Chatbot />},

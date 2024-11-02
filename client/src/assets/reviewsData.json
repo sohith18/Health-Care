@@ -1,0 +1,17 @@
+[
+    {
+      "image": "Review1",
+      "review": "\"This platform has changed my life! Highly recommend.\"",
+      "name": "Alice Brown"
+    },
+    {
+      "image": "Review2",
+      "review": "\"Amazing service and very easy to use.\"",
+      "name": "John Smith"
+    },
+    {
+      "image": "Review3",
+      "review": "\"A great experience from start to finish.\"",
+      "name": "Jane Doe"
+    }
+]
