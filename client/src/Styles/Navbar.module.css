@@ -1,3 +1,4 @@
+/* Main navbar container */
 .outer {
     position: absolute;
     top: 0;
@@ -6,56 +7,141 @@
     background: transparent;
 }
 
+/* Navbar content container */
 .bar {
     min-height: 10vh;
     display: flex;
+    justify-content: space-between; /* Ensures menu items are distributed properly */
     align-items: center;
-    justify-content: space-around;
     width: 100%;
-    background: transparent;
+    padding: 0 20px; /* Adds spacing */
 }
 
+/* Hamburger menu container */
+.hamburger {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px; /* Adds padding for better click area */
+    z-index: 4; /* Ensures it stays above other elements */
+}
+
+/* Hamburger bar styling */
+.hamburger div {
+    width: 30px; /* Width for visibility */
+    height: 3px; /* Thickness of the bars */
+    background-color: rgb(196, 180, 167)    ; /* Color of the hamburger bars */
+    margin: 5px 0; /* Spacing between the bars */
+    transition: all 0.3s ease-in-out; /* Smooth transition for animations */
+}
+
+.hamburger:hover{
+    background-color: rgba(170, 156, 145, 0.2);
+   
+}
+
+/* Active hamburger styles */
+.hamburger.active div:nth-child(1) {
+    color: rgb(196, 180, 167);
+    transform: rotate(45deg) translate(12.5px, 12.5px); /* Rotate top bar and slightly move */
+}
+
+.hamburger.active div:nth-child(2) {
+    color: rgb(196, 180, 167);
+    opacity: 0; /* Hide middle bar */
+}
+
+.hamburger.active div:nth-child(3) {
+    color: rgb(196, 180, 167);
+    transform: rotate(-45deg) translate(5px, -5px); /* Rotate bottom bar and slightly move */
+}
+
+/* Container for the menu links */
+.menu {
+    display: flex; /* Show links by default on larger screens */
+    flex-grow: 1; /* Spreads items evenly */
+    justify-content: space-evenly; /* Ensures even spacing */
+    align-items: center;
+}
+
+/* Individual navbar link */
 .insidebar {
-    color: #ffffff; /* Consistent text color */
+    position: relative; /* Needed for the underline animation */
+    color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 400;
-    padding: 10px 15px; /* Added padding for clickable area */
-    transition: color 0.3s, background-color 0.3s; /* Smooth transition */
-    border-radius: 5px; /* Rounded corners for links */
-    position: relative; /* For the line indicator */
+    padding: 10px 15px;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
     border-bottom: none;
 }
 
+/* Hover effect for navbar links */
 .insidebar:hover {
-    background-color: rgba(170, 156, 145, 0.2); /* Subtle background on hover */
-    color: rgb(196, 180, 167); /* Change text color on hover */
+    background-color: rgba(170, 156, 145, 0.2);
+    color: rgb(196, 180, 167);
 }
 
+/* Active link styling */
 .activeLink {
-    color: #c4b4a7; /* Highlight color for active link */
-    font-weight: 500; /* Make active link stand out */
+    color: #c4b4a7;
+    font-weight: 500;
 }
 
+/* Underline animation for active link */
 .activeLink::after {
     content: '';
     display: block;
     width: 100%; /* Full width of the link */
     height: 2px; /* Thickness of the underline */
-    background-color: #c4b4a7; /* Color of the underline */
+    background-color: #c4b4a7;
     position: absolute;
-    bottom: 0; /* Position at the bottom of the link */
-    left: 0;
-    animation-name: showline;
-    animation-duration: 0.5s;
+    left: 0px;
+    bottom: -2px; /* Places underline slightly below the link */
+    animation: showline 0.5s forwards; /* Applies animation */
 }
 
+/* Animation keyframes for underline */
 @keyframes showline {
-    0%{
+    from {
         transform: scaleX(0);
     }
-    100%{
+    to {
         transform: scaleX(1);
     }
 }
 
+/* Responsive styles for small screens */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Show hamburger on small screens */
+    }
+
+    .menu {
+        display: none; /* Hide menu links on small screens */
+        flex-direction: column;
+        position: absolute;
+        top: 10vh; /* Adjust as needed */
+        left: 0;
+        width: 100%;
+        background-color: #392E36; /* Background color of the dropdown */
+        padding: 10px 0;
+        z-index: 3;
+        opacity: 0; /* Start as invisible */
+        transform: translateY(-10px); /* Initial position above */
+        transition: opacity 0.3s ease, transform 0.3s ease; /* Transition for smooth effects */
+    }
+
+    .menu.show {
+        display: flex; /* Show menu when toggled */
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Move into position */
+    }
+
+    .insidebar {
+        padding: 15px;
+        text-align: center;
+        width: 100%; /* Full width for links */
+    }
+}

@@ -122,16 +122,14 @@
     border-bottom: none;
 }
 
-/* .overlayText {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #FFFFFF;
-    font-weight: 700;
-    font-size: 2rem;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-} */
+@media (max-width: 768px) {
+    .left{
+        display: none;
+    }
 
+    .form{
+        max-width: none;
+    }
+
+
+}

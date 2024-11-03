@@ -106,3 +106,19 @@
     color: #e8cba2;
     font-weight: 450;
 }
+
+@media (max-width: 768px) {
+    .leftPart {
+        display: none;
+    }
+
+    .rightPart {
+        padding: 20%;
+    }
+
+    .dotsContainer {
+        left: 50%;
+    }
+
+    
+}
