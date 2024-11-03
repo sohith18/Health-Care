@@ -108,18 +108,12 @@
 }
 
 @media (max-width: 768px) {
-    .image {
+    .leftPart {
         display: none;
     }
 
-    .leftPart {
-        width: 0px;
-        height: 0px;
-        padding: 0px;
-    }
-
     .rightPart {
-        margin-right: 30%;
+        padding: 20%;
     }
 
     .dotsContainer {

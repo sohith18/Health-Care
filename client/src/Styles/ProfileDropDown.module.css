@@ -16,22 +16,57 @@
     background-color: rgba(255, 255, 255, 0.2); /* Lighten background on hover */
 }
 
-.dropdown {
-    position: relative; /* To position the dropdown correctly */
-}
-
 .dropbtn {
     background: transparent; /* Button transparent background */
     color: #ffffff; /* Text color for button */
     border-radius: 5px; /* Rounded corners for the button */
     cursor: pointer; /* Pointer cursor on hover */
     padding: 10px 15px; /* Padding for button */
-    transition: background-color 0.3s, border 0.3s, color 0.3s; /* Smooth transitions */
+    display: flex; /* Use flex to align items */
+    align-items: center; /* Center content vertically */
+    justify-content: space-between; /* Space text and arrow */
+    width: 100%; /* Full width */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
     border: none;
-    position: relative; /* To position the active line */
 }
 
-.dropbtn:hover{
+.arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent; /* Create triangle sides */
+    border-right: 6px solid transparent;
+    border-top: 8px solid #ffffff; /* Triangle color */
+    margin-left: 8px; /* Space between text and arrow */
+    transition: transform 0.3s ease; /* Smooth rotation */
+}
+
+.dropbtn:hover .arrow {
+    border-top-color: rgb(196, 180, 167); /* Change arrow color on hover */
+}
+
+.arrow.active{
+    transform: rotate(180deg); /* Rotate arrow on click */
+    border-top: 8px solid rgb(196, 180, 167);
+}
+
+
+
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px); /* Start from above */
+        opacity: 0; /* Start hidden */
+    }
+    to {
+        transform: translateY(0); /* End in place */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+
+
+.dropbtn:hover {
     color: rgb(196, 180, 167);
     background-color: rgba(170, 156, 145, 0.2);
 }
@@ -73,16 +108,23 @@
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
     z-index: 1000; /* Ensure it appears above other elements */
-    transition: opacity 0.4s ease; /* Smooth transition for dropdown */
-    opacity: 0; /* Set initial opacity */
-    visibility: hidden; /* Ensure the dropdown is not visible */
+    opacity: 0; /* Initial opacity */
+    visibility: hidden; /* Ensure it is not visible */
+    transition: opacity 0.4s ease, transform 0.4s ease; /* Smooth transition */
 }
 
-.dropdown:hover .dropbox {
-    display: block; /* Show the dropdown on hover */
-    opacity: 1; /* Fade in effect */
+
+.dropbox.show {
+    display: block; /* Show the dropdown */
+    opacity: 1; /* Full opacity */
     visibility: visible; /* Make it visible */
+    animation: slideIn 0.3s ease forwards; /* Slide-in animation */
 }
+
+.dropdown {
+    position: relative; /* To position the dropdown correctly */
+}
+
 
 
 .dropitem {

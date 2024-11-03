@@ -150,3 +150,14 @@
 .form a {
     border-bottom: none;
 }
+
+@media (max-width: 768px) {
+    .left{
+        display: none;
+    }
+
+    .form{
+        max-width: none;
+    }
+
+}
