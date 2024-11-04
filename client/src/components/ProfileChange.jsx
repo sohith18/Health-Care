@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState, useEffect, useRef } from "react";
 import classes from '../Styles/ProfileChange.module.css';
+import { useContext } from "react";
+import { TranslationContext } from "../store/TranslationContext";
 
 async function getUserData(AuthToken,setData,setIsFetching) {
     if (AuthToken) {
@@ -74,6 +76,7 @@ export default function ProfileChange() {
     const [IsFetching,setIsFetching] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const {translatedTexts} = useContext(TranslationContext);
 
     
     const handleSubmit = async (e) => {
@@ -102,23 +105,23 @@ export default function ProfileChange() {
         <div onSubmit={handleSubmit} className={classes.formcon}>
             
                 <form className={classes.form}>
-                <h1 className={classes.title}> Profile Settings </h1>
-                <label className={classes.label}> Name </label>
+                <h1 className={classes.title}> {translatedTexts['Profile Settings'] || 'Profile Settings'} </h1>
+                <label className={classes.label}> {translatedTexts['Name'] || 'Name'} </label>
                 <input className={classes.input} type="text" placeholder='enter name ...' value={data.first_name} onChange={(e) => setData({ ...data, first_name: e.target.value })} required/>
-                <label className={classes.label}> New Password </label>
+                <label className={classes.label}> {translatedTexts['New Password'] || 'New Password'} </label>
                 <input className={classes.input} type="password" placeholder='enter password ...' value={data.password} 
                 onChange={(e) => {
                     setError('')
                     setData({ ...data, password: e.target.value })
                 }} required/>
-                <label className={classes.label}> Re-enter Password </label>
+                <label className={classes.label}> {translatedTexts['Re-enter Password'] || 'Re-enter Password'} </label>
                 <input className={classes.input} type="password" placeholder='enter password ...' value={data.re_password} 
                 onChange={(e) => {
                     setError('')
                     setData({ ...data, re_password: e.target.value })}}
                  required/>
                 {error && <p className={classes.error}>{error}</p>}
-                    <button className={classes.button} type='submit'> Submit </button>
+                    <button className={classes.button} type='submit'> {translatedTexts['Submit'] || 'Submit'} </button>
             </form>
         </div>
     )
