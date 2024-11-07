@@ -1,27 +1,30 @@
-import styles from '../Styles/DoctorBoxes.module.css'; // Import your CSS module
+import { useContext } from 'react';
+import styles from '../Styles/DoctorBoxes.module.css'; 
+import { TranslationContext } from '../store/TranslationContext'; 
 
+export default function DoctorBoxes() {
+    const { translatedTexts } = useContext(TranslationContext);
 
-export default function DoctorBoxes(){
     const specialties = [
-        'Eye Specialist',
-        'Cardiologist',
-        'Dermatologist',
-        'Pediatrician',
-        'Orthopedic Surgeon',
-        'Psychiatrist',
+        translatedTexts['Eye Specialist'] || 'Eye Specialist',
+        translatedTexts['Cardiologist'] || 'Cardiologist',
+        translatedTexts['Dermatologist'] || 'Dermatologist',
+        translatedTexts['Pediatrician'] || 'Pediatrician',
+        translatedTexts['Orthopedic Surgeon'] || 'Orthopedic Surgeon',
+        translatedTexts['Psychiatrist'] || 'Psychiatrist',
     ];
 
     const handleClick = (specialty) => {
-        alert(`You clicked on ${specialty}`); // Replace with your desired action
+        alert(translatedTexts['You clicked on'] + ` ${specialty}` || `You clicked on ${specialty}`); // Replace with your desired action
     };
 
     return (
         <div>
-            <h2 className={styles.heading}>Core Services</h2>
+            <h2 className={styles.heading}>{translatedTexts['Core Services'] || 'Core Services'}</h2>
             <div className={styles.doctorContainer}>
-                {specialties.map((specialty) => (
+                {specialties.map((specialty, index) => (
                     <button
-                        key={specialty}
+                        key={index}
                         className={styles.doctorBox}
                         onClick={() => handleClick(specialty)}
                     >

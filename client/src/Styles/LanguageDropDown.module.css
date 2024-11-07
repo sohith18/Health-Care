@@ -1,25 +1,7 @@
-.linkButton {
-    display: inline-block; /* Allow padding and margin */
-    padding: 10px 15px; /* Padding for button-like appearance */
-    color: #ffffff; /* Text color */
-    background-color: #2c2c2c; /* Dark background color */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Change cursor to pointer */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
-    width: 100%; /* Optional: full width */
-    text-align: center; /* Center the text */
-}
-
-.linkButton:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Lighten background on hover */
-}
-
-.dropbtn {
+.languageButton {
     background: transparent; /* Button transparent background */
     color: #ffffff; /* Text color for button */
-    border-radius: 5px; /* Rounded corners for the button */
+    border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     padding: 10px 15px; /* Padding for button */
     display: flex; /* Use flex to align items */
@@ -27,7 +9,34 @@
     justify-content: space-between; /* Space text and arrow */
     width: 100%; /* Full width */
     transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
-    border: none;
+    border: none; /* No border */
+    position: relative; /* For pseudo-element positioning */
+}
+
+.languageButton:hover {
+    color: rgb(196, 180, 167);
+    background-color: rgba(170, 156, 145, 0.2);
+}
+
+.languageButton.active {
+    color: rgb(196, 180, 167);
+}
+
+.languageButton.active::after {
+    content: '';
+    display: block;
+    width: 100%; /* Full width of the button */
+    height: 2px; /* Thickness of the underline */
+    background-color: #c4b4a7; /* Color of the underline */
+    position: absolute;
+    bottom: 0px; /* Position the line just below the button */
+    left: 0;
+    animation-name: showline;
+    animation-duration: 0.5s;
+}
+
+.languageButton:hover .arrow {
+    border-top-color: rgb(196, 180, 167); /* Change arrow color on hover */
 }
 
 .arrow {
@@ -41,62 +50,12 @@
     transition: transform 0.3s ease; /* Smooth rotation */
 }
 
-.dropbtn:hover .arrow {
-    border-top-color: rgb(196, 180, 167); /* Change arrow color on hover */
-}
 
-.arrow.active{
+
+.arrow.active {
     transform: rotate(180deg); /* Rotate arrow on click */
     border-top: 8px solid rgb(196, 180, 167);
 }
-
-
-
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-10px); /* Start from above */
-        opacity: 0; /* Start hidden */
-    }
-    to {
-        transform: translateY(0); /* End in place */
-        opacity: 1; /* Fully visible */
-    }
-}
-
-
-
-.dropbtn:hover {
-    color: rgb(196, 180, 167);
-    background-color: rgba(170, 156, 145, 0.2);
-}
-
-.dropbtn.active {
-    color: rgb(196, 180, 167);
-}
-
-.dropbtn.active::after {
-    content: '';
-    display: block;
-    width: 100%; /* Full width of the button */
-    height: 2px; /* Thickness of the underline */
-    background-color: #c4b4a7; /* Color of the underline */
-    position: absolute;
-    bottom: 0px; /* Position the line just below the button */
-    left: 0;
-    animation-name: showline;
-    animation-duration: 0.5s;
-}
-
-@keyframes showline {
-    0%{
-        transform: scaleX(0);
-    }
-    100%{
-        transform: scaleX(1);
-    }
-}
-
 
 .dropbox {
     display: none; /* Initially hide the dropdown */
@@ -111,7 +70,12 @@
     opacity: 0; /* Initial opacity */
     visibility: hidden; /* Ensure it is not visible */
     transition: opacity 0.4s ease, transform 0.4s ease; /* Smooth transition */
+    list-style: none; /* Remove default list bullets */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
 }
+
+
 
 
 .dropbox.show {
@@ -125,30 +89,19 @@
     position: relative; /* To position the dropdown correctly */
 }
 
-
-
 .dropitem {
-    padding: 12px 15px; /* Increased padding for items */
+    padding: 12px 15px; /* Padding for items */
     color: #ffffff; /* Item text color */
     text-decoration: none; /* Remove underline */
     transition: background 0.3s; /* Transition for hover effect */
-    
-    border-radius: 8px;
-   
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer */
+    list-style: none; /* Ensure no bullets are shown */
 }
-
-.dropitem a{
-    border-bottom: none;
-}
-
 
 .dropitem:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
     cursor: pointer; /* Change cursor to pointer */
-}
-
-/* Optional: Add a subtle animation for smoother appearance */
-.show {
-    animation: slideIn 0.3s ease forwards; /* Animation for showing the dropdown */
 }
 
 @keyframes slideIn {
@@ -159,5 +112,14 @@
     to {
         transform: translateY(0); /* End in place */
         opacity: 1; /* Fully visible */
+    }
+}
+
+@keyframes showline {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
     }
 }

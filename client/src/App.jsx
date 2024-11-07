@@ -15,6 +15,7 @@ import ServerError from './pages/ErrPage/ServerError';
 import Chatbot from './pages/Chatbot';
 import RootLayout from './RootLayout';
 import ProfileChange from './components/ProfileChange';
+import TranslationContextProvider from './store/TranslationContext';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -40,12 +41,14 @@ const router = createBrowserRouter([
 
 function App () {
     return (
+        <TranslationContextProvider>
         <div className='App'>
             <Toaster position='bottom-right' toastOptions={{duration:2000}}/>
             <div className='Content'>
             <RouterProvider router={router}/>
             </div>
         </div>
+        </TranslationContextProvider>
         
     );
 }
