@@ -1,5 +1,5 @@
 import { jwtDecode } from 'jwt-decode';
-import User from '../models/User.js'
+import { User } from '../models/User.js'
 import bcrypt from 'bcrypt'
 
 const saltRounds = 10;

@@ -17,7 +17,7 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-    }, 3000); 
+    }, 7000); 
 
     return () => clearInterval(interval);
   }, []);
