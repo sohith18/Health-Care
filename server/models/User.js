@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const options = { discriminatorKey: 'user' }
 const UserSchema = mongoose.Schema({
-    first_name: { type: String, required:true },
-    last_name: { type: String, required:true },
+    name: { type: String, required:true },
     email: {
         type: String,
         unique: true,
@@ -27,6 +26,10 @@ const Doctor = User.discriminator(
     'Doctor',
     new mongoose.Schema({ 
         qualifications: [String],
+        specializations: [String],
+        experience: String,
+        description: String,
+        gender: { type: String, required: true },
         slots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Slot' }] ,
      }, options)
 );
