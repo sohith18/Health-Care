@@ -16,6 +16,8 @@ import Chatbot from './pages/Chatbot';
 import RootLayout from './RootLayout';
 import ProfileChange from './components/ProfileChange';
 import TranslationContextProvider from './store/TranslationContext';
+import DoctorSearch from './components/DoctorSearch';
+import DoctorDetails from './components/DoctorDetails';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -34,6 +36,8 @@ const router = createBrowserRouter([
             {path: '*', element: <NotFound />},
             {path: '/chatbot', element: <Chatbot />},
             {path: '/profile-change', element: <ProfileChange />},
+            {path: '/doctor-search', element: <DoctorSearch/>},
+            {path: '/doctor/:id', element: <DoctorDetails/>},
             
         ]
     },

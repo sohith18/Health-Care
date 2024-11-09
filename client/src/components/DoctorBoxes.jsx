@@ -1,9 +1,11 @@
 import { useContext } from 'react';
-import styles from '../Styles/DoctorBoxes.module.css'; 
-import { TranslationContext } from '../store/TranslationContext'; 
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import styles from '../Styles/DoctorBoxes.module.css';
+import { TranslationContext } from '../store/TranslationContext';
 
 export default function DoctorBoxes() {
     const { translatedTexts } = useContext(TranslationContext);
+    const navigate = useNavigate(); // Initialize the navigation hook
 
     const specialties = [
         translatedTexts['Eye Specialist'] || 'Eye Specialist',
@@ -14,8 +16,10 @@ export default function DoctorBoxes() {
         translatedTexts['Psychiatrist'] || 'Psychiatrist',
     ];
 
-    const handleClick = (specialty) => {
-        alert(translatedTexts['You clicked on'] + ` ${specialty}` || `You clicked on ${specialty}`); // Replace with your desired action
+    // Handle navigation with the selected specialty
+    const handleNavigation = (specialty) => {
+        // Navigate to doctor-search page with the selected specialty in the URL
+        navigate(`/doctor-search?specialization=${encodeURIComponent(specialty)}`);
     };
 
     return (
@@ -23,17 +27,22 @@ export default function DoctorBoxes() {
             <h2 className={styles.heading}>{translatedTexts['Core Services'] || 'Core Services'}</h2>
             <div className={styles.doctorContainer}>
                 {specialties.map((specialty, index) => (
-                    <button
-                        key={index}
-                        className={styles.doctorBox}
-                        onClick={() => handleClick(specialty)}
-                    >
-                        <div className={styles.boxContent}>
-                            {specialty}
-                            <span className={styles.arrow}>{' >'}</span>
+                    <div key={index} className={styles.doctorBox}>
+                        <div className={styles.doctorBoxInner}>
+                            <div className={styles.doctorBoxFront}>
+                                {specialty}
+                            </div>
+                            <div className={styles.doctorBoxBack}>
+                                <p>{`More about ${specialty}`}</p>
+                                <button
+                                    className={styles.navigateButton}
+                                    onClick={() => handleNavigation(specialty)} // Pass specialty to navigation
+                                >
+                                    {translatedTexts['Doctor Search'] || 'Doctor Search'}
+                                </button>
+                            </div>
                         </div>
-                        <div className={styles.hoverLine}></div>
-                    </button>
+                    </div>
                 ))}
             </div>
         </div>

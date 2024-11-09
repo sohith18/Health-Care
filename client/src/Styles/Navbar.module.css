@@ -9,12 +9,12 @@
 
 /* Navbar content container */
 .bar {
-    min-height: 10vh;
+    height: 10vh; /* Set navbar height to 10% of the viewport height */
     display: flex;
-    justify-content: space-between; /* Ensures menu items are distributed properly */
+    justify-content: space-between; /* Distributes menu items properly */
     align-items: center;
     width: 100%;
-    padding: 0 20px; /* Adds spacing */
+    padding: 0 20px; /* Adds horizontal spacing */
 }
 
 /* Hamburger menu container */
@@ -28,22 +28,17 @@
 
 /* Hamburger bar styling */
 .hamburger div {
-    width: 30px; /* Width for visibility */
-    height: 3px; /* Thickness of the bars */
-    background-color: rgb(196, 180, 167)    ; /* Color of the hamburger bars */
-    margin: 5px 0; /* Spacing between the bars */
+    width: 30px;
+    height: 3px;
+    background-color: rgb(196, 180, 167);
+    margin: 5px 0;
     transition: all 0.3s ease-in-out; /* Smooth transition for animations */
-}
-
-.hamburger:hover{
-    background-color: rgba(170, 156, 145, 0.2);
-   
 }
 
 /* Active hamburger styles */
 .hamburger.active div:nth-child(1) {
     color: rgb(196, 180, 167);
-    transform: rotate(45deg) translate(12.5px, 12.5px); /* Rotate top bar and slightly move */
+    transform: rotate(45deg) translate(12.5px, 12.5px);
 }
 
 .hamburger.active div:nth-child(2) {
@@ -53,20 +48,20 @@
 
 .hamburger.active div:nth-child(3) {
     color: rgb(196, 180, 167);
-    transform: rotate(-45deg) translate(5px, -5px); /* Rotate bottom bar and slightly move */
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Container for the menu links */
 .menu {
-    display: flex; /* Show links by default on larger screens */
-    flex-grow: 1; /* Spreads items evenly */
-    justify-content: space-evenly; /* Ensures even spacing */
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 /* Individual navbar link */
 .insidebar {
-    position: relative; /* Needed for the underline animation */
+    position: relative;
     color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
@@ -93,13 +88,13 @@
 .activeLink::after {
     content: '';
     display: block;
-    width: 100%; /* Full width of the link */
-    height: 2px; /* Thickness of the underline */
+    width: 100%;
+    height: 2px;
     background-color: #c4b4a7;
     position: absolute;
     left: 0px;
-    bottom: -2px; /* Places underline slightly below the link */
-    animation: showline 0.5s forwards; /* Applies animation */
+    bottom: -2px;
+    animation: showline 0.5s forwards;
 }
 
 /* Animation keyframes for underline */
@@ -125,23 +120,35 @@
         top: 10vh; /* Adjust as needed */
         left: 0;
         width: 100%;
-        background-color: #392E36; /* Background color of the dropdown */
+        background-color: #392E36;
         padding: 10px 0;
         z-index: 3;
-        opacity: 0; /* Start as invisible */
-        transform: translateY(-10px); /* Initial position above */
-        transition: opacity 0.3s ease, transform 0.3s ease; /* Transition for smooth effects */
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .menu.show {
-        display: flex; /* Show menu when toggled */
-        opacity: 1; /* Fully visible */
-        transform: translateY(0); /* Move into position */
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .insidebar {
         padding: 15px;
         text-align: center;
-        width: 100%; /* Full width for links */
+        width: 100%;
     }
+}
+
+/* Ensure the content below the navbar isn't overlapping */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Optional: Adding a margin-top to ensure content is pushed down below the navbar */
+main {
+    margin-top: 10vh; /* Ensure content below navbar doesn't overlap */
 }
