@@ -52,6 +52,7 @@ export default function DoctorSearch() {
 
     useEffect(() => {
         // Fetch doctors data when component mounts or search params change
+        window.scrollTo(0, 0);
         async function fetchDoctors() {
             try {
                 const response = await axios.get("http://localhost:3000/doctors", {
@@ -68,6 +69,7 @@ export default function DoctorSearch() {
             }
         }
         fetchDoctors();
+        
     }, [searchParams, AuthToken]);
 
     const handleSearch = () => {
