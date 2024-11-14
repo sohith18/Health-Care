@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from '../Styles/ProfileDropDown.module.css';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { TranslationContext } from '../store/TranslationContext';
 
 export default function ProfileDropdown({ handleDisplalog_out_name }) {
     const [isActive, setIsActive] = useState(false);
     const location = useLocation();
+    const {translatedTexts} = useContext(TranslationContext)
 
     // Check if the current path matches any of the dropdown link paths
     useEffect(() => {
@@ -26,12 +28,12 @@ export default function ProfileDropdown({ handleDisplalog_out_name }) {
                 className={`${styles.dropbtn} ${isActive ? styles.active : ''}`}
                 onClick={toggleDropdown}
             >
-                Profile <span className={`${styles.arrow} ${isActive ? styles.active:''}`}></span>
+                {translatedTexts['Profile'] || 'Profile'} <span className={`${styles.arrow} ${isActive ? styles.active:''}`}></span>
             </button>
             {isActive && (
                 <div className={`${styles.dropbox} ${isActive ? styles.show : ''}`}>
                     <div className={styles.dropitem}>
-                        <Link to='/profile-change' className={styles.linkButton}>Profile Settings</Link>
+                        <Link to='/profile-change' className={styles.linkButton}>{translatedTexts['Profile Settings'] || 'Profile Settings'}</Link>
                         <Link
                             className={styles.linkButton}
                             to='/'
@@ -40,7 +42,7 @@ export default function ProfileDropdown({ handleDisplalog_out_name }) {
                                 window.localStorage.removeItem("AuthToken");
                             }}
                         >
-                            Logout
+                            {translatedTexts['Logout'] || 'Logout'}
                         </Link>
                     </div>
                 </div>

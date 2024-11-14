@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from "react-router-dom";
 import classes from '../Styles/Register.module.css';
 import imageDoc from '../assets/registerDoctor.jpg';
 import imagePat from '../assets/registerPatient.jpg';
+import { TranslationContext } from "../store/TranslationContext";
 
 export default function Register() {
     const navigate = useNavigate();
@@ -16,6 +17,8 @@ export default function Register() {
         password: '',
         role: '',
     });
+
+    const {translatedTexts} = useContext(TranslationContext);
     const registerUser = async (e) => {
         e.preventDefault();
         try {
@@ -35,7 +38,7 @@ export default function Register() {
                 // setToken(userData.token);
                 // setUser(userData.user);
                 navigate('/');
-                window.location.reload();
+                // window.location.reload();
             }
         } catch (error) {
             console.log(error);
@@ -53,19 +56,20 @@ export default function Register() {
             <div className={classes.formcon}>
                 <form onSubmit={registerUser} className={classes.form}>
                     <div className={classes.buttonContainer}>
-                        <button type="button"  className={`${classes.roleButton} ${isdoctor ? classes.selected : ''}`} onClick={() => setisdoctor(true)}>Doctor</button>
-                        <button type="button"  className={`${classes.roleButton} ${!isdoctor ? classes.selected : ''}`} onClick={() => setisdoctor(false)} >Patient</button>
+                        <button type="button"  className={`${classes.roleButton} ${isdoctor ? classes.selected : ''}`} onClick={() => setisdoctor(true)}>{translatedTexts['Doctor'] || 'Doctor'}</button>
+                        <button type="button"  className={`${classes.roleButton} ${!isdoctor ? classes.selected : ''}`} onClick={() => setisdoctor(false)} >{translatedTexts['Patient'] || 'Patient'}</button>
                     </div>
-                    <h2 className={classes.title}>Create Your Account</h2>
-                    {isdoctor ? <p className={classes.subtitle}>Join our health platform and connect with patients</p>:<p className={classes.subtitle}>Start your health journey today</p>}
-                    <label className={classes.label}> Name </label>
+                    <h2 className={classes.title}>{translatedTexts['Create Your Account'] || 'Create Your Account'}</h2>
+                    {isdoctor ? <p className={classes.subtitle}>{translatedTexts['Join our health platform and connect with patients']||'Join our health platform and connect with patients'}</p>:
+                    <p className={classes.subtitle}>{translatedTexts['Start your health journey today'] || 'Start your health journey today'}</p>}
+                    <label className={classes.label}> {translatedTexts['Name'] || 'Name'} </label>
                     <input className={classes.input} required type="text" placeholder='enter name ...' value={data.name} onChange={(e) => setData({ ...data, first_name: e.target.value, role: isdoctor ? "DOCTOR" : "PATIENT" })} />
-                    <label className={classes.label}> Email </label>
+                    <label className={classes.label}> {translatedTexts['Email'] || 'Email'} </label>
                     <input className={classes.input} required type="email" placeholder='enter email ...' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
-                    <label className={classes.label}> Password </label>
+                    <label className={classes.label}> {translatedTexts['Password'] || 'Password'} </label>
                     <input className={classes.input} required type="password" placeholder='enter password ...' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
-                    <button className={classes.button} type='submit'> Submit </button>
-                    <p className={classes.footer}>Have an account? <Link to="/login">Sign In</Link> here.</p>
+                    <button className={classes.button} type='submit'> {translatedTexts['Submit'] || 'Submit'} </button>
+                    <p className={classes.footer}>{translatedTexts['Have an account?'] || 'Have an account?'} <Link to="/login">{translatedTexts['Sign In'] || 'Sign In'}</Link> {translatedTexts['here.'] || 'here.'}</p>
 
                 </form>
             </div>

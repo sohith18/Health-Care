@@ -1,4 +1,4 @@
-/* DoctorBoxes.module.css */
+ /* General Heading Styles */
 .heading {
     text-align: left;
     margin: 20px 0;
@@ -8,84 +8,123 @@
     font-weight: 450;
 }
 
+/* Container for Doctor Boxes */
 .doctorContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Default: 3 boxes per row */
-    gap: 0;
+    gap: 20px;
     width: 100%;
     padding: 0;
     margin: 0;
 }
 
+/* Individual Doctor Box Styling */
 .doctorBox {
+    perspective: 1000px; /* Create perspective for 3D effect */
+    width: 100%;
+    height: 300px; /* Default height */
+}
+
+.doctorBoxInner {
     position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.doctorBox:hover .doctorBoxInner {
+    transform: rotateY(180deg);
+}
+
+.doctorBoxFront,
+.doctorBoxBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #937871;
     background-color: #392E36;
     border: 0.75px solid #937871;
-    border-radius: 0;
-    padding: 50px;
-    text-align: center;
+    padding: 20px; /* Padding for content */
+    box-sizing: border-box; /* Include padding in height/width */
+}
+
+/* Front Side of the Box */
+.doctorBoxFront {
+    background-color: #392E36; /* Front side color */
+}
+
+/* Back Side of the Box */
+.doctorBoxBack {
+    background-color: #e8cba2;
+    color: #392E36;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+  
+  /* Style for <p> tag inside the back of the doctor box */
+  .doctorBoxBack p {
+    font-size: 18px; /* Adjust font size */
+    color: #392E36; /* Text color */
+    text-align: center; /* Center align text */
+    margin: 10px 0; /* Space around the text */
+    line-height: 1.5; /* Line height for better readability */
+    font-weight: 400; /* Adjust font weight if needed */
+  }
+
+.navigateButton {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #392E36;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-    font-size: 20px;
-    transition: background-color 0.3s, color 0.3s;
-    height: 225px;
-    color: #937871;
-}
-
-.boxContent {
-    position: relative;
-    transition: color 0.3s;
-}
-
-.arrow {
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 22px;
-    color: inherit;
-}
-
-.hoverLine {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12%;
-    height: 5px;
-    background-color: #937871;
     transition: background-color 0.3s;
 }
 
-.doctorBox:hover {
-    color: white;
-}
-
-.doctorBox:hover .hoverLine {
-    background-color: #fff;
+.navigateButton:hover {
+    background-color: #463842;
 }
 
 /* Media Queries for Responsive Design */
 
-/* For screens smaller than 1200px (2 boxes per row) */
-@media (max-width: 1200px) {
+/* Adjustments for screens smaller than 1024px (2 boxes per row) */
+@media (max-width: 1024px) {
     .doctorContainer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* For screens smaller than 768px (1 box per row) */
+/* Adjustments for screens smaller than 768px (1 box per row) */
 @media (max-width: 768px) {
     .doctorContainer {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .heading {
-        font-size: 24px; /* Adjust heading size */
-        padding: 20px;
+    .doctorBox {
+        height: 250px; /* Adjust height */
     }
 
-    .doctorBox {
-        padding: 40px; /* Adjust padding for smaller screens */
+    .doctorBoxFront,
+    .doctorBoxBack {
         font-size: 18px; /* Adjust font size */
-        height: 200px; /* Adjust height */
+        padding: 15px; /* Adjust padding */
+    }
+
+    .navigateButton {
+        font-size: 14px; /* Adjust button size */
+        padding: 8px 16px; /* Adjust button padding */
     }
 }

@@ -1,34 +1,51 @@
-.img{
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-  }
-  
+/* Hero Image Styling */
+.img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* Text container styling (centered text over image) */
 .text {
-    position: absolute; /* Position it on top of the image */
-    top: 50%; /* Centers vertically */
-    left: 50%; /* Centers horizontally */
-    transform: translate(-50%, -50%); /* Adjust for the text's dimensions */
-    color: white; /* Change text color as needed */
-    font-size: 2rem; /* Adjust size */
-    text-align: center; /* Center text */
-    padding: 10px; /* Optional: padding around the text */
-    border-radius: 5px; /* Optional: rounded corners */
-  }
-  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  width: 100%; /* Ensure it spans the entire width */
+}
+
+/* Heading inside the hero section */
+.text h1 {
+  font-size: 3rem; /* Adjust size as needed */
+  font-weight: 600; /* Semi-bold for emphasis */
+  margin-bottom: 10px; /* Spacing between h1 and paragraph */
+}
+
+/* Paragraph inside the hero section */
+.text p {
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 10px;
+  line-height: 1.6;
+  font-weight: 300; /* Lighter font weight */
+}
+
+/* Button styling */
 .button {
-    margin-top: 15px; /* Space between text and button */
-    padding: 10px 20px; /* Button padding */
-    font-size: 1rem; /* Button font size */
-    color: white; /* Button text color */
-    background-color: #635152; /* Button background color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners for button */
-    cursor: pointer; /* Pointer on hover */
-    transition: background 0.3s; /* Transition for background color */
-  }
-  
-  
+  margin-top: 15px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #635152;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
 .button:hover {
-    background-color: #392E36; /* Darker shade on hover */
-  }
+  background-color: #392E36;
+}
