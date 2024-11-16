@@ -4,10 +4,10 @@ import bcrypt from 'bcrypt'
 
 const saltRounds = 10;
 
-const getUserFromToken = async (token) => {
+const getUser = async (token) => {
     try {
         const decoded = jwtDecode(token);
-
+        console.log("decoded-----", decoded)
         const user = await User.findOne({_id: decoded._id});
         console.log(user);
         return {
@@ -33,14 +33,6 @@ const getUserFromToken = async (token) => {
     }
 }
 
-const getUser = async (token) => {
-    const userRes = await getUserFromToken(token);
-    if (userRes.user) {
-        await userRes.user.populate('quizzes_made');
-        await userRes.user.populate('quizzes_attempted');
-    }
-    return userRes;
-} 
 
 const updateUser = async (userData) => {
     try {
@@ -68,7 +60,6 @@ const updateUser = async (userData) => {
 }
 
 export {
-    getUserFromToken,
     getUser,
     updateUser
 }
