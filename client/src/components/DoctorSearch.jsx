@@ -55,14 +55,17 @@ export default function DoctorSearch() {
         window.scrollTo(0, 0);
         async function fetchDoctors() {
             try {
-                const response = await axios.get("http://localhost:3000/doctors", {
+                const response = await fetch("http://localhost:3000/doctor", {
+                    method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${AuthToken}`,
                     },
                 });
+                const data = await response.json(); 
                 if (response.status === 200) {
-                    setDoctorsData(response.data);
+                    console.log(data.doctors);
+                    setDoctorsData(data.doctors);
                 }
             } catch (error) {
                 console.error("Error fetching doctors data:", error);

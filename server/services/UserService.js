@@ -7,7 +7,6 @@ const saltRounds = 10;
 const getUser = async (token) => {
     try {
         const decoded = jwtDecode(token);
-        console.log("decoded-----", decoded)
         const user = await User.findOne({_id: decoded._id});
         console.log(user);
         return {

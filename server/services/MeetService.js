@@ -13,6 +13,7 @@ const getMeetDetails = async (token) => {
     if (userRes.status != 200) {
         return userRes;
     }
+    // remove later?
     const callId = randomUUID();
     const meetToken = jwt.sign({ user_id: userRes.user._id }, SECRET_MEET_TOKEN, { expiresIn: '24h' });
     return {
@@ -22,6 +23,7 @@ const getMeetDetails = async (token) => {
         token: meetToken
     }
 }
+
 
 
 export {

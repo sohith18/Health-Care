@@ -6,6 +6,7 @@ import AuthFilter from './config/AuthFilter.js';
 import env from 'dotenv'
 import UserRouter from './routers/UserRouter.js';
 import MeetRouter from './routers/MeetRouter.js';
+import DoctorRouter from './routers/DoctorRouter.js';
 
 env.config();
 
@@ -27,7 +28,8 @@ app.use(express.json());
 app.use(AuthFilter);
 app.use('/auth', AuthRouter);
 app.use('/user', UserRouter);
-app.use('/meet', MeetRouter)
+app.use('/meet', MeetRouter);
+app.use('/doctor', DoctorRouter);
 
 connectDb();
 
