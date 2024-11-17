@@ -42,7 +42,7 @@ export default function Navbar() {
 
   useEffect(() => {
     if (user) {
-      setdisplalog_out_name(user.first_name);
+      setdisplalog_out_name(user.name);
     }
   }, [user]);
 

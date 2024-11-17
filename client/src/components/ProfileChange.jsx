@@ -72,7 +72,7 @@ const handleUpdateUser = async (AuthToken, userData, setData, setIsFetching) => 
 }
 
 export default function ProfileChange() {
-    const [data, setData] = useState({ first_name: '', password: '', re_password:'' });
+    const [data, setData] = useState({ name: '', password: '', re_password:'' });
     const [IsFetching,setIsFetching] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -107,7 +107,7 @@ export default function ProfileChange() {
                 <form className={classes.form}>
                 <h1 className={classes.title}> {translatedTexts['Profile Settings'] || 'Profile Settings'} </h1>
                 <label className={classes.label}> {translatedTexts['Name'] || 'Name'} </label>
-                <input className={classes.input} type="text" placeholder='enter name ...' value={data.first_name} onChange={(e) => setData({ ...data, first_name: e.target.value })} required/>
+                <input className={classes.input} type="text" placeholder='enter name ...' value={data.name} onChange={(e) => setData({ ...data, first_name: e.target.value })} required/>
                 <label className={classes.label}> {translatedTexts['New Password'] || 'New Password'} </label>
                 <input className={classes.input} type="password" placeholder='enter password ...' value={data.password} 
                 onChange={(e) => {

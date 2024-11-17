@@ -121,3 +121,7 @@ Run the server like this:
 - Mobile application
 - Live summary sharing
 - Regional language support
+
+
+## Decisions made (in progress)
+- Filtering in frontend (gets all the data) instead of filtering in backend and sending filtered data

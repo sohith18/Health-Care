@@ -8,12 +8,12 @@ export default function DoctorBoxes() {
     const navigate = useNavigate(); // Initialize the navigation hook
 
     const specialties = [
-        translatedTexts['Eye Specialist'] || 'Eye Specialist',
-        translatedTexts['Cardiologist'] || 'Cardiologist',
-        translatedTexts['Dermatologist'] || 'Dermatologist',
+        translatedTexts['Neurology'] || 'Neurology',
+        translatedTexts['Cardiology'] || 'Cardiology',
+        translatedTexts['Dermatology'] || 'Dermatology',
         translatedTexts['Pediatrician'] || 'Pediatrician',
-        translatedTexts['Orthopedic Surgeon'] || 'Orthopedic Surgeon',
-        translatedTexts['Psychiatrist'] || 'Psychiatrist',
+        translatedTexts['Orthopedic Surgery'] || 'Orthopedic Surgery',
+        translatedTexts['Psychiatry'] || 'Psychiatry',
     ];
 
     // Handle navigation with the selected specialty

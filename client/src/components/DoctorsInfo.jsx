@@ -7,7 +7,7 @@ export default function DoctorsInfo({ doctorsData }) {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
 
-    const doctorsPerPage = 1;
+    const doctorsPerPage = 5;
     const indexOfLastDoctor = currentPage * doctorsPerPage;
     const indexOfFirstDoctor = indexOfLastDoctor - doctorsPerPage;
     const currentDoctors = doctorsData.slice(indexOfFirstDoctor, indexOfLastDoctor);
@@ -36,7 +36,7 @@ export default function DoctorsInfo({ doctorsData }) {
                     <div className={styles.info}>
                         <h2 className={styles.doctorName}>{doctor.name}</h2>
                         <div className={styles.education}>
-                            {doctor.education.join(', ')}
+                            {doctor.qualifications.join(', ')}
                         </div>
                         {/* <div className={styles.specializations}>
                             <span>Specialised in: </span>
@@ -46,11 +46,11 @@ export default function DoctorsInfo({ doctorsData }) {
                             <span></span>
                             {doctor.experience} years of experience
                         </p>
-                        <button className={styles.bookButton} onClick={()=>handleBookAppointment(doctor.id)}>Book Appointment</button>
+                        <button className={styles.bookButton} onClick={()=>handleBookAppointment(doctor._id)}>Book Appointment</button>
                     </div>
                     <div className={styles.imageContainer}>
                         <img
-                            src={doctor.image} // Ensure `doctorsData` has an `image` property
+                            src={doctor.profile_picture} // Ensure `doctorsData` has an `image` property
                             alt={doctor.name}
                             className={styles.doctorImage}
                         />

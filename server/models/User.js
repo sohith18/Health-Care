@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
+const options = { discriminatorKey: 'user' }
 const UserSchema = mongoose.Schema({
-    first_name: { type: String, required:true },
-    last_name: { type: String, required:true },
+    name: { type: String, required:true },
     email: {
         type: String,
         unique: true,
@@ -10,14 +10,32 @@ const UserSchema = mongoose.Schema({
     },
     profile_picture: String,
     password: { type: String, required: true },
-    quizzes_made: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'Quiz'
-    }],
-    quizzes_attempted: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'Quiz'
-    }],
     role: { type: String, required: true },
-})
-// add string attempt id in quizzes attempted
-const User = mongoose.model('Users', UserSchema);
-export default User;
+}, options)
+
+
+const User = mongoose.model('User', UserSchema);
+
+
+const Patient = User.discriminator(
+    'Patient',
+    new mongoose.Schema({  }, options)
+);
+
+const Doctor = User.discriminator(
+    'Doctor',
+    new mongoose.Schema({ 
+        qualifications: [String],
+        specializations: [String],
+        experience: String,
+        description: String,
+        gender: { type: String, required: true },
+        slots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Slot' }] ,
+     }, options)
+);
+
+export {
+    User, 
+    Patient,
+    Doctor
+};

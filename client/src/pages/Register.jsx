@@ -11,11 +11,10 @@ export default function Register() {
     const navigate = useNavigate();
     const [isdoctor, setisdoctor] = useState(false);
     const [data, setData] = useState({
-        first_name: '',
-        last_name: ' ',
+        name: '',
         email: '',
         password: '',
-        role: '',
+        role: 'PATIENT',
     });
 
     const {translatedTexts} = useContext(TranslationContext);
@@ -56,14 +55,14 @@ export default function Register() {
             <div className={classes.formcon}>
                 <form onSubmit={registerUser} className={classes.form}>
                     <div className={classes.buttonContainer}>
-                        <button type="button"  className={`${classes.roleButton} ${isdoctor ? classes.selected : ''}`} onClick={() => setisdoctor(true)}>{translatedTexts['Doctor'] || 'Doctor'}</button>
-                        <button type="button"  className={`${classes.roleButton} ${!isdoctor ? classes.selected : ''}`} onClick={() => setisdoctor(false)} >{translatedTexts['Patient'] || 'Patient'}</button>
+                        <button type="button" className={`${classes.roleButton} ${isdoctor ? classes.selected : ''}`} onClick={() => { setisdoctor(true); setData({ ... data, role: "DOCTOR"}) }}>{translatedTexts['Doctor'] || 'Doctor'}</button>
+                        <button type="button"  className={`${classes.roleButton} ${!isdoctor ? classes.selected : ''}`} onClick={() => { setisdoctor(false); setData({ ... data, role: "PATIENT"}) }} >{translatedTexts['Patient'] || 'Patient'}</button>
                     </div>
                     <h2 className={classes.title}>{translatedTexts['Create Your Account'] || 'Create Your Account'}</h2>
                     {isdoctor ? <p className={classes.subtitle}>{translatedTexts['Join our health platform and connect with patients']||'Join our health platform and connect with patients'}</p>:
                     <p className={classes.subtitle}>{translatedTexts['Start your health journey today'] || 'Start your health journey today'}</p>}
                     <label className={classes.label}> {translatedTexts['Name'] || 'Name'} </label>
-                    <input className={classes.input} required type="text" placeholder='enter name ...' value={data.name} onChange={(e) => setData({ ...data, first_name: e.target.value, role: isdoctor ? "DOCTOR" : "PATIENT" })} />
+                    <input className={classes.input} required type="text" placeholder='enter name ...' value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
                     <label className={classes.label}> {translatedTexts['Email'] || 'Email'} </label>
                     <input className={classes.input} required type="email" placeholder='enter email ...' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
                     <label className={classes.label}> {translatedTexts['Password'] || 'Password'} </label>
