@@ -7,36 +7,15 @@ import backgroundImage from '../assets/searchDoctor6.jpg';
 import DoctorsInfo from './DoctorsInfo';
 
 const specialties = [
-    'Eye Specialist',
-    'Cardiologist',
-    'Dermatologist',
-    'Pediatrician',
-    'Orthopedic Surgeon',
-    'Psychiatrist',
-];
-
-const docData = [
-    {
-        id: 1,
-        name: 'Dr. John Doe',
-        education: ['MBBS', 'MD'],
-        specializations: ['Cardiologist', 'Dentist'],
-        experience: 5,
-        availableTimes: ['10:00 AM', '11:00 AM', '12:00 PM'],
-        description: 'Dr. John is a highly skilled Cardiologist with over 5 years of experience.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 2,
-        name: 'Dr. Jane Doe',
-        education: ['MBBS', 'MD'],
-        specializations: ['Dermatologist', 'ENT'],
-        experience: 10,
-        availableTimes: ['2:00 PM', '3:00 PM', '4:00 PM'],
-        description: 'Dr. Jane specializes in Dermatology and ENT with 10 years of experience.',
-        image: 'https://via.placeholder.com/150',
-    },
-];
+    "Cardiology", 
+    "Neurology", 
+    "Orthopedic Surgery", 
+    "Pediatrics", 
+    "Psychiatry", 
+    "Dermatology", 
+    "Internal Medicine", 
+    "Orthodontics"
+]
 
 export default function DoctorSearch() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -56,11 +35,12 @@ export default function DoctorSearch() {
         async function fetchDoctors() {
             try {
                 const response = await fetch("http://localhost:3000/doctor", {
-                    method: "GET",
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${AuthToken}`,
                     },
+                    body: JSON.stringify(search),
                 });
                 const data = await response.json(); 
                 if (response.status === 200) {
@@ -84,7 +64,6 @@ export default function DoctorSearch() {
             ...(search.specialization && { specialization: search.specialization }),
         };
         setSearchParams(params);
-        // Function to send filters can be implemented here
     };
 
     return (
@@ -117,8 +96,8 @@ export default function DoctorSearch() {
                         onChange={(e) => setSearch({ ...search, gender: e.target.value })}
                     >
                         <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
                 </div>
                 <div className={styles.filter}>
@@ -149,7 +128,7 @@ export default function DoctorSearch() {
                 </div>
             </div>
             </div>
-            <DoctorsInfo doctorsData={docData} />
+            {doctorsData ? <DoctorsInfo doctorsData={doctorsData} />:<p>Loading...</p>}
         </div>
     );
 }

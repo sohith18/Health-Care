@@ -2,9 +2,9 @@ import express from 'express'
 import { getAllDoctors } from '../services/DoctorService.js';
 const DoctorRouter = express.Router();
 
-DoctorRouter.get('/',async (req, res) => {
+DoctorRouter.post('/',async (req, res) => {
     const header = req.headers;
-    const response = await getAllDoctors();
+    const response = await getAllDoctors(req.body);
     res.status(response.status);
     res.send(response);
 })
