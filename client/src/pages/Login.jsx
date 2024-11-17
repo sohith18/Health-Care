@@ -36,7 +36,12 @@ export default function Login() {
                 localStorage.setItem('AuthToken', userData.token);
                 // setToken(userData.token);
                 // setUser(userData.user);
+                if(userData.user.role=="PATIENT"){
                 navigate('/');
+                }
+                else if(userData.user.role=="DOCTOR"){
+                    navigate('/doctor-home')
+                }
                 // window.location.reload()
             }
             

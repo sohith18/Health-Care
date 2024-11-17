@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import styles from '../Styles/ProfileDropDown.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { TranslationContext } from '../store/TranslationContext';
 
 export default function ProfileDropdown({ handleDisplalog_out_name }) {
     const [isActive, setIsActive] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
     const {translatedTexts} = useContext(TranslationContext)
 
     // Check if the current path matches any of the dropdown link paths
@@ -40,6 +41,8 @@ export default function ProfileDropdown({ handleDisplalog_out_name }) {
                             onClick={() => {
                                 handleDisplalog_out_name();
                                 window.localStorage.removeItem("AuthToken");
+                                navigate('/');
+                                window.location.reload();
                             }}
                         >
                             {translatedTexts['Logout'] || 'Logout'}
