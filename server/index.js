@@ -7,6 +7,7 @@ import env from 'dotenv'
 import UserRouter from './routers/UserRouter.js';
 import MeetRouter from './routers/MeetRouter.js';
 import DoctorRouter from './routers/DoctorRouter.js';
+import BookingRouter from './routers/BookingRouter.js';
 
 env.config();
 
@@ -30,6 +31,7 @@ app.use('/auth', AuthRouter);
 app.use('/user', UserRouter);
 app.use('/meet', MeetRouter);
 app.use('/doctor', DoctorRouter);
+app.use('/booking', BookingRouter);
 
 connectDb();
 

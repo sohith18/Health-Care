@@ -24,7 +24,8 @@ const updateDoctor = async (token, docData) => {
             'experience',
             'description',
             'gender',
-            'slots',
+            'startTiming',
+            'endTiming',
         ];
         const sanitizedData = Object.keys(docData)
             .filter((key) => allowedUpdates.includes(key))
@@ -33,25 +34,27 @@ const updateDoctor = async (token, docData) => {
                 return acc;
             }, {});
 
-        if (docData.slots) {
-            if (!Array.isArray(docData.slots)) {
+        if (sanitizedData.slots) {
+            if (!Array.isArray(sanitizedData.slots)) {
                 return { status: 400, msg: "Slots must be an array" };
             }
             sanitizedData.slots = await Promise.all(docData.slots.map(async (slot) => {
-                if (!slot || !slot.isAvailable || !slot.timeInterval || !slot.capacity) {
+                if (!slot || !slot.isAvailable || !slot.startTiming || !slot.endTiming || !slot.capacity) {
                     throw new Error("Invalid slot data provided");
                 }
                 return await Slot.create({
                     isAvailable: slot.isAvailable,
-                    timeInterval: slot.timeInterval,
+                    timeInterval: slot.startTiming + ' - ' + slot.endTiming,
                     capacity: slot.capacity,
                 });
             }));
         }
-            
+                    
+        const deleteExistingSlots = await Slot.deleteMany({ _id: { $in: doctor.slots } });
+        if (!deleteExistingSlots) {
+            return { status: 500, msg: "Failed to update doctor" };
+        }
 
-        await Slot.deleteMany({ _id: { $in: doctor.slots } });
-        
         const updatedDoctor = await Doctor.findOneAndUpdate(
             { _id: doctor._id },
             { $set: {...sanitizedData, __t: 'user'} },

@@ -31,7 +31,7 @@ async function signup(userData) {
         }
         
         const savedUser = await user.save();
-        const accessToken = jwt.sign({ _id: savedUser._id }, SECRET_ACCESS_TOKEN, { expiresIn: '1h' });
+        const accessToken = jwt.sign({ _id: savedUser._id }, SECRET_ACCESS_TOKEN, { expiresIn: '24h' });
         return {
             token: accessToken,
             msg: "signed up successfully",
@@ -73,7 +73,7 @@ const login = async (userCreds) => {
         };
         const match = await bcrypt.compare(userCreds.password, user.password);
         if (match) {
-            accessToken = jwt.sign({ _id: user._id }, SECRET_ACCESS_TOKEN, { expiresIn: '1h' });
+            accessToken = jwt.sign({ _id: user._id }, SECRET_ACCESS_TOKEN, { expiresIn: '24h' });
         } else {
             return {
                     token: null,
