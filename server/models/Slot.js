@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const SlotSchema = mongoose.Schema({
-    isAvailable: Boolean,
     timeInterval: String,
     capacity: Number,
 });
