@@ -34,6 +34,7 @@ export default function Login() {
                 localStorage.setItem('AuthToken', userData.token);
                 // setToken(userData.token);
                 // setUser(userData.user);
+                console.log(userData.user.role)
                 if(userData.user.role=="PATIENT"){
                     navigate('/');
                 }

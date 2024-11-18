@@ -36,7 +36,12 @@ export default function Register() {
                 localStorage.setItem('AuthToken', userData.token);
                 // setToken(userData.token);
                 // setUser(userData.user);
-                navigate('/');
+                if(userData.user.role=="PATIENT"){
+                    navigate('/');
+                }
+                else if(userData.user.role=="DOCTOR"){
+                    navigate('/profile-change-doctor')
+                }
                 // window.location.reload();
             }
         } catch (error) {

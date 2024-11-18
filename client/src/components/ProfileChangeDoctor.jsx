@@ -35,7 +35,7 @@ async function getDoctorData(AuthToken, setData, setIsFetching) {
     setIsFetching(false);
 }
 
-const handleUpdateDoctor = async (AuthToken, userData, setData, setIsFetching) => {
+const handleUpdateDoctor = async (AuthToken, userData, setIsFetching) => {
     console.log(AuthToken, userData);
     if (AuthToken) {
         try {
@@ -67,7 +67,8 @@ const handleUpdateDoctor = async (AuthToken, userData, setData, setIsFetching) =
 }
 
 export default function DoctorProfileChange() {
-    const [data, setData] = useState({ qualification: '', specialization: '', experience: '', description: '', gender: '', availableSlots: [] });
+    const [doctorData, setDoctorData] = useState({ qualification: '', specialization: '', experience: '', description: '', gender: '', slots: [] });
+    const [data,setData]=useState();
     const [isFetching, setIsFetching] = useState(false);
     // const [isLoading,setIsLoading]= useState(true);
     const navigate = useNavigate();
@@ -75,24 +76,24 @@ export default function DoctorProfileChange() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await handleUpdateDoctor(localStorage.getItem('AuthToken'), data, setData, setIsFetching);
+        await handleUpdateDoctor(localStorage.getItem('AuthToken'), doctorData, setDoctorData, setIsFetching);
         console.log('Form submitted!');
         navigate('/');
     };
 
     const handleAddSlot = () => {
-        console.log(data,"hii");
-        setData(prevData => ({
+        console.log(doctorData,"hii");
+        setDoctorData(prevData => ({
             ...prevData,
-            availableSlots: [...prevData.availableSlots, { startingTime: '', endingTime: '', isAvailable: true }]
+            slots: [...prevData.slots, { startingTime: '', endingTime: '', isAvailable: true, capacity:20 }]
         }));
     };
 
     const handleSlotChange = (index, field, value) => {
-        const updatedSlots = data.availableSlots.map((slot, i) =>
+        const updatedSlots = doctorData.slots.map((slot, i) =>
             i === index ? { ...slot, [field]: value } : slot
         );
-        setData({ ...data, availableSlots: updatedSlots });
+        setDoctorData({ ...doctorData, slots: updatedSlots });
     };
 
     useEffect(() => {
@@ -108,24 +109,24 @@ export default function DoctorProfileChange() {
                 <h1 className={classes.title}>{translatedTexts['Doctor Profile Settings'] || 'Doctor Profile Settings'}</h1>
                 
                 <label className={classes.label}>{translatedTexts['Qualification'] || 'Qualification'}</label>
-                <input className={classes.input} type="text" placeholder='Enter qualification...' value={data.qualification}
-                    onChange={(e) => setData({ ...data, qualification: e.target.value })} required />
+                <input className={classes.input} type="text" placeholder='Enter qualification...' value={doctorData.qualification}
+                    onChange={(e) => setDoctorData({ ...doctorData, qualification: e.target.value })} required />
 
                 <label className={classes.label}>{translatedTexts['Specialization'] || 'Specialization'}</label>
-                <input className={classes.input} type="text" placeholder='Enter specialization...' value={data.specialization}
-                    onChange={(e) => setData({ ...data, specialization: e.target.value })} required />
+                <input className={classes.input} type="text" placeholder='Enter specialization...' value={doctorData.specialization}
+                    onChange={(e) => setDoctorData({ ...doctorData, specialization: e.target.value })} required />
 
                 <label className={classes.label}>{translatedTexts['Experience'] || 'Experience (in years)'}</label>
-                <input className={classes.input} type="number" placeholder='Enter experience...' value={data.experience}
-                    onChange={(e) => setData({ ...data, experience: e.target.value })} required />
+                <input className={classes.input} type="number" placeholder='Enter experience...' value={doctorData.experience}
+                    onChange={(e) => setDoctorData({ ...doctorData, experience: e.target.value })} required />
 
                 <label className={classes.label}>{translatedTexts['Description'] || 'Description'}</label>
-                <textarea className={classes.textarea} placeholder='Enter a brief description...' value={data.description}
-                    onChange={(e) => setData({ ...data, description: e.target.value })} required />
+                <textarea className={classes.textarea} placeholder='Enter a brief description...' value={doctorData.description}
+                    onChange={(e) => setDoctorData({ ...doctorData, description: e.target.value })} required />
 
                 <label className={classes.label}>{translatedTexts['Gender'] || 'Gender'}</label>
-                <select className={classes.select} value={data.gender}
-                    onChange={(e) => setData({ ...data, gender: e.target.value })} required>
+                <select className={classes.select} value={doctorData.gender}
+                    onChange={(e) => setDoctorData({ ...doctorData, gender: e.target.value })} required>
                     <option value="">Select gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -133,7 +134,7 @@ export default function DoctorProfileChange() {
                 </select>
 
                 <label className={classes.label}>{translatedTexts['Available Slots'] || 'Available Slots'}</label>
-                {data.availableSlots && data.availableSlots.map((slot, index) => (
+                {doctorData.slots && doctorData.slots.map((slot, index) => (
                     <div key={index} className={classes.slotContainer}>
                         <input
                             className={classes.input}
