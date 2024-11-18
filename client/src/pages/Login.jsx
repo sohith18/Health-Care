@@ -35,10 +35,10 @@ export default function Login() {
                 // setToken(userData.token);
                 // setUser(userData.user);
                 if(userData.user.role=="PATIENT"){
-                navigate('/');
+                    navigate('/');
                 }
                 else if(userData.user.role=="DOCTOR"){
-                    navigate('/doctor-home')
+                    navigate('/profile-change-doctor')
                 }
                 // window.location.reload()
             }

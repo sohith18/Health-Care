@@ -11,8 +11,8 @@ export default function DoctorHome() {
     <div>
       <img src={photo1} alt="Hero" className={classes.img} />
       <div className={classes.text}>
-        <h1>{translatedTexts['Feeling well?'] || 'Feeling well?'}</h1>
-        <p>{translatedTexts['Click below to connect with our expert team today!'] || 'Click below to connect with our expert team today!'}</p>
+        {/* <h1>{translatedTexts['Feeling well?'] || 'Feeling well?'}</h1> */}
+        {/* <p>{translatedTexts['Click below to connect with our expert team today!'] || 'Click below to connect with our expert team today!'}</p> */}
         <button className={classes.button} type='submit' onClick={Take_to_Chat}>
           {translatedTexts['Help Now'] || 'Help Now'}
         </button>

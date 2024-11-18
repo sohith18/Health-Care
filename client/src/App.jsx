@@ -19,6 +19,7 @@ import TranslationContextProvider from './store/TranslationContext';
 import DoctorSearch from './components/DoctorSearch';
 import DoctorDetails from './components/DoctorDetails';
 import DoctorHome from './components/DoctorHome';
+import DoctorProfileChange from './components/ProfileChangeDoctor';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
             {path: '/doctor-search', element: <DoctorSearch/>},
             {path: '/doctor/:id', element: <DoctorDetails/>},
             {path : '/doctor-home',element:<DoctorHome/>},
+            {path: '/profile-change-doctor', element:<DoctorProfileChange/>},
         ]
     },
 ])
