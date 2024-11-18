@@ -29,7 +29,7 @@ const Doctor = User.discriminator(
         specializations: [String],
         experience: String,
         description: String,
-        gender: { type: String, required: true },
+        gender:  String,
         slots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Slot' }] ,
      }, options)
 );

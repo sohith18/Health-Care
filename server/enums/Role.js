@@ -1,6 +1,6 @@
 const Role = Object.freeze({
-    Doctor: 'DOCTOR',
-    Patient: 'PATIENT',
+    DOCTOR: 'DOCTOR',
+    PATIENT: 'PATIENT',
 });
 
 export default Role;

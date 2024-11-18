@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
 const SlotSchema = mongoose.Schema({
-    bookingDate: Date,
     isAvailable: Boolean,
-    startDate: Date,
-    endDate: Date
+    timeInterval: String,
+    capacity: Number,
 });
 
 const Slot = mongoose.model('Slot', SlotSchema);

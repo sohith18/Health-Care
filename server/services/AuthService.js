@@ -1,6 +1,7 @@
-import { User} from "../models/User.js";
+import { Doctor, Patient, User} from "../models/User.js";
 import jwt from 'jsonwebtoken';
 import env from 'dotenv';
+import Role from "../enums/Role.js";
 import bcrypt from 'bcrypt'
 
 
@@ -15,7 +16,20 @@ async function signup(userData) {
     try {
         const hash = await bcrypt.hash(password, saltRounds);
         userData.password = hash;
-        const user = new User(userData);
+        let user = null;
+        console.log(userData.role)
+        if (userData.role === Role.DOCTOR) {
+            userData.qualifications = [];
+            userData.specializations = [];
+            userData.experience = "";
+            userData.description = "";
+            userData.slots = [];
+            user = new Doctor(userData);
+        }
+        else if (userData.role === Role.PATIENT) {
+            user = new Patient(userData);
+        }
+        
         const savedUser = await user.save();
         const accessToken = jwt.sign({ _id: savedUser._id }, SECRET_ACCESS_TOKEN, { expiresIn: '1h' });
         return {
