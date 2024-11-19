@@ -154,8 +154,9 @@ export const MyParticipantList = (props) => {
         width: '100vw'
       }}
     >
-      {participants.map((participant) => (
+      {participants.map((index,participant) => (
         <div
+        key={index}
           style={{ width: '100%', aspectRatio: '3 / 2' }}
         >
           <ParticipantView

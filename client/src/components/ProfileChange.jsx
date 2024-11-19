@@ -106,7 +106,7 @@ export default function ProfileChange() {
             
                 <form className={classes.form}>
                 <h1 className={classes.title}> {translatedTexts['Profile Settings'] || 'Profile Settings'} </h1>
-                <label className={classes.label}> {translatedTexts['Name'] || 'Name'} </label>
+                <label className={classes.label}> { 'Name'} </label>
                 <input className={classes.input} type="text" placeholder='enter name ...' value={data.name} onChange={(e) => setData({ ...data, first_name: e.target.value })} required/>
                 <label className={classes.label}> {translatedTexts['New Password'] || 'New Password'} </label>
                 <input className={classes.input} type="password" placeholder='enter password ...' value={data.password} 
