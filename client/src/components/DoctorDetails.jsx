@@ -41,11 +41,11 @@ export default function DoctorDetails() {
 
     function handleBookAppointment(time) {
         setAppointmentTime(time);
-        console.log(`Appointment booked at ${time} with Dr. ${doctor?.name}`);
-        // Add logic to book the appointment here (e.g., API call to save the booking)
+        console.log(`Appointment booked at ${time} with ${doctor?.name}`);
+       
     }
 
-    if (!doctor) return <div>Loading...</div>; // Display a loading message until data is fetched
+    if (!doctor) return <div>Loading...</div>;
 
     return (
         <div className={styles.doctorDetailsContainer}>
@@ -80,16 +80,17 @@ export default function DoctorDetails() {
 
             {/* Available Times Card */}
             <div className={styles.availableTimesCard}>
-                <h3>Available Times</h3>
+                <h3>Available Timings</h3>
                 <div className={styles.timeButtons}>
-                    {doctor.availableTimes?.length > 0 ? (
-                        doctor.availableTimes.map((time, index) => (
+                    {doctor.slots?.length > 0 ? (
+                        doctor.slots.map((slot, index) => (
                             <button
                                 key={index}
                                 className={styles.timeButton}
-                                onClick={() => handleBookAppointment(time)}
+                                onClick={() => handleBookAppointment(slot.timeInterval)}
+                                disabled={slot.capacity === 0}
                             >
-                                {time}
+                                {slot.timeInterval}
                             </button>
                         ))
                     ) : (
