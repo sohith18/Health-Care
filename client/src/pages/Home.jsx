@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import DoctorBoxes from '../components/DoctorBoxes';
 import Reviews from '../components/Reviews';
+import Footer from '../components/Footer';
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero/>
       <DoctorBoxes />
       <Reviews />
+      <Footer />
     </> 
   )
 }

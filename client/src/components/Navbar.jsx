@@ -5,6 +5,7 @@ import ProfileDropdown from './ProfileDropDown';
 import LanguageDropdown from './LanguageDropDown';
 import { TranslationContext } from '../store/TranslationContext'; 
 import {allSentences} from '../locales/text.js'; 
+import photo1 from '../assets/logo.png';
 
 const fetchUserData = async (AuthToken, setUser) => {
   if (AuthToken) {
@@ -73,7 +74,11 @@ export default function Navbar() {
             to="/" 
             onClick={toggleMenu}
           >
-            {translatedTexts['Home'] || 'Home'}
+            <img
+              src={photo1} // Replace with your logo path
+              alt="Company Logo"
+              className={classes.logo}
+            />
           </NavLink>
           <NavLink 
             className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
