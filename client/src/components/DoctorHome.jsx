@@ -13,7 +13,7 @@ export default function DoctorHome() {
       <div className={classes.text}>
         {/* <h1>{translatedTexts['Feeling well?'] || 'Feeling well?'}</h1> */}
         {/* <p>{translatedTexts['Click below to connect with our expert team today!'] || 'Click below to connect with our expert team today!'}</p> */}
-        <button className={classes.button} type='submit' onClick={Take_to_Chat}>
+        <button className={classes.button} type='submit' onClick={Appointments}>
           {translatedTexts['Help Now'] || 'Help Now'}
         </button>
       </div>

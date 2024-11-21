@@ -1,0 +1,47 @@
+.pageContainer {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.appointmentCard {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.prescriptionInput {
+    width: 100%;
+    height: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submitButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.videoCallButton {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.submitButton:hover, .videoCallButton:hover {
+    opacity: 0.9;
+}

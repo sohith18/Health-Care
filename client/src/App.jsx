@@ -20,6 +20,7 @@ import DoctorSearch from './components/DoctorSearch';
 import DoctorDetails from './components/DoctorDetails';
 import DoctorHome from './components/DoctorHome';
 import DoctorProfileChange from './components/ProfileChangeDoctor';
+import Appointments from './pages/Appointments';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
             {path: '/doctor/:id', element: <DoctorDetails/>},
             {path : '/doctor-home',element:<DoctorHome/>},
             {path: '/profile-change-doctor', element:<DoctorProfileChange/>},
+            {path:'/appointments',element:<Appointments/>}
         ]
     },
 ])
