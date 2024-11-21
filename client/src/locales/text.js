@@ -1,6 +1,6 @@
 export const allSentences = [
     'Feeling Unwell?', 'Click below to connect with our expert team today!', 'Get Help Now',
-    'Home', 'Medicines', 'Video Call', 'Login',
+    'Home', 'Prescritions', 'Video Call', 'Login',
     'Profile', 'Profile Settings', 'Logout',
     'Doctor', 'Email', 'Password', 'Submit', 'Name', 'Patient', 'Create Your Account',
     'Join our health platform and connect with patients', 'Start your health journey today', 

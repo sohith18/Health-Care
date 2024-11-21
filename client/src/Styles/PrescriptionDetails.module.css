@@ -1,0 +1,115 @@
+.detailsContainer {
+    background-color: #392E36; /* Match prescription box background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    margin: auto;
+    max-width: 800px;
+    max-height: 80vh; /* Max height of the modal */
+    overflow-y: auto; /* Allows scrolling if content overflows */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    color: #e8cba2; /* Light color for text */
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #e8cba2; /* Light color for heading */
+    margin-bottom: 15px;
+    display: inline-block; /* Display name inline with close button */
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: #b09c74; /* Lighter gold color for subheading */
+    margin-bottom: 8px;
+    font-weight: bold; /* Bold for subheadings */
+}
+
+p {
+    font-size: 1rem;
+    color: #e8cba2; /* Light color for paragraph text */
+    margin-bottom: 10px;
+}
+
+/* Flex container for slot and specialization to be on the same line */
+.slotSpecializationContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping if content overflows */
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Label styling */
+.slotSpecializationContainer span.label {
+    font-size: 1rem;
+    color: #e8cba2; /* Light color for the label text */
+    margin-right: 10px; /* Add some spacing after label */
+    font-weight: bold; /* Make label bold */
+}
+
+/* Value styling */
+.slotSpecializationContainer .value {
+    font-size: 1rem;
+    color: #b09c74; /* Different color for values */
+    flex-grow: 1; /* Allow value to take up remaining space */
+    margin-left: 5px; /* Add space after colon */
+}
+
+/* Styling for the medicine box */
+.medicineBox {
+    background-color: #937871; /* Same as prescription box background */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.medicineBox h4 {
+    font-size: 1.2rem;
+    color: #392E36; /* Light color for medicine name */
+    margin-bottom: 5px;
+}
+
+.medicineBox p {
+    font-size: 1rem;
+    color: #392E36; /* Lighter color for medicine details */
+}
+
+/* Close button styling */
+.closeButton {
+    align-self: flex-end;
+    padding: 8px 15px;
+    background-color: #937871; /* Similar to the View Details button */
+    color: #3e2f2b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* Pushes the close button to the far right */
+}
+
+.closeButton:hover {
+    background-color: #866d66; /* Darker shade on hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .detailsContainer {
+        width: 90%; /* Make modal take more width on small screens */
+    }
+
+    /* Stack the slot and specialization for smaller screens */
+    .slotSpecializationContainer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .slotSpecializationContainer .value {
+        text-align: left; /* Align text to the left for small screens */
+    }
+}

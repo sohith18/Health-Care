@@ -5,7 +5,6 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import axios from 'axios';
 import {Toaster } from 'react-hot-toast'
-import Medicine from './pages/Medicines';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import JoinRoom from './pages/join';
 import VideoCall from "./pages/meeting"
@@ -21,6 +20,7 @@ import DoctorDetails from './components/DoctorDetails';
 import DoctorHome from './components/DoctorHome';
 import DoctorProfileChange from './components/ProfileChangeDoctor';
 import Appointments from './pages/Appointments';
+import PrescriptionHist from './pages/PrescriptionHist';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     {   path: '/', element: <RootLayout />,
         children:[
             {path: '/', element: <Home />},
-            {path: '/medicines', element: <Medicine />},
+            {path: '/prescription-history', element: <PrescriptionHist />},
             {path: '/login', element: <Login />},
             {path: '/register', element: <Register />},
             {path: '/video-call', element: <JoinRoom />},

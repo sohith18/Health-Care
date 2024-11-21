@@ -14,6 +14,12 @@ const createBooking = async (token, bookingData) => {
         let bookedSlot = bookingData.slotID;
         bookedSlot = await Slot.findById(bookedSlot);
         
+        if (!bookedSlot) {
+            return { status: 404, msg: "Slot not found" };
+        }
+        if (bookedSlot.capacity === 0) {
+            return { status: 400, msg: "Slot is full" };
+        }
         bookedSlot.capacity = bookedSlot.capacity - 1;
         const updatedSlot = await Slot.updateOne({ _id: bookedSlot._id }, { $set: { capacity: bookedSlot.capacity } });
         if (!updatedSlot) {

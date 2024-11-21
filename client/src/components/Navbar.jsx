@@ -77,10 +77,10 @@ export default function Navbar() {
           </NavLink>
           <NavLink 
             className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
-            to="/medicines"
+            to="/prescription-history"
             onClick={toggleMenu}
           >
-            {translatedTexts['Medicines'] || 'Medicines'}
+            {translatedTexts['Prescritions'] || 'Prescriptions'}
           </NavLink>
           <NavLink 
             className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 

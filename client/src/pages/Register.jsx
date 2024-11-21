@@ -49,6 +49,8 @@ export default function Register() {
         }
     }
 
+    console.log(translatedTexts);
+
 
     return (
         <div className={classes.container}>
@@ -66,7 +68,7 @@ export default function Register() {
                     <h2 className={classes.title}>{translatedTexts['Create Your Account'] || 'Create Your Account'}</h2>
                     {isdoctor ? <p className={classes.subtitle}>{translatedTexts['Join our health platform and connect with patients']||'Join our health platform and connect with patients'}</p>:
                     <p className={classes.subtitle}>{translatedTexts['Start your health journey today'] || 'Start your health journey today'}</p>}
-                    <label className={classes.label}> {translatedTexts['Name'] || 'Name'} </label>
+                    <label className={classes.label}> { 'Name'} </label>
                     <input className={classes.input} required type="text" placeholder='enter name ...' value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
                     <label className={classes.label}> {translatedTexts['Email'] || 'Email'} </label>
                     <input className={classes.input} required type="email" placeholder='enter email ...' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
