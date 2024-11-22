@@ -1,29 +1,33 @@
 import styles from '../Styles/Footer.module.css';
+import { useContext } from 'react';
+import { TranslationContext } from "../store/TranslationContext"; // Assuming TranslationContext is implemented
 
 const Footer = () => {
+  const { translatedTexts } = useContext(TranslationContext); // Fetch translated texts from context
+
   return (
     <footer className={styles.footer}>
       <div className={styles.content}>
         <p className={styles.text}>
-          &copy; {new Date().getFullYear()} Healio. All rights reserved.
+          &copy; {new Date().getFullYear()} Healio. {translatedTexts['All rights reserved.']}
         </p>
         <ul className={styles.links}>
           <li>
             <a href="https://github.com/sohith18/Health-Care" target="_blank"
               rel="noopener noreferrer" className={styles.link}>
-              About Us
+              {translatedTexts['About Us']}
             </a>
           </li>
           <li>
             <a href="https://www.iiitb.ac.in/" target="_blank"
               rel="noopener noreferrer" className={styles.link}>
-              Contact
+              {translatedTexts['Contact']}
             </a>
           </li>
           <li>
-            <a href="https://www.freeprivacypolicy.com/live/b0c21ae5-5411-4346-90c5-1b851eb88806" target="_blank"
+            <a href="https://www.freeprivacypolicy.com/live/f9c55ea6-d488-40ac-ba74-a4adfb3690f8" target="_blank"
               rel="noopener noreferrer" className={styles.link}>
-              Privacy Policy
+              {translatedTexts['Privacy Policy']}
             </a>
           </li>
         </ul>

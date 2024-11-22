@@ -10,6 +10,12 @@ const LanguageDropdown = ({ onLanguageChange }) => {
         { code: 'en', name: 'English' },
         { code: 'es', name: 'Spanish' },
         { code: 'fr', name: 'French' },
+        {code: 'ja', name: 'Japanese'},
+        {code: 'hi', name: 'Hindi'},
+        {code: 'te', name: 'Telugu'},
+        {code: 'kn', name: 'Kannada'},
+        {code: 'ta', name: 'Tamil'},
+        {code: 'ml', name: 'Malayalam'},
         // Add more languages as needed
     ];
 

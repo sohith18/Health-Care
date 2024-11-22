@@ -1,8 +1,10 @@
 import styles from '../Styles/JoinPage.module.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { TranslationContext } from "../store/TranslationContext";
 
 const JoinPage = () => {
   const [selectedDoctor, setSelectedDoctor] = useState("");
+  const { translatedTexts } = useContext(TranslationContext); // Translation context
 
   const doctors = [
     "Cardiology", 
@@ -13,21 +15,21 @@ const JoinPage = () => {
     "Dermatology", 
     "Internal Medicine", 
     "Orthodontics"
-  ]
+  ];
 
   const handleJoin = () => {
     if (selectedDoctor) {
-      alert(`Joining meeting with ${selectedDoctor}`);
+      alert(`${translatedTexts['Joining meeting with']} ${selectedDoctor}`);
     } else {
-      alert("Please select a doctor before joining!");
+      alert(translatedTexts['Please select a doctor before joining!']);
     }
   };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Join a Meeting</h1>
+      <h1 className={styles.title}>{translatedTexts['Join a Meeting']}</h1>
       <label htmlFor="doctorSelect" className={styles.label}>
-        Select a Specialized Doctor:
+        {translatedTexts['Select a Specialized Doctor:']}
       </label>
       <select
         id="doctorSelect"
@@ -35,15 +37,15 @@ const JoinPage = () => {
         value={selectedDoctor}
         onChange={(e) => setSelectedDoctor(e.target.value)}
       >
-        <option value="">-- Select a Doctor --</option>
+        <option value="">{translatedTexts['-- Select a Doctor --']}</option>
         {doctors.map((doctor, index) => (
           <option key={index} value={doctor}>
-            {doctor}
+            {translatedTexts[doctor] || doctor}
           </option>
         ))}
       </select>
       <button className={styles.joinButton} onClick={handleJoin}>
-        Join Meeting
+        {translatedTexts['Join Meeting']}
       </button>
     </div>
   );
