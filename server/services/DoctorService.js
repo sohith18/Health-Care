@@ -24,8 +24,7 @@ const updateDoctor = async (token, docData) => {
             'experience',
             'description',
             'gender',
-            'startTiming',
-            'endTiming',
+            'slots',
         ];
         const sanitizedData = Object.keys(docData)
             .filter((key) => allowedUpdates.includes(key))
@@ -39,12 +38,12 @@ const updateDoctor = async (token, docData) => {
                 return { status: 400, msg: "Slots must be an array" };
             }
             sanitizedData.slots = await Promise.all(docData.slots.map(async (slot) => {
-                if (!slot || !slot.isAvailable || !slot.startTiming || !slot.endTiming || !slot.capacity) {
+                if (!slot || !slot.isAvailable || !slot.startingTime || !slot.endingTime || !slot.capacity) {
                     throw new Error("Invalid slot data provided");
                 }
                 return await Slot.create({
                     isAvailable: slot.isAvailable,
-                    timeInterval: slot.startTiming + ' - ' + slot.endTiming,
+                    timeInterval: slot.startingTime + ' - ' + slot.endingTime,
                     capacity: slot.capacity,
                 });
             }));
@@ -59,8 +58,8 @@ const updateDoctor = async (token, docData) => {
             { _id: doctor._id },
             { $set: {...sanitizedData, __t: 'user'} },
             { new: true }
-        ).populate('slots');;
-
+        ).populate('slots');
+        
         if (!updatedDoctor) {
             return { status: 500, msg: "Failed to update doctor" };
         }
@@ -99,7 +98,7 @@ const getAllDoctors = async (data) => {
             return acc;
         }, {});
         
-        const doctors = await User.find({ role: Role.DOCTOR, ...body });
+        const doctors = await User.find({ role: Role.DOCTOR, ...body }).populate('slots');
         
         return {
             status: 200,

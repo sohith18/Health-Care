@@ -76,9 +76,10 @@ export default function DoctorProfileChange() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(doctorData)
         await handleUpdateDoctor(localStorage.getItem('AuthToken'), doctorData, setDoctorData, setIsFetching);
         console.log('Form submitted!');
-        navigate('/');
+        navigate('/doctor-home');
     };
 
     const handleAddSlot = () => {
@@ -110,23 +111,23 @@ export default function DoctorProfileChange() {
                 
                 <label className={classes.label}>{translatedTexts['Qualification'] || 'Qualification'}</label>
                 <input className={classes.input} type="text" placeholder='Enter qualification...' value={doctorData.qualification}
-                    onChange={(e) => setDoctorData({ ...doctorData, qualification: e.target.value })} required />
+                    onChange={(e) => setDoctorData({ ...doctorData, qualification: e.target.value })}  />
 
                 <label className={classes.label}>{translatedTexts['Specialization'] || 'Specialization'}</label>
                 <input className={classes.input} type="text" placeholder='Enter specialization...' value={doctorData.specialization}
-                    onChange={(e) => setDoctorData({ ...doctorData, specialization: e.target.value })} required />
+                    onChange={(e) => setDoctorData({ ...doctorData, specialization: e.target.value })}  />
 
                 <label className={classes.label}>{translatedTexts['Experience'] || 'Experience (in years)'}</label>
                 <input className={classes.input} type="number" placeholder='Enter experience...' value={doctorData.experience}
-                    onChange={(e) => setDoctorData({ ...doctorData, experience: e.target.value })} required />
+                    onChange={(e) => setDoctorData({ ...doctorData, experience: e.target.value })}  />
 
                 <label className={classes.label}>{translatedTexts['Description'] || 'Description'}</label>
                 <textarea className={classes.textarea} placeholder='Enter a brief description...' value={doctorData.description}
-                    onChange={(e) => setDoctorData({ ...doctorData, description: e.target.value })} required />
+                    onChange={(e) => setDoctorData({ ...doctorData, description: e.target.value })}  />
 
                 <label className={classes.label}>{translatedTexts['Gender'] || 'Gender'}</label>
                 <select className={classes.select} value={doctorData.gender}
-                    onChange={(e) => setDoctorData({ ...doctorData, gender: e.target.value })} required>
+                    onChange={(e) => setDoctorData({ ...doctorData, gender: e.target.value })}>
                     <option value="">Select gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>

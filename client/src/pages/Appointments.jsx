@@ -16,6 +16,7 @@ async function fetchAppointments(AuthToken, setAppointments, setIsFetching) {
             const data = await response.json();
 
             if (response.ok) {
+                console.log(data);
                 setAppointments(data.bookings);
             } else {
                 console.error("Error fetching appointments:", data);
@@ -61,15 +62,46 @@ const handlePrescriptionSubmit = async (AuthToken, appointmentId, prescription, 
 export default function Appointments() {
     const [appointments, setAppointments] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
-    const [currentPrescription, setCurrentPrescription] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const [prescriptions, setPrescriptions] = useState({}); // Maps appointment ID to prescription
 
     useEffect(() => {
         const AuthToken = localStorage.getItem("AuthToken");
         fetchAppointments(AuthToken, setAppointments, setIsFetching);
     }, []);
 
-    // Filter appointments based on the search query
+    const addMedicine = (appointmentId) => {
+        setPrescriptions((prev) => ({
+            ...prev,
+            [appointmentId]: [
+                ...(prev[appointmentId] || []),
+                { medicine: "", dosage: "" },
+            ],
+        }));
+    };
+
+    const updateMedicine = (appointmentId, index, field, value) => {
+        setPrescriptions((prev) => {
+            const updatedPrescription = [...(prev[appointmentId] || [])];
+            updatedPrescription[index][field] = value;
+            return { ...prev, [appointmentId]: updatedPrescription };
+        });
+    };
+
+    const removeMedicine = (appointmentId, index) => {
+        setPrescriptions((prev) => {
+            const updatedPrescription = [...(prev[appointmentId] || [])];
+            updatedPrescription.splice(index, 1);
+            return { ...prev, [appointmentId]: updatedPrescription };
+        });
+    };
+
+    const handleSubmit = (appointmentId) => {
+        const AuthToken = localStorage.getItem("AuthToken");
+        const prescription = prescriptions[appointmentId] || [];
+        handlePrescriptionSubmit(AuthToken, appointmentId, prescription, setAppointments);
+    };
+
     const filteredAppointments = appointments.filter((appointment) =>
         appointment.patientName.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -93,26 +125,48 @@ export default function Appointments() {
                     ) : (
                         filteredAppointments.map((appointment, index) => (
                             <div key={index} className={classes.appointmentCard}>
-                                <h3>Patient Name: {appointment.patientName}</h3>
+                                <h3>Patient Name: {appointment.patient.name}</h3>
                                 <p>Doctor: {appointment.doctor.name}</p>
                                 <p>Slot: {appointment.slot}</p>
                                 <div>
-                                    <textarea
-                                        className={classes.prescriptionInput}
-                                        placeholder="Write prescription here..."
-                                        value={currentPrescription}
-                                        onChange={(e) => setCurrentPrescription(e.target.value)}
-                                    />
+                                    <h4>Add Prescription</h4>
+                                    {(prescriptions[appointment.id] || []).map((med, medIndex) => (
+                                        <div key={medIndex} className={classes.medicineEntry}>
+                                            <input
+                                                type="text"
+                                                placeholder="Medicine Name"
+                                                className={classes.medicineInput}
+                                                value={med.medicine}
+                                                onChange={(e) =>
+                                                    updateMedicine(appointment.id, medIndex, "medicine", e.target.value)
+                                                }
+                                            />
+                                            <input
+                                                type="text"
+                                                placeholder="Dosage (e.g., 1 tablet twice a day)"
+                                                className={classes.dosageInput}
+                                                value={med.dosage}
+                                                onChange={(e) =>
+                                                    updateMedicine(appointment.id, medIndex, "dosage", e.target.value)
+                                                }
+                                            />
+                                            <button
+                                                className={classes.removeButton}
+                                                onClick={() => removeMedicine(appointment.id, medIndex)}
+                                            >
+                                                Remove
+                                            </button>
+                                        </div>
+                                    ))}
+                                    <button
+                                        className={classes.addButton}
+                                        onClick={() => addMedicine(appointment.id)}
+                                    >
+                                        Add Medicine
+                                    </button>
                                     <button
                                         className={classes.submitButton}
-                                        onClick={() =>
-                                            handlePrescriptionSubmit(
-                                                localStorage.getItem("AuthToken"),
-                                                appointment.id,
-                                                currentPrescription,
-                                                setAppointments
-                                            )
-                                        }
+                                        onClick={() => handleSubmit(appointment.id)}
                                     >
                                         Submit Prescription
                                     </button>

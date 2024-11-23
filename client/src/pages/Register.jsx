@@ -40,7 +40,12 @@ export default function Register() {
                     navigate('/');
                 }
                 else if(userData.user.role=="DOCTOR"){
-                    navigate('/profile-change-doctor')
+                    if(userData.user.slots==null){
+                        navigate('/profile-change-doctor')
+                    }
+                    else{
+                        navigate('/doctor-home')
+                    }
                 }
                 // window.location.reload();
             }
