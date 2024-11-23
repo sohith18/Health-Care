@@ -103,7 +103,7 @@ export default function Appointments() {
     };
 
     const filteredAppointments = appointments.filter((appointment) =>
-        appointment.patientName.toLowerCase().includes(searchQuery.toLowerCase())
+        appointment.patient.name.includes(searchQuery.toLowerCase())
     );
 
     return (
@@ -127,7 +127,7 @@ export default function Appointments() {
                             <div key={index} className={classes.appointmentCard}>
                                 <h3>Patient Name: {appointment.patient.name}</h3>
                                 <p>Doctor: {appointment.doctor.name}</p>
-                                <p>Slot: {appointment.slot}</p>
+                                <p>Slot: {appointment.slot.timeInterval}</p>
                                 <div>
                                     <h4>Add Prescription</h4>
                                     {(prescriptions[appointment.id] || []).map((med, medIndex) => (

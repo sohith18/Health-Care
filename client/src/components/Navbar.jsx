@@ -139,10 +139,10 @@ else if(user.role=="DOCTOR"){
           </NavLink> */}
           <NavLink 
             className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
-            to="/video-call"
+            to="/appointments"
             onClick={toggleMenu}
           >
-            {translatedTexts['Video Call'] || 'Video Call'}
+            {translatedTexts['Appointments'] || 'Appointments'}
           </NavLink>
 
           <LanguageDropdown onLanguageChange={handleLangChange}/>

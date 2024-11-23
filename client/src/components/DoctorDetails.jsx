@@ -40,9 +40,29 @@ export default function DoctorDetails() {
         fetchDoctors(); // Fetch doctor data when the component mounts
     }, [AuthToken, id]); // Re-run the effect if AuthToken or id changes
 
-    function handleBookAppointment(time) {
+    async function handleBookAppointment(docId, slotId, time) {
         setAppointmentTime(time);
+        try {
+            const response = await fetch("http://localhost:3000/booking", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${AuthToken}`, // Pass AuthToken for authentication
+                },
+                body: JSON.stringify({doctorID: docId, slotID: slotId}), // Send the doctor ID in the request body
+            });
+
+            if (response.ok) {
+                const data = await response.json(); // Parse the JSON response
+                console.log(data); // Log the response data
+            } else {
+                console.error("Failed to fetch doctor details:", response.status);
+            }
+        } catch (error) {
+            console.error("Error fetching doctors data:", error);
+        }
         console.log(`${translatedTexts['Appointment booked at']} ${time} ${translatedTexts['with']} ${doctor?.name}`);
+
     }
 
     if (!doctor) return <div>{translatedTexts['Loading...'] || "Loading..."}</div>;
@@ -87,7 +107,7 @@ export default function DoctorDetails() {
                             <button
                                 key={index}
                                 className={styles.timeButton}
-                                onClick={() => handleBookAppointment(slot.timeInterval)}
+                                onClick={() => handleBookAppointment(doctor._id, slot._id, slot.timeInterval)}
                                 disabled={slot.capacity === 0}
                             >
                                 {slot.timeInterval}
