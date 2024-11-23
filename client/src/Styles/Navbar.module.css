@@ -97,6 +97,13 @@
     animation: showline 0.5s forwards;
 }
 
+.logo {
+    height: 30px; /* Adjust the height to fit your design */
+    width: auto;  /* Maintain aspect ratio */
+    display: block;
+  }
+  
+
 /* Animation keyframes for underline */
 @keyframes showline {
     from {

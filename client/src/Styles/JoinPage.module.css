@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 10vh; /* Align with navbar space */
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 900px; /* Centered container with max width */
+    border-radius: 8px;
+    min-height: 80vh; /* Take up at least 80% of viewport height */
+    background-color: #392E36;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    margin-bottom: 40px;
+    color: #e8cba2;
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .label {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #937871;
+  }
+  
+  .dropdown {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 40px;
+    border: 1px solid #937871;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f7f7f7;
+    color: #392E36;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown:focus {
+    outline: none;
+    border-color: #937871;
+  }
+  
+  .joinButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #937871;
+    color: #392E36;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .joinButton:hover {
+    background-color: #80665f;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      max-width: 100%;
+      padding: 15px;
+    }
+  
+    .title {
+      font-size: 1.8rem;
+    }
+  
+    .dropdown {
+      width: 100%;
+      font-size: 0.9rem;
+    }
+  
+    .joinButton {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  

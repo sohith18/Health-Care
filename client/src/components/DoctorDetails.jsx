@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from '../Styles/DoctorDetails.module.css';
+import { TranslationContext } from "../store/TranslationContext";
 
 export default function DoctorDetails() {
     const { id } = useParams(); // Extract the doctor ID from the route parameters
     const [doctor, setDoctor] = useState(null); // State to hold doctor data
     const [appointmentTime, setAppointmentTime] = useState(''); // State to store selected appointment time
-
+    const { translatedTexts } = useContext(TranslationContext); // Translation context
     const AuthToken = localStorage.getItem('AuthToken'); // Retrieve AuthToken from local storage
     const search = {
         id: id, // Search object containing the doctor ID
@@ -41,11 +42,10 @@ export default function DoctorDetails() {
 
     function handleBookAppointment(time) {
         setAppointmentTime(time);
-        console.log(`Appointment booked at ${time} with ${doctor?.name}`);
-       
+        console.log(`${translatedTexts['Appointment booked at']} ${time} ${translatedTexts['with']} ${doctor?.name}`);
     }
 
-    if (!doctor) return <div>Loading...</div>;
+    if (!doctor) return <div>{translatedTexts['Loading...'] || "Loading..."}</div>;
 
     return (
         <div className={styles.doctorDetailsContainer}>
@@ -60,27 +60,27 @@ export default function DoctorDetails() {
                     />
                 </div>
                 <div className={styles.doctorInfoRight}>
-                    <h2>{doctor.name || "Unknown Doctor"}</h2>
+                    <h2>{doctor.name || translatedTexts['Unknown Doctor'] || "Unknown Doctor"}</h2>
                     <p>
-                        <strong>Qualifications:</strong>{" "}
-                        {doctor.qualifications ? doctor.qualifications.join(", ") : "N/A"}
+                        <strong>{translatedTexts['Qualifications:'] || 'Qualifications:'} </strong>
+                        {doctor.qualifications ? doctor.qualifications.join(", ") : translatedTexts['N/A'] || "N/A"}
                     </p>
                     <p>
-                        <strong>Specializations:</strong>{" "}
-                        {doctor.specializations ? doctor.specializations.join(", ") : "N/A"}
+                        <strong>{translatedTexts['Specializations:'] || 'Specializations:'} </strong>
+                        {doctor.specializations ? doctor.specializations.join(", ") : translatedTexts['N/A'] || "N/A"}
                     </p>
                     <p>
-                        <strong>Experience:</strong> {doctor.experience || "N/A"} years
+                        <strong>{translatedTexts['Experience:'] || 'Experience:'} </strong> {doctor.experience || translatedTexts['N/A'] || "N/A"} {translatedTexts['years'] || 'years'}
                     </p>
                     <p>
-                        <strong>Description:</strong> {doctor.description || "N/A"}
+                        <strong>{translatedTexts['Description:'] || 'Description:'} </strong> {doctor.description || translatedTexts['N/A'] || "N/A"}
                     </p>
                 </div>
             </div>
 
             {/* Available Times Card */}
             <div className={styles.availableTimesCard}>
-                <h3>Available Timings</h3>
+                <h3>{translatedTexts['Available Timings'] || 'Available Timings'}</h3>
                 <div className={styles.timeButtons}>
                     {doctor.slots?.length > 0 ? (
                         doctor.slots.map((slot, index) => (
@@ -94,7 +94,7 @@ export default function DoctorDetails() {
                             </button>
                         ))
                     ) : (
-                        <p>No available times</p>
+                        <p>{translatedTexts['No available times'] || 'No available times'}</p>
                     )}
                 </div>
             </div>

@@ -8,16 +8,43 @@
 /* Left image container styling */
 .left {
     flex: 1;
-    position: relative; /* Required for absolute positioning of overlay text */
+    position: relative; /* Enables absolute positioning for child elements */
     overflow: hidden;
     background-color: #E9ECEF;
 }
 
 .left img {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     object-fit: cover;
 }
+
+/* Button overlay */
+.button-overlay {
+    position: absolute; /* Positioned relative to the .left container */
+    top: 20px; /* Adjust to place the button where needed */
+    left: 20px; /* Adjust to place the button where needed */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10; /* Ensures the button stays above the image */
+    padding: 0;
+}
+
+.button-overlay img {
+    width: 200px; /* Adjust logo size */
+    height: auto; /* Maintain logo aspect ratio */
+    object-fit: contain;
+    border-radius: 0; /* No border radius for the logo */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.button-overlay:hover img {
+    transform: scale(1.1); /* Enlarge slightly on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional hover shadow effect */
+}
+
+
 
 /* Form container styling */
 .formcon {
@@ -26,6 +53,7 @@
     justify-content: center;
     align-items: center;
     background-color: #F7F8FA;
+    padding: 2rem;
 }
 
 /* Form styling */
@@ -35,17 +63,18 @@
     background: #FFFFFF;
     padding: 3rem 2rem;
     border-radius: 12px;
-    width: 80%;
-    max-width: 28vw;
+    width: 90%;
+    max-width: 450px;
     border: 1px solid #D1D5DB;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for better visibility */
 }
 
 /* Form title styling */
 .title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: #333333;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
     text-align: center;
 }
 
@@ -59,25 +88,27 @@
 
 /* Input styling */
 .input {
-    margin: 0.7rem 0;
-    padding: 0.8rem;
+    margin: 1rem 0;
+    padding: 0.9rem;
     border: 1px solid #D1D5DB;
     border-radius: 8px;
-    background-color: #F7F8FA;
+    background-color: #F9FAFB;
     color: #333333;
     font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
 .input:focus {
     border-color: #8F7671;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(143, 118, 113, 0.2);
 }
 
 /* Label styling */
 .label {
     text-align: left;
-    font-size: 0.9rem;
-    padding: 0.2rem 0;
+    font-size: 1rem;
+    padding: 0.3rem 0;
     color: #333333;
     font-weight: 500;
 }
@@ -86,24 +117,32 @@
 .button {
     border: none;
     background-color: #8F7671;
-    padding: 0.9rem;
+    padding: 1rem;
     border-radius: 8px;
     cursor: pointer;
     color: #FFFFFF;
     font-weight: bold;
     font-size: 1rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .button:hover {
     background-color: #6C5A56;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+    background-color: #5A4845;
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 /* Form footer styling */
 .footer {
     font-size: 0.9rem;
     color: #666666;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     text-align: center;
 }
 
@@ -117,19 +156,53 @@
     text-decoration: underline;
 }
 
-
+/* Remove default underline for links */
 .form a {
     border-bottom: none;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
-    .left{
-        display: none;
+    .left {
+        display: none; /* Hide the image container on smaller screens */
     }
 
-    .form{
+    .form {
         max-width: none;
+        width: 100%;
+        padding: 2rem;
     }
 
+    .title {
+        font-size: 1.6rem;
+    }
 
+    .subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/* Add extra responsiveness for smaller devices */
+@media (max-width: 480px) {
+    .form {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .input {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .button {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
 }

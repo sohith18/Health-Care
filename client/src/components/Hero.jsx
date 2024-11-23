@@ -1,19 +1,24 @@
 import { useContext } from 'react';
 import photo1 from '../assets/Hero1.jpg';
-import { Take_to_Chat } from '../Controllers/HomeController';
 import classes from '../Styles/Hero.module.css'; // Import the CSS module
 import { TranslationContext } from '../store/TranslationContext'; // Adjust path as necessary
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook from 'react-router-dom'
+
 
 export default function Hero() {
+  const navigate = useNavigate();
   const { translatedTexts } = useContext(TranslationContext);
 
+  const handleClick = ()=> {
+    navigate('/doctor-search')
+  }
   return (
     <div>
       <img src={photo1} alt="Hero" className={classes.img} />
       <div className={classes.text}>
         <h1>{translatedTexts['Feeling Unwell?'] || 'Feeling Unwell?'}</h1>
         <p>{translatedTexts['Click below to connect with our expert team today!'] || 'Click below to connect with our expert team today!'}</p>
-        <button className={classes.button} type='submit' onClick={Take_to_Chat}>
+        <button className={classes.button} type='submit' onClick={() => handleClick()}>
           {translatedTexts['Get Help Now'] || 'Get Help Now'}
         </button>
       </div>

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../Styles/DoctorInfo.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TranslationContext } from '../store/TranslationContext';
 
 export default function DoctorsInfo({ doctorsData }) {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
+    const { translatedTexts } = useContext(TranslationContext);
 
     const doctorsPerPage = 5;
     const indexOfLastDoctor = currentPage * doctorsPerPage;
@@ -28,7 +30,6 @@ export default function DoctorsInfo({ doctorsData }) {
         }
     };
 
-
     return (
         <div className={styles.container}>
             {currentDoctors.length > 0 ? (currentDoctors.map((doctor, index) => (
@@ -38,15 +39,16 @@ export default function DoctorsInfo({ doctorsData }) {
                         <div className={styles.education}>
                             {doctor.qualifications.join(', ')}
                         </div>
-                        {/* <div className={styles.specializations}>
-                            <span>Specialised in: </span>
-                            {doctor.specializations.join(', ')}
-                        </div> */}
                         <p className={styles.experience}>
-                            <span></span>
-                            {doctor.experience} years of experience
+                            <span>{translatedTexts['Specialized in:'] || 'Specialized in:'}</span>
+                            {doctor.experience} {translatedTexts['years of experience'] || 'years of experience'}
                         </p>
-                        <button className={styles.bookButton} onClick={()=>handleBookAppointment(doctor._id)}>Book Appointment</button>
+                        <button 
+                            className={styles.bookButton} 
+                            onClick={() => handleBookAppointment(doctor._id)}
+                        >
+                            {translatedTexts['Book Appointment'] || 'Book Appointment'}
+                        </button>
                     </div>
                     <div className={styles.imageContainer}>
                         <img
@@ -56,15 +58,21 @@ export default function DoctorsInfo({ doctorsData }) {
                         />
                     </div>
                 </div>
-            ))): <p>No doctors found based on the selected filters.</p>}
+            ))): <p>{translatedTexts['No doctors found based on the selected filters.'] || 'No doctors found based on the selected filters.'}</p>}
 
             <div className={styles.paginationControls}>
-                <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-                    Previous
+                <button 
+                    onClick={handlePreviousPage} 
+                    disabled={currentPage === 1}
+                >
+                    {translatedTexts['Previous'] || 'Previous'}
                 </button>
-                <span>Page {currentPage}</span>
-                <button onClick={handleNextPage} disabled={currentPage >= Math.ceil(doctorsData.length / doctorsPerPage)}>
-                    Next
+                <span>{translatedTexts['Page'] || 'Page'} {currentPage}</span>
+                <button 
+                    onClick={handleNextPage} 
+                    disabled={currentPage >= Math.ceil(doctorsData.length / doctorsPerPage)}
+                >
+                    {translatedTexts['Next'] || 'Next'}
                 </button>
             </div>
         </div>

@@ -6,12 +6,11 @@ import Login from './pages/Login';
 import axios from 'axios';
 import {Toaster } from 'react-hot-toast'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import JoinRoom from './pages/join';
+import JoinPage from './pages/Join';
 import VideoCall from "./pages/meeting"
 import Doctors from './pages/Doctors';
 import NotFound from './pages/ErrPage/NotFound';
 import ServerError from './pages/ErrPage/ServerError';
-import Chatbot from './pages/Chatbot';
 import RootLayout from './RootLayout';
 import ProfileChange from './components/ProfileChange';
 import TranslationContextProvider from './store/TranslationContext';
@@ -32,12 +31,11 @@ const router = createBrowserRouter([
             {path: '/prescription-history', element: <PrescriptionHist />},
             {path: '/login', element: <Login />},
             {path: '/register', element: <Register />},
-            {path: '/video-call', element: <JoinRoom />},
+            {path: '/video-call', element: <JoinPage />},
             {path: '/video-call/meeting/:id', element: <VideoCall />},
             {path: '/doctors', element: <Doctors />},
             {path: '/500', element: <ServerError />},
             {path: '*', element: <NotFound />},
-            {path: '/chatbot', element: <Chatbot />},
             {path: '/profile-change', element: <ProfileChange />},
             {path: '/doctor-search', element: <DoctorSearch/>},
             {path: '/doctor/:id', element: <DoctorDetails/>},

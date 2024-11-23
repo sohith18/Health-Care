@@ -5,19 +5,47 @@
     width: 100vw;
 }
 
-/* Left image container styling */
 .left {
     flex: 1;
-    position: relative; /* Required for absolute positioning of overlay text */
-    overflow: hidden;
+    position: relative; /* Enables absolute positioning for child elements */
+    overflow: hidden; /* Ensures no scrollbars appear */
     background-color: #E9ECEF;
+    height: 100vh; /* Full viewport height */
 }
 
+/* Ensuring the image fits the container */
 .left img {
     width: 100%;
-    height: 100vh;
-    object-fit: cover;
+    height: 100%; /* Ensures the image covers the container fully */
+    object-fit: cover; /* Maintains the aspect ratio and crops overflow */
+    display: block; /* Removes any inline gaps */
 }
+
+/* Button overlay */
+.button-overlay {
+    position: absolute; /* Positioned relative to the .left container */
+    top: 20px; /* Adjust to place the button where needed */
+    left: 20px; /* Adjust to place the button where needed */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10; /* Ensures the button stays above the image */
+    padding: 0;
+}
+
+.button-overlay img {
+    width: 200px; /* Adjust logo size */
+    height: auto; /* Maintain logo aspect ratio */
+    object-fit: contain;
+    border-radius: 0; /* No border radius for the logo */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.button-overlay:hover img {
+    transform: scale(1.1); /* Enlarge slightly on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional hover shadow effect */
+}
+
 
 /* Form container styling */
 .formcon {
