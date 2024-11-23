@@ -15,19 +15,19 @@ const Footer = () => {
           <li>
             <a href="https://github.com/sohith18/Health-Care" target="_blank"
               rel="noopener noreferrer" className={styles.link}>
-              {translatedTexts['About Us']}
+              {'About us' || translatedTexts['About Us']}
             </a>
           </li>
           <li>
             <a href="https://www.iiitb.ac.in/" target="_blank"
               rel="noopener noreferrer" className={styles.link}>
-              {translatedTexts['Contact']}
+              {'Contact' || translatedTexts['Contact']}
             </a>
           </li>
           <li>
             <a href="https://www.freeprivacypolicy.com/live/f9c55ea6-d488-40ac-ba74-a4adfb3690f8" target="_blank"
               rel="noopener noreferrer" className={styles.link}>
-              {translatedTexts['Privacy Policy']}
+              {'Privacy Policy' || translatedTexts['Privacy Policy']}
             </a>
           </li>
         </ul>
