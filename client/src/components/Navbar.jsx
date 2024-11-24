@@ -59,7 +59,7 @@ export default function Navbar() {
   const handleLangChange = (languageCode) => {
     handleLanguageChange(languageCode, allSentences);
   };
-
+  if(user==null || user.role=="PATIENT"){
   return (
     <nav className={classes.outer}>
       <div className={classes.bar}>
@@ -112,4 +112,55 @@ export default function Navbar() {
       </div>
     </nav>
   );
+}
+else if(user.role=="DOCTOR"){
+  return (
+    <nav className={classes.outer}>
+      <div className={classes.bar}>
+        <div className={`${classes.hamburger} ${menuOpen ? classes.active : ''}`} onClick={toggleMenu}>
+          <div className={classes.bar1}></div>
+          <div className={classes.bar2}></div>
+          <div className={classes.bar3}></div>
+        </div>
+        <div className={`${classes.menu} ${menuOpen ? classes.show : ''}`}>
+          <NavLink 
+            className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
+            to="/doctor-home" 
+            onClick={toggleMenu}
+          >
+            {translatedTexts['Home'] || 'Home'}
+          </NavLink>
+          {/* <NavLink 
+            className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
+            to="/medicines"
+            onClick={toggleMenu}
+          >
+            {translatedTexts['Medicines'] || 'Medicines'}
+          </NavLink> */}
+          <NavLink 
+            className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
+            to="/appointments"
+            onClick={toggleMenu}
+          >
+            {translatedTexts['Appointments'] || 'Appointments'}
+          </NavLink>
+
+          <LanguageDropdown onLanguageChange={handleLangChange}/>
+
+          {displalog_out_name ? (
+            <ProfileDropdown handleDisplalog_out_name={setdisplalog_out_name} />
+          ) : (
+            <NavLink 
+              className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 
+              to="/login"
+            >
+              {translatedTexts['Login'] || 'Login'}
+            </NavLink>
+          )}
+           
+        </div>
+      </div>
+    </nav>
+  );
+}
 }

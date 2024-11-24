@@ -16,6 +16,9 @@ import ProfileChange from './components/ProfileChange';
 import TranslationContextProvider from './store/TranslationContext';
 import DoctorSearch from './components/DoctorSearch';
 import DoctorDetails from './components/DoctorDetails';
+import DoctorHome from './components/DoctorHome';
+import DoctorProfileChange from './components/ProfileChangeDoctor';
+import Appointments from './pages/Appointments';
 import PrescriptionHist from './pages/PrescriptionHist';
 
 axios.defaults.baseURL = 'http://localhost:8000';
@@ -36,7 +39,9 @@ const router = createBrowserRouter([
             {path: '/profile-change', element: <ProfileChange />},
             {path: '/doctor-search', element: <DoctorSearch/>},
             {path: '/doctor/:id', element: <DoctorDetails/>},
-            
+            {path : '/doctor-home',element:<DoctorHome/>},
+            {path: '/profile-change-doctor', element:<DoctorProfileChange/>},
+            {path:'/appointments',element:<Appointments/>}
         ]
     },
 ])

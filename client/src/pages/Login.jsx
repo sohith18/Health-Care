@@ -29,7 +29,21 @@ export default function Login() {
             alert(userData.msg);
             if (response.ok) {
                 localStorage.setItem('AuthToken', userData.token);
-                navigate('/');
+                // setToken(userData.token);
+                // setUser(userData.user);
+                console.log(userData.user.role)
+                if(userData.user.role=="PATIENT"){
+                    navigate('/');
+                }
+                else if(userData.user.role=="DOCTOR"){
+                    if(userData.user.slots==null){
+                        navigate('/profile-change-doctor')
+                    }
+                    else{
+                        navigate('/doctor-home')
+                    }
+                }
+                // window.location.reload()
             }
         } catch (error) {
             console.error(error);

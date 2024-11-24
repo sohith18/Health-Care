@@ -108,7 +108,7 @@ Run the server like this:
 
 ## Authors
 
-- Abhinav Deshpande [@Abhinav-gh](https://www.github.com/Abhinav-gh)
+- Aaryan Dev [Aaryan-Ajith-Dev](https://github.com/Aaryan-Ajith-Dev)
 - Shreyas S [@Shreyas0S](https://www.github.com/Shreyas0S)
 - Sohith [@sohith18](https://github.com/sohith18)
     

@@ -1,0 +1,72 @@
+.pageContainer {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.searchBar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.appointmentCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.medicineEntry {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.medicineInput, .dosageInput {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.addButton, .removeButton, .submitButton {
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.addButton {
+    background-color: #28a745;
+    color: white;
+}
+
+.removeButton {
+    background-color: #dc3545;
+    color: white;
+}
+
+.submitButton {
+    background-color: #007bff;
+    color: white;
+}
+
+.videoCallButton {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #17a2b8;
+    color: white;
+    cursor: pointer;
+}
