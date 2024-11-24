@@ -8,7 +8,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function VideoCall() {
+export default function VideoCall({create}) {
+  const VIDEO_API_KEY = import.meta.env.VITE_VIDEO_API_KEY;
+  const VIDEO_TOKEN = import.meta.env.VITE_VIDEO_TOKEN;
 	const [meetDetails, setMeetDetails] = React.useState({});
 	const [loading, setLoading] = React.useState(true)
 	const navigate = useNavigate()
@@ -54,15 +56,15 @@ export default function VideoCall() {
   };
 
   const client = new StreamVideoClient({
-      apiKey: meetDetails.apiKey,
+      apiKey: VIDEO_API_KEY,
       user: user,
-      token: meetDetails.token
+      token: VIDEO_TOKEN,
   });
 
   client.connectUser({
     id: user.id, 
     name: user.name,
-    token: meetDetails.token, 
+    token: VIDEO_TOKEN,
   })
   .then(() => {
     console.log("User connected successfully!");
@@ -73,7 +75,7 @@ export default function VideoCall() {
 
 
   const call = client.call('default', meetDetails.callId);
-  call.join({ create: true });
+  call.join({ create: create });
 
 
   return (
