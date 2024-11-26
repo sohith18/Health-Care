@@ -36,7 +36,7 @@ export default function Login() {
                     navigate('/');
                 }
                 else if(userData.user.role=="DOCTOR"){
-                    if(userData.user.slots==null){
+                    if(userData.user.slots.length==0){
                         navigate('/profile-change-doctor')
                     }
                     else{
