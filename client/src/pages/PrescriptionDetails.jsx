@@ -22,7 +22,7 @@ const PrescriptionDetails = ({ prescription, onClose }) => {
             </div>
 
             <h3>Prescription Details:</h3>
-            {prescription.prescription.medicines.map((medicine, index) => (
+            {prescription.medicines.map((medicine, index) => (
                 <div key={index} className={styles.medicineBox}>
                     <h4>{medicine.name}</h4>
                     <p>{medicine.details}</p>
@@ -30,7 +30,7 @@ const PrescriptionDetails = ({ prescription, onClose }) => {
             ))}
 
             <h3>Comments:</h3>
-            <p>{prescription.prescription.comments}</p>
+            <p>{prescription.comments}</p>
         </div>
 
 

@@ -66,11 +66,13 @@ const getBookings = async (token) => {
                 .populate('patient')
                 .populate('doctor')
                 .populate('slot')
+                .populate('prescription')
         else if (userRes.user.role === Role.DOCTOR)
             bookings = await Booking.find({ doctor: userID })
                 .populate('patient')
                 .populate('doctor')
                 .populate('slot')
+                .populate('prescription')
 
         if (!bookings)
             return { status: 500, msg: "Error while fetching bookings" };
