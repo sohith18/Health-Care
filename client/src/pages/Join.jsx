@@ -1,10 +1,12 @@
 import styles from '../Styles/JoinPage.module.css';
 import { useState, useContext } from 'react';
 import { TranslationContext } from "../store/TranslationContext";
+import { useNavigate } from 'react-router-dom';
 
 const JoinPage = () => {
   const [selectedDoctor, setSelectedDoctor] = useState("");
   const { translatedTexts } = useContext(TranslationContext); // Translation context
+  const navigate = useNavigate();
 
   const doctors = [
     "Cardiology", 
@@ -18,11 +20,7 @@ const JoinPage = () => {
   ];
 
   const handleJoin = () => {
-    if (selectedDoctor) {
-      alert(`${'Joining meeting with' || translatedTexts['Joining meeting with']} ${selectedDoctor}`);
-    } else {
-      alert('Please select a doctor before joining!'||translatedTexts['Please select a doctor before joining!']);
-    }
+      navigate(`/video-call/meeting`);
   };
 
   return (
@@ -37,7 +35,7 @@ const JoinPage = () => {
         value={selectedDoctor}
         onChange={(e) => setSelectedDoctor(e.target.value)}
       >
-        <option value="">{'-- Select a Doctor --'||translatedTexts['-- Select a Doctor --']}</option>
+        <option value="">{'-- Select a Doctor --'|| translatedTexts['-- Select a Doctor --']}</option>
         {doctors.map((doctor, index) => (
           <option key={index} value={doctor}>
             {translatedTexts[doctor] || doctor}
