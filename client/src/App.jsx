@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             {path: '/login', element: <Login />},
             {path: '/register', element: <Register />},
             {path: '/video-call', element: <JoinPage />},
-            {path: '/video-call/meeting/:id', element: <VideoCall />},
+            {path: '/video-call/meeting', element: <VideoCall />},
             {path: '/doctors', element: <Doctors />},
             {path: '/500', element: <ServerError />},
             {path: '*', element: <NotFound />},
