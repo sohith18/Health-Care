@@ -11,6 +11,7 @@ const UserSchema = mongoose.Schema({
     profile_picture: String,
     password: { type: String, required: true },
     role: { type: String, required: true },
+    // status: String
 }, options)
 
 

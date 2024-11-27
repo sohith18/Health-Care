@@ -35,7 +35,7 @@ const handlePrescriptionSubmit = async (AuthToken, appointmentId, prescription, 
     if (AuthToken) {
         try {
             const response = await fetch(`http://localhost:3000/booking`, {
-                method: "PUT",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${AuthToken}`,
