@@ -4,7 +4,6 @@ import classes from "../Styles/AppointmentsPage.module.css";
 async function fetchAppointments(AuthToken, setAppointments, setIsFetching) {
     if (AuthToken) {
         try {
-            setIsFetching(true);
             const response = await fetch("http://localhost:3000/booking", {
                 method: "GET",
                 headers: {
@@ -63,7 +62,7 @@ const handlePrescriptionSubmit = async (AuthToken, bookingID, prescription, setA
 
 export default function Appointments() {
     const [appointments, setAppointments] = useState([]);
-    const [isFetching, setIsFetching] = useState(false);
+    const [isFetching, setIsFetching] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [prescriptions, setPrescriptions] = useState({}); // Maps bookingID to { medicines: [], comments: "" }
 
@@ -133,6 +132,7 @@ export default function Appointments() {
                 <p>Loading appointments...</p>
             ) : (
                 <div>
+                    { console.log(appointments) }
                     {filteredAppointments.length === 0 ? (
                         <p>No appointments found</p>
                     ) : (

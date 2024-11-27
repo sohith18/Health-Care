@@ -20,7 +20,11 @@ const JoinPage = () => {
   ];
 
   const handleJoin = () => {
-      navigate(`/video-call/meeting`);
+    navigate(`/video-call/meeting`,
+      {
+        state: { specialization: selectedDoctor, create: true}
+      }
+      );
   };
 
   return (
