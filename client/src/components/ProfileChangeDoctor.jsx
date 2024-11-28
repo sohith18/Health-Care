@@ -67,7 +67,7 @@ const handleUpdateDoctor = async (AuthToken, userData, setIsFetching) => {
 }
 
 export default function DoctorProfileChange() {
-    const [doctorData, setDoctorData] = useState({ qualification: '', specialization: '', experience: '', description: '', gender: '', slots: [] });
+    const [doctorData, setDoctorData] = useState({ qualifications: [], specializations: [], experience: '', description: '', gender: '', slots: [] });
     const [data,setData]=useState();
     const [isFetching, setIsFetching] = useState(false);
     // const [isLoading,setIsLoading]= useState(true);
@@ -110,12 +110,12 @@ export default function DoctorProfileChange() {
                 <h1 className={classes.title}>{translatedTexts['Doctor Profile Settings'] || 'Doctor Profile Settings'}</h1>
                 
                 <label className={classes.label}>{translatedTexts['Qualification'] || 'Qualification'}</label>
-                <input className={classes.input} type="text" placeholder='Enter qualification...' value={doctorData.qualification}
-                    onChange={(e) => setDoctorData({ ...doctorData, qualification: e.target.value })}  />
+                <input className={classes.input} type="text" placeholder='Enter qualification...' value={doctorData.qualifications}
+                    onChange={(e) => setDoctorData({ ...doctorData, qualifications: [e.target.value] })}  />
 
                 <label className={classes.label}>{translatedTexts['Specialization'] || 'Specialization'}</label>
-                <input className={classes.input} type="text" placeholder='Enter specialization...' value={doctorData.specialization}
-                    onChange={(e) => setDoctorData({ ...doctorData, specialization: e.target.value })}  />
+                <input className={classes.input} type="text" placeholder='Enter specialization...' value={doctorData.specializations}
+                    onChange={(e) => setDoctorData({ ...doctorData, specializations: [e.target.value] })}  />
 
                 <label className={classes.label}>{translatedTexts['Experience'] || 'Experience (in years)'}</label>
                 <input className={classes.input} type="number" placeholder='Enter experience...' value={doctorData.experience}

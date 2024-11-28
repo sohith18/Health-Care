@@ -32,34 +32,56 @@ export default function DoctorsInfo({ doctorsData }) {
 
     return (
         <div className={styles.container}>
-            {currentDoctors.length > 0 ? (currentDoctors.map((doctor, index) => (
-                <div key={index} className={styles.doctorBox}>
-                    <div className={styles.info}>
-                        <h2 className={styles.doctorName}>{doctor.name}</h2>
-                        <div className={styles.education}>
-                            {doctor.qualifications.join(', ')}
-                        </div>
-                        <p className={styles.experience}>
-                            <span>{translatedTexts['Specialized in:'] || 'Specialized in:'}</span>
-                            {doctor.experience} {translatedTexts['years of experience'] || 'years of experience'}
-                        </p>
-                        <button 
-                            className={styles.bookButton} 
-                            onClick={() => handleBookAppointment(doctor._id)}
-                        >
-                            {translatedTexts['Book Appointment'] || 'Book Appointment'}
-                        </button>
-                    </div>
-                    <div className={styles.imageContainer}>
-                        <img
-                            src={doctor.profile_picture} // Ensure `doctorsData` has an `image` property
-                            alt={doctor.name}
-                            className={styles.doctorImage}
-                        />
-                    </div>
-                </div>
-            ))): <p>{translatedTexts['No doctors found based on the selected filters.'] || 'No doctors found based on the selected filters.'}</p>}
+            {currentDoctors.length > 0 ? (
+                currentDoctors.map((doctor, index) => (
+                    <div key={index} className={styles.doctorBox}>
+                        {/* Doctor's Basic Info */}
+                        <div className={styles.info}>
+                            <h2 className={styles.doctorName}>{doctor.name}</h2>
+                            <div className={styles.education}>
+                                {doctor.qualifications.join(', ')}
+                            </div>
 
+                            {/* Specializations */}
+                            {doctor.specializations && doctor.specializations.length > 0 && (
+                                <p className={styles.specializations}>
+                                    <span>{translatedTexts['Specialized in:'] || 'Specialized in:'} </span>
+                                    {doctor.specializations.join(', ')}
+                                </p>
+                            )}
+
+                            {/* Experience */}
+                            <p className={styles.experience}>
+                                {doctor.experience} {translatedTexts['years of experience'] || 'years of experience'}
+                            </p>
+
+                            {/* Book Appointment Button */}
+                            <button 
+                                className={styles.bookButton} 
+                                onClick={() => handleBookAppointment(doctor._id)}
+                            >
+                                {translatedTexts['Book Appointment'] || 'Book Appointment'}
+                            </button>
+                        </div>
+
+                        {/* Doctor's Image */}
+                        <div className={styles.imageContainer}>
+                            <img
+                                src={doctor.profile_picture} // Ensure `doctorsData` has an `image` property
+                                alt={doctor.name}
+                                className={styles.doctorImage}
+                            />
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <p>
+                    {translatedTexts['No doctors found based on the selected filters.'] ||
+                        'No doctors found based on the selected filters.'}
+                </p>
+            )}
+
+            {/* Pagination Controls */}
             <div className={styles.paginationControls}>
                 <button 
                     onClick={handlePreviousPage} 

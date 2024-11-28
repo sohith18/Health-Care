@@ -61,7 +61,7 @@ export default function DoctorDetails() {
         } catch (error) {
             console.error("Error fetching doctors data:", error);
         }
-        console.log(`${translatedTexts['Appointment booked at']} ${time} ${translatedTexts['with']} ${doctor?.name}`);
+        alert(`${translatedTexts['Appointment booked at']} ${time} ${translatedTexts['with']} ${doctor?.name}`);
 
     }
 
