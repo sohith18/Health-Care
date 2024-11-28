@@ -55,8 +55,11 @@ export default function DoctorDetails() {
             if (response.ok) {
                 const data = await response.json(); // Parse the JSON response
                 console.log(data); // Log the response data
+                alert(data.msg); // Show success message
+                
             } else {
                 console.error("Failed to fetch doctor details:", response.status);
+                alert(data.msg); // Show error message
             }
         } catch (error) {
             console.error("Error fetching doctors data:", error);

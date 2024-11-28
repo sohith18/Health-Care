@@ -6,6 +6,7 @@ import LanguageDropdown from './LanguageDropDown';
 import { TranslationContext } from '../store/TranslationContext'; 
 import {allSentences} from '../locales/text.js'; 
 import photo1 from '../assets/logo.png';
+import NotificationHandler from './Notification.jsx';
 
 const fetchUserData = async (AuthToken, setUser) => {
   if (AuthToken) {
@@ -114,7 +115,8 @@ export default function Navbar() {
   );
 }
 else if(user.role=="DOCTOR"){
-  return (
+    return (
+    <>
     <nav className={classes.outer}>
       <div className={classes.bar}>
         <div className={`${classes.hamburger} ${menuOpen ? classes.active : ''}`} onClick={toggleMenu}>
@@ -160,7 +162,9 @@ else if(user.role=="DOCTOR"){
            
         </div>
       </div>
-    </nav>
+        </nav>
+        <NotificationHandler />
+    </>
   );
 }
 }

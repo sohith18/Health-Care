@@ -49,10 +49,10 @@ const updateDoctor = async (token, docData) => {
             }));
         }
                     
-        const deleteExistingSlots = await Slot.deleteMany({ _id: { $in: doctor.slots } });
-        if (!deleteExistingSlots) {
-            return { status: 500, msg: "Failed to update doctor" };
-        }
+        // const deleteExistingSlots = await Slot.deleteMany({ _id: { $in: doctor.slots } });
+        // if (!deleteExistingSlots) {
+        //     return { status: 500, msg: "Failed to update doctor" };
+        // }
 
         const updatedDoctor = await Doctor.findOneAndUpdate(
             { _id: doctor._id },

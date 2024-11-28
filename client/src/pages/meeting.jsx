@@ -5,19 +5,19 @@ import {
 } from '@stream-io/video-react-sdk';
 import '@stream-io/video-react-sdk/dist/css/styles.css';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
-export default function VideoCall({create}) {
-  const VIDEO_API_KEY = import.meta.env.VITE_VIDEO_API_KEY;
-  const VIDEO_TOKEN = import.meta.env.VITE_VIDEO_TOKEN;
+export default function VideoCall() {
 	const [meetDetails, setMeetDetails] = React.useState({});
 	const [loading, setLoading] = React.useState(true)
-	const navigate = useNavigate()
+  const navigate = useNavigate()
+  // extract data from location state
+  const { specialization, create, callId } = useLocation().state;
 	const fetchMeetDetails = async (AuthToken) => {
     try {
         // console.log(userData);
-        const response = await fetch("http://localhost:3000/meet", { 
+        const response = await fetch(`http://localhost:3000/meet/${specialization}/${callId}`, { 
             method: "GET", 
             headers: {
               "Content-Type": "application/json",
@@ -27,10 +27,10 @@ export default function VideoCall({create}) {
         const meetData = await response.json();
         console.log("meetData: ", meetData);
         alert(meetData.msg);
-		if (response.status == 401) {
-			navigate('/')
-			return;
-		}
+        if (response.status == 401) {
+          navigate('/')
+          return;
+        }
         if (response.ok) {
           setMeetDetails(meetData);
           setLoading(false)
@@ -40,6 +40,9 @@ export default function VideoCall({create}) {
     }
   }
 
+  
+
+            
   React.useEffect(() => {
     fetchMeetDetails(localStorage.getItem('AuthToken'));
   }, [])
@@ -56,18 +59,19 @@ export default function VideoCall({create}) {
   };
 
   const client = new StreamVideoClient({
-      apiKey: VIDEO_API_KEY,
+      apiKey: meetDetails.apiKey,
       user: user,
-      token: VIDEO_TOKEN,
+    token: meetDetails.token,
+    clockTolerance: 10,
   });
 
   client.connectUser({
     id: user.id, 
     name: user.name,
-    token: VIDEO_TOKEN,
+    token: meetDetails.token,
   })
   .then(() => {
-    console.log("User connected successfully!");
+    console.log("User connected successfully!", create, specialization);
   })
   .catch(error => {
     console.error("Failed to connect user:", error);
@@ -81,13 +85,14 @@ export default function VideoCall({create}) {
   return (
     <StreamVideo client={client}>
       <StreamCall call={call}>
-        <MyUILayout />
+        <MyUILayout meeting_id={ meetDetails.callId } />
       </StreamCall>
     </StreamVideo>
   );
 }
 
-export const MyUILayout = () => {
+export const MyUILayout = ({meeting_id}) => {
+  const navigate = useNavigate();
   const call = useCall();
   const {
     useCameraState,
@@ -99,7 +104,25 @@ export const MyUILayout = () => {
   const participantCount = useParticipantCount();
   const { camera } = useCameraState();
   const { microphone } = useMicrophoneState();
-
+  console.log("Meeting ID: ", meeting_id);
+  const deleteMeetDetails = async (AuthToken, id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/meet/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${AuthToken}`
+        }
+      })
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        console.log("Meeting data deleted successfully");
+      }
+    } catch (error) {
+      console.error("Error deleting meeting data:", error);
+    }
+  }
   
 
   if (callingState !== CallingState.JOINED) {
@@ -130,6 +153,21 @@ export const MyUILayout = () => {
       } else {
         console.warn('Microphone object is not initialized.');
       }
+
+      console.log(meeting_id, "wepjiwff");
+      deleteMeetDetails(localStorage.getItem('AuthToken'), meeting_id)
+      .then(() => {
+        console.log("Meeting data deleted successfully");
+      })
+      .catch(error => {
+        console.error("Error deleting meeting data:", error);
+      });
+      
+      // redirect to home page
+      navigate('/');
+      window.location.reload();         
+      // delete the meeting data from database
+
     }
     return <div>Loading...</div>;
   }

@@ -8,6 +8,7 @@ import UserRouter from './routers/UserRouter.js';
 import MeetRouter from './routers/MeetRouter.js';
 import DoctorRouter from './routers/DoctorRouter.js';
 import BookingRouter from './routers/BookingRouter.js';
+import HeartBeatRouter from './routers/HeartBeatRouter.js';
 
 env.config();
 
@@ -32,6 +33,7 @@ app.use('/user', UserRouter);
 app.use('/meet', MeetRouter);
 app.use('/doctor', DoctorRouter);
 app.use('/booking', BookingRouter);
+app.use('/heartbeat', HeartBeatRouter);
 
 connectDb();
 
