@@ -16,6 +16,9 @@ The frontend is the **Vite + React** app which is hosted on:
 https://localhost:5173
 ```
 To run this project, you will need to add the following environment variables to your .env file
+Change the following .env.example in the respective server and client to the following:
+
+`VITE_API_KEY` (Get API key from https://rapidapi.com/gatzuma/api/deep-translate1)
 
 `DB` (Should have a MongoDB account, create a cluster then add the URL given)
 
@@ -104,6 +107,13 @@ Run the server like this:
 - For running test files go to the tests directory
   ```bash
   cd tests
+  ```
+- Ensure pip is installed or install pip, then install the following libraries using command
+  ```bash
+  pip install unittest
+  ```
+  ```bash
+  pip install selenium
   ```
 - Then run the Python files using
   ```bash
