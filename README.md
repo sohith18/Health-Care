@@ -19,7 +19,7 @@ To run this project, you will need to add the following environment variables to
 
 `DB` (Should have a MongoDB account, create a cluster then add the URL given)
 
-`SECRET_ACCESS_TOKEN`    (Any random number works)
+`SECRET_ACCESS_TOKEN`    (Use any JWT generator to generate a token)
 
 `PORT` (Contains port number for backend server)
 
