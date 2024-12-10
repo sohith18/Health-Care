@@ -17,9 +17,9 @@ https://localhost:5173
 ```
 To run this project, you will need to add the following environment variables to your .env file
 
-`MONGO_URL` (Should have a MongoDB account, create a cluster then add the URL given)
+`DB` (Should have a MongoDB account, create a cluster then add the URL given)
 
-`JWT_SECRET`    (Any random number works)
+`SECRET_ACCESS_TOKEN`    (Any random number works)
 
 `PORT` (Contains port number for backend server)
 
