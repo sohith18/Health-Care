@@ -111,14 +111,7 @@ Run the server like this:
 - Aaryan Dev [Aaryan-Ajith-Dev](https://github.com/Aaryan-Ajith-Dev)
 - Shreyas S [@Shreyas0S](https://www.github.com/Shreyas0S)
 - Sohith [@sohith18](https://github.com/sohith18)
-    
-    Open source contributions are most welcome.
-
-
-## Anticipated Development
-- Separate page for doctors and live-agents
-- Unified chat interface user friendly Chat-bot functionality
-- Mobile application
+- Siddharth Reddy [@siddharthmaram(https://github.com/siddharthmaram)]
 - Live summary sharing
 - Regional language support
 
