@@ -2,28 +2,26 @@
 # HealthCare Platform
 
 ## Description
-A full stack telehealth platform designed to redefine the landscape
-of remote medical consultations. The goal is to create an integrated system employing chats, audio / video call that connects patients with appropriate virtual / live medical consultant.
+A full-stack telehealth platform designed to redefine the landscape
+of remote medical consultations. The goal is to create an integrated system employing chats, and audio/video calls that connect patients with appropriate virtual/live medical consultants.
 
 ## Environment Variables
 
 The backend is built using **express** and **node.js** and is hosted on: 
 ```plaintext
-https://localhost:8000
+https://localhost:PORT
 ```
-The frontend is **Vite + React** app which is hosted on:
+The frontend is the **Vite + React** app which is hosted on:
 ```plaintext
 https://localhost:5173
 ```
 To run this project, you will need to add the following environment variables to your .env file
 
-`MONGO_URL`
+`MONGO_URL` (Should have a MongoDB account, create a cluster then add the URL given)
 
 `JWT_SECRET`    (Any random number works)
 
-`daily_API_KEY`
-
-`DOMAIN` (Your daily.co domain name)
+`PORT` (Contains port number for backend server)
 
 
 
@@ -46,13 +44,13 @@ This app is built using Node.js and Express. So you need to have those installed
     node -v
     npm -v
     ```
-    These commands should display the installed Node.js version and npm version.
+    These commands should display the installed Node.js version and the npm version.
 
 ### Install Express:
 
 Once Node.js is installed, you can use npm to install Express globally.
 
-On your terminal or command prompt and run the following command:
+On your terminal or command prompt run the following command:
 
 ```bash
 npm install -g express
@@ -62,13 +60,13 @@ npm install -g express
 Clone the project
 
 ```bash
-  git clone https://github.com/Abhinav-gh/Byte-Synergy-2.0
+  git clone https://github.com/sohith18/Health-Care.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd Byte-Synergy-2.0
+  cd Health-Care
 ```
 Run the like this:
 
@@ -88,7 +86,7 @@ Run the like this:
   ```
 Run the server like this:
 
-- Go to the client directory
+- Go to the server directory
 
   ```bash
     cd server
