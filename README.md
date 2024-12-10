@@ -111,10 +111,4 @@ Run the server like this:
 - Aaryan Dev [Aaryan-Ajith-Dev](https://github.com/Aaryan-Ajith-Dev)
 - Shreyas S [@Shreyas0S](https://www.github.com/Shreyas0S)
 - Sohith [@sohith18](https://github.com/sohith18)
-- Siddharth Reddy [@siddharthmaram(https://github.com/siddharthmaram)]
-- Live summary sharing
-- Regional language support
-
-
-## Decisions made (in progress)
-- Filtering in frontend (gets all the data) instead of filtering in backend and sending filtered data
+- Siddharth Reddy [@siddharthmaram](https://github.com/siddharthmaram)
