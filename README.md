@@ -101,7 +101,14 @@ Run the server like this:
     npm start
   ``` 
   should fire the backend server.
-
+- For running test files go to the tests directory
+  ```bash
+  cd tests
+  ```
+  - Then run the Python files using
+  ```bash
+  python3 <test file>
+  ```
 
 
 ## Authors
