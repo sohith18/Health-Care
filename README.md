@@ -105,7 +105,7 @@ Run the server like this:
   ```bash
   cd tests
   ```
-  - Then run the Python files using
+- Then run the Python files using
   ```bash
   python3 <test file>
   ```
