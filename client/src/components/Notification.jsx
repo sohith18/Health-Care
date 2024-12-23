@@ -4,6 +4,23 @@ import { toast } from 'react-toastify';
 
 function NotificationHandler() {
   const navigate = useNavigate();
+  const rejectCall = async (callId) => {
+    fetch(`http://localhost:3000/heartbeat/reject/${callId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('AuthToken')}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Fetched data:', data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  };
+
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -33,7 +50,10 @@ function NotificationHandler() {
                   >
                     Yes
                   </button>
-                  <button onClick={() => toast.dismiss(t.id)}>No</button>
+                  <button onClick={async () => {
+                    toast.dismiss(t.id)
+                    await rejectCall(data.callId);
+                  }}>No</button>
                 </div>
               ),
                 { 
