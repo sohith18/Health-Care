@@ -8,7 +8,6 @@ of remote medical consultations. The goal is to create an integrated system empl
 <img src="client/public/logo.png" alt="Helio Logo" width="400"/>
 
 
----
 
 ## Sample Screenshots
 
@@ -19,7 +18,7 @@ of remote medical consultations. The goal is to create an integrated system empl
   ![Landing Page](client/public/photo_2.png)
 
 
----
+
 
 ## Environment Variables
 
@@ -42,7 +41,7 @@ Change the following .env.example in the respective server and client to the fol
 
 `PORT` (Contains port number for backend server)
 
----
+
 
 
 ## Run Locally
@@ -136,7 +135,6 @@ Run the server like this:
   python3 <test file>
   ```
 
----
 
 ## Authors
 
