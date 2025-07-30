@@ -5,6 +5,21 @@
 A full-stack telehealth platform designed to redefine the landscape
 of remote medical consultations. The goal is to create an integrated system employing chats, and audio/video calls that connect patients with appropriate virtual/live medical consultants.
 
+![Helio Logo](client/public/logo_full.png)
+
+---
+
+## Sample Screenshots
+
+- **Sign In screen**  
+  ![Sign In screen](client/public/photo_1.png)
+
+- **Landing Page**  
+  ![Landing Page](client/public/photo_2.png)
+
+
+---
+
 ## Environment Variables
 
 The backend is built using **express** and **node.js** and is hosted on: 
@@ -26,7 +41,7 @@ Change the following .env.example in the respective server and client to the fol
 
 `PORT` (Contains port number for backend server)
 
-
+---
 
 
 ## Run Locally
@@ -120,6 +135,7 @@ Run the server like this:
   python3 <test file>
   ```
 
+---
 
 ## Authors
 
