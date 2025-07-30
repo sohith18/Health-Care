@@ -5,7 +5,7 @@
 A full-stack telehealth platform designed to redefine the landscape
 of remote medical consultations. The goal is to create an integrated system employing chats, and audio/video calls that connect patients with appropriate virtual/live medical consultants.
 
-<img src="client/public/logo_full.png" alt="Helio Logo" width="200"/>
+![Helio Logo](client/public/logo.png)
 
 ---
 
