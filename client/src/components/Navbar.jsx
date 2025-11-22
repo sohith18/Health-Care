@@ -163,7 +163,7 @@ else if(user.role=="DOCTOR"){
         </div>
       </div>
         </nav>
-        <NotificationHandler />
+
     </>
   );
 }

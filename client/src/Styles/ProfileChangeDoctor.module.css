@@ -1,0 +1,196 @@
+:root{
+  --navbar-height: 10vh;   /* keep in sync with your navbar .bar height */
+  --page-max: 920px;
+  --card-bg: #ffffff;
+  --accent: #8F7671;
+  --muted: #666666;
+  --radius: 10px;
+  --gap: 14px;
+}
+
+/* Outer container: ensures content starts below navbar and occupies remaining viewport */
+.formcon {
+  box-sizing: border-box;
+  min-height: calc(100vh - var(--navbar-height)); /* full viewport minus navbar */
+  padding-top: calc(var(--navbar-height) + 12px);  /* safe gap */
+  display: flex;
+  align-items: center;       /* vertical centering inside remaining area */
+  justify-content: center;   /* horizontal centering */
+  width: 100%;
+  background: transparent;   /* optional: set if you want background */
+}
+
+/* Inner form card */
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(19, 18, 18, 0.06);
+  max-width: var(--page-max);
+  width: 100%;
+  border: 1px solid #e6e6e6;
+  gap: var(--gap);
+}
+
+/* Optional top image to match style (you can remove if not needed) */
+.formHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.formImage {
+  width: 120px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Title */
+.title {
+  font-size: 1.6rem;
+  color: #333333;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+}
+
+/* Labels and inputs */
+.label {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.input,
+.textarea,
+.select {
+  margin-bottom: 0;
+  padding: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #222;
+  background-color: #fafafa;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 8px 20px rgba(143,118,113,0.06);
+}
+
+/* textarea */
+.textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* specialization list (checkboxes) */
+.specializationContainer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.specializationItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+/* slots container */
+.slotContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 120px auto;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+}
+@media (max-width:820px) {
+  .slotContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* small buttons for add/remove slot */
+.addButton,
+.removeButton,
+.button {
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.addButton {
+  background-color: #28a745;
+  color: #fff;
+  margin-top: 8px;
+}
+
+.removeButton {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Primary submit button */
+.button {
+  padding: 0.95rem;
+  background-color: var(--accent);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.12s ease;
+}
+.button:hover {
+  transform: translateY(-2px);
+  background-color: #775f5a;
+}
+.button:active {
+  transform: translateY(0);
+}
+
+/* error text */
+.error {
+  color: #c23b3b;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* utility */
+.row {
+  display:flex;
+  gap: 12px;
+  align-items: center;
+}
+.small { font-size: 0.9rem; color: var(--muted);}
+
+/* responsive */
+@media (max-width: 720px) {
+  .form {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .title { font-size: 1.3rem; }
+  .formImage { width: 100px; height: 34px; }
+}

@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import { useLocation } from "react-router-dom"
 import { useState } from "react"
+import NotificationHandler from "./components/Notification.jsx"
 
 export default function RootLayout() {
   const loc = useLocation()
@@ -10,7 +11,8 @@ export default function RootLayout() {
 
   return (
     <div>
-      {path==='/login' || path==='/register'? null:<Navbar />}
+      {path==='/login' || path==='/register' || path==='/video-call/meeting'? null:<Navbar />}
+      <NotificationHandler />
       <Outlet />
     </div>
   )
