@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Aarav Sharma",
+    "email": "aarav.sharma@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/11.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Priya Verma",
+    "email": "priya.verma@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/21.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Rohan Gupta",
+    "email": "rohan.gupta@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/31.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Ananya Singh",
+    "email": "ananya.singh@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/12.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Advait Iyer",
+    "email": "advait.iyer@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/55.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Diya Kapoor",
+    "email": "diya.kapoor@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/65.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Ishaan Malhotra",
+    "email": "ishaan.malhotra@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/77.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Saanvi Reddy",
+    "email": "saanvi.reddy@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/78.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Vivaan Khanna",
+    "email": "vivaan.khanna@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/88.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Meera Joshi",
+    "email": "meera.joshi@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/89.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Kabir Bansal",
+    "email": "kabir.bansal@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/90.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Tara Desai",
+    "email": "tara.desai@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/91.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Kunal Nair",
+    "email": "kunal.nair@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/92.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Riya Menon",
+    "email": "riya.menon@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/93.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Arnav Chatterjee",
+    "email": "arnav.chatterjee@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/94.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Naina Saxena",
+    "email": "naina.saxena@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/95.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Reyansh Pillai",
+    "email": "reyansh.pillai@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/96.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Ira Bajaj",
+    "email": "ira.bajaj@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/97.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Harsh Vardhan",
+    "email": "harsh.vardhan@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/men/98.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  },
+  {
+    "name": "Shruti Mehta",
+    "email": "shruti.mehta@example.com",
+    "profile_picture": "https://randomuser.me/api/portraits/women/99.jpg",
+    "password": "12345",
+    "role": "Patient",
+    "user": "Patient"
+  }
+]
