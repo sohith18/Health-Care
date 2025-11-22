@@ -6,7 +6,6 @@ import LanguageDropdown from './LanguageDropDown';
 import { TranslationContext } from '../store/TranslationContext'; 
 import {allSentences} from '../locales/text.js'; 
 import photo1 from '../assets/logo.png';
-import NotificationHandler from './Notification.jsx';
 
 const fetchUserData = async (AuthToken, setUser) => {
   if (AuthToken) {
@@ -130,7 +129,11 @@ else if(user.role=="DOCTOR"){
             to="/doctor-home" 
             onClick={toggleMenu}
           >
-            {translatedTexts['Home'] || 'Home'}
+            <img
+              src={photo1} // Replace with your logo path
+              alt="Company Logo"
+              className={classes.logo}
+            />
           </NavLink>
           {/* <NavLink 
             className={({ isActive }) => isActive ? `${classes.insidebar} ${classes.activeLink}` : classes.insidebar} 

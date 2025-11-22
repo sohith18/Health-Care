@@ -1,20 +1,22 @@
-import { Outlet } from "react-router-dom"
-import Navbar from "./components/Navbar"
-import { useLocation } from "react-router-dom"
-import { useState } from "react"
-import NotificationHandler from "./components/Notification.jsx"
+import { Outlet, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import DoctorNotificationFab from "./components/DoctorNotificationFab";
 
 export default function RootLayout() {
-  const loc = useLocation()
-  console.log(loc.pathname)
-  const path = loc.pathname
+  const loc = useLocation();
+  const path = loc.pathname;
+
+  const hideChrome =
+    path === "/login" ||
+    path === "/register" ||
+    path.startsWith("/video-call/meeting");
 
   return (
     <div>
-      {path==='/login' || path==='/register' || path==='/video-call/meeting'? null:<Navbar />}
-      <NotificationHandler />
+      {!hideChrome && <Navbar />}
       <Outlet />
+      {/* FAB only renders for DOCTOR internally and hides on meeting/login/register */}
+      {!hideChrome && <DoctorNotificationFab />}
     </div>
-  )
+  );
 }
-

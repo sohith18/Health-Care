@@ -50,21 +50,32 @@ const router = createBrowserRouter([
             { path: '/login', element: <Login /> },
             { path: '/register', element: <Register /> },
             {
-                path: '/video-call',
+                path: "/video-call",
                 element: (
-                    <ProtectedRoute allowedRoles={['PATIENT']}>
-                        <JoinPage />
+                    <ProtectedRoute allowedRoles={["PATIENT"]}>
+                    <JoinPage />
                     </ProtectedRoute>
                 ),
             },
             {
-                path: '/video-call/meeting',
+                // old path kept for backward compatibility
+                path: "/video-call/meeting",
                 element: (
-                    <ProtectedRoute allowedRoles={['PATIENT', 'DOCTOR']}>
-                        <VideoCall />
+                    <ProtectedRoute allowedRoles={["PATIENT", "DOCTOR"]}>
+                    <VideoCall />
                     </ProtectedRoute>
                 ),
             },
+            {
+                // new path with specialization + callId in URL
+                path: "/video-call/meeting/:specialization/:callId",
+                element: (
+                    <ProtectedRoute allowedRoles={["PATIENT", "DOCTOR"]}>
+                    <VideoCall />
+                    </ProtectedRoute>
+                ),
+            },
+
             { path: '/500', element: <ServerError /> },
             { path: '*', element: <NotFound /> },
             {

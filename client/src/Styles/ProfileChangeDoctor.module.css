@@ -1,23 +1,22 @@
-:root{
-  --navbar-height: 10vh;   /* keep in sync with your navbar .bar height */
+:root {
+  --navbar-height: 10vh;   /* align with navbar */
   --page-max: 920px;
-  --card-bg: #ffffff;
-  --accent: #8F7671;
-  --muted: #666666;
+  --card-bg: #392e36;      /* dark card like DoctorDetails */
+  --accent: #735a54;
+  --muted: #c9b7b1;
   --radius: 10px;
   --gap: 14px;
 }
 
-/* Outer container: ensures content starts below navbar and occupies remaining viewport */
+/* Outer container: content below navbar, centered */
 .formcon {
   box-sizing: border-box;
-  min-height: calc(100vh - var(--navbar-height)); /* full viewport minus navbar */
-  padding-top: calc(var(--navbar-height) + 12px);  /* safe gap */
+  min-height: calc(100vh - var(--navbar-height));
+  padding-top: calc(var(--navbar-height) + 12px);
   display: flex;
-  align-items: center;       /* vertical centering inside remaining area */
-  justify-content: center;   /* horizontal centering */
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  background: transparent;   /* optional: set if you want background */
 }
 
 /* Inner form card */
@@ -27,66 +26,69 @@
   background-color: var(--card-bg);
   padding: 2rem;
   border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(19, 18, 18, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
   max-width: var(--page-max);
   width: 100%;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #2e222a;
   gap: var(--gap);
+  color: #fdf5f2;
 }
 
-/* Optional top image to match style (you can remove if not needed) */
+/* Optional header wrapper */
 .formHeader {
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: center;
 }
-.formImage {
-  width: 120px;
-  height: 40px;
-  object-fit: contain;
-  border-radius: 6px;
-  display: block;
-}
 
 /* Title */
 .title {
-  font-size: 1.6rem;
-  color: #333333;
+  font-size: 1.8rem;
+  color: #fdf5f2;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 4px;
   text-align: center;
 }
 
 /* Labels and inputs */
 .label {
-  margin-bottom: 6px;
-  font-size: 0.95rem;
-  color: #333;
+  margin-bottom: 4px;
+  font-size: 0.96rem;
+  color: #fdf5f2;
   font-weight: 600;
 }
 
+/* common field styles */
 .input,
 .textarea,
 .select {
   margin-bottom: 0;
-  padding: 0.9rem;
-  border: 1px solid #ccc;
+  padding: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 8px;
   font-size: 1rem;
-  color: #222;
-  background-color: #fafafa;
+  color: #fdf5f2;
+  background-color: #856a7a;
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
   width: 100%;
   box-sizing: border-box;
 }
 
+/* NEW: placeholder styling */
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(255, 245, 242, 0.8);   /* light, readable placeholder */
+  opacity: 1;                        /* ensure not too transparent (Firefox) */
+}
+
+/* focus */
 .input:focus,
 .textarea:focus,
 .select:focus {
   border-color: var(--accent);
   outline: none;
-  box-shadow: 0 8px 20px rgba(143,118,113,0.06);
+  box-shadow: 0 8px 20px rgba(143, 118, 113, 0.36);
 }
 
 /* textarea */
@@ -95,94 +97,116 @@
   resize: vertical;
 }
 
-/* specialization list (checkboxes) */
+/* specialization chips */
 .specializationContainer {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 8px;
 }
+
 .specializationItem {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding: 6px 10px;
-  border-radius: 8px;
-  background: #fff;
-  border: 1px solid #eee;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   font-size: 0.95rem;
+  color: #fdf5f2;
 }
 
 /* slots container */
 .slotContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 120px auto;
+  grid-template-columns: 1fr 1fr 120px auto auto;
   gap: 8px;
   align-items: center;
   margin-top: 10px;
 }
-@media (max-width:820px) {
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 820px) {
   .slotContainer {
     grid-template-columns: 1fr;
   }
 }
 
-/* small buttons for add/remove slot */
+/* buttons */
 .addButton,
 .removeButton,
 .button {
-  padding: 0.9rem;
-  font-size: 1rem;
+  padding: 0.85rem;
+  font-size: 0.98rem;
   border-radius: 8px;
   border: none;
   cursor: pointer;
 }
 
+/* Add slot */
 .addButton {
-  background-color: #28a745;
+  background-color: #362722;
   color: #fff;
-  margin-top: 8px;
 }
 
+.addButton:hover {
+  background-color: #271d1a;
+}
+
+/* Remove slot */
 .removeButton {
-  background-color: #dc3545;
+  background-color: #cf4747;
   color: #fff;
+}
+
+.removeButton:hover {
+  background-color: #ce3d3d;
 }
 
 /* Primary submit button */
 .button {
-  padding: 0.95rem;
   background-color: var(--accent);
-  color: #ffffff;
+  color: #3e2f2b;
   font-size: 1rem;
   font-weight: 700;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
   transition: transform 0.12s ease, background-color 0.12s ease;
 }
+
 .button:hover {
-  transform: translateY(-2px);
-  background-color: #775f5a;
+  background-color: #80665f;
 }
+
 .button:active {
   transform: translateY(0);
 }
 
-/* error text */
-.error {
-  color: #c23b3b;
+/* small helper text */
+.small {
   font-size: 0.9rem;
-  margin-top: 6px;
+  color: var(--muted);
 }
 
-/* utility */
-.row {
-  display:flex;
-  gap: 12px;
-  align-items: center;
+/* actions row under form */
+.actionsRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
-.small { font-size: 0.9rem; color: var(--muted);}
+
+/* loading text */
+.loadingText {
+  text-align: center;
+  margin-top: calc(var(--navbar-height) + 40px);
+  font-size: 1rem;
+  color: #392e36;
+}
 
 /* responsive */
 @media (max-width: 720px) {
@@ -191,6 +215,7 @@
     border-radius: 12px;
   }
 
-  .title { font-size: 1.3rem; }
-  .formImage { width: 100px; height: 34px; }
+  .title {
+    font-size: 1.4rem;
+  }
 }

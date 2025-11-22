@@ -1,237 +1,326 @@
 :root {
-  --navbar-height: 10vh; /* matches your navbar */
-  --page-max: 1100px;
-  --card-bg: #f9f9f9;
-  --muted: #666;
-  --accent: #333;
-  --radius-lg: 18px;
-  --radius-md: 10px;
-  --search-height: 64px;
+  --navbar-height: 10vh;
+  --max-width: 1040px;         /* was 900px, a bit wider now */
+  --card-bg: #392e36;          /* same dark as DoctorDetails cards */
+  --accent-light: #fdf5f2;
+  --accent-muted: #c9b7b1;
+  --chip-bg: #937871;
+  --chip-bg-hover: #80665f;
+  --border-radius-lg: 8px;
+  --border-radius-md: 6px;
 }
 
-/* outer page container — ensures content sits below navbar and uses full remaining viewport */
+/* Outer page wrapper; leaves space for navbar and centers inner content */
 .pageContainer {
-  box-sizing: border-box;
-  min-height: calc(100vh - var(--navbar-height));
-  padding-top: var(--navbar-height);
+  min-height: 100vh;
   width: 100%;
-  background: var(--bg);
+  box-sizing: border-box;
+  padding-top: var(--navbar-height);
+  display: flex;
+  justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* center wrapper: centers all page content (vertically + horizontally) inside remaining area */
-.centerWrap {
-  max-width: var(--page-max);
-  margin: 0 auto;
-  height: calc(100vh - var(--navbar-height));
+/* Main container similar to .doctorDetailsContainer */
+.appointmentsContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center; /* vertical center */
-  padding: 24px;
-  gap: 28px;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  top: 2vh;
+  padding: 20px;
+  margin: 0 auto 40px;
+  max-width: var(--max-width);   /* wider container */
+  border-radius: var(--border-radius-lg);
 }
 
-/* Page title (optional) */
+/* Header row: title + search */
+.headerRow {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .pageTitle {
   margin: 0;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--accent);
+  font-size: 2rem;
+  color: #392e36;
 }
 
-/* Search bar outer shell: large rounded rectangle with subtle shadow */
-.searchShell {
-  width: 90%;
-  max-width: 880px;
-  height: var(--search-height);
-  border-radius: var(--radius-lg);
-  padding: 10px 14px;
+/* Search bar: full-width rectangular input under the title */
+.searchBar {
   display: flex;
   align-items: center;
-  background: #ffffff; /* inner white panel */
-  box-shadow: 0 10px 30px rgba(28,10,18,0.08);
-  border: 1px solid rgba(10,10,10,0.04);
-}
-
-/* Inner search input area: long white bar inside the shell */
-.searchInner {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #fff;
+  justify-content: space-between;
+  background-color: #ffffff;
   border-radius: 8px;
-  padding: 10px 14px;
-  box-shadow: none;
-  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 6px 10px;
+  width: 100%;
+  max-width: 620px;           /* was 480px, now a bit wider */
+  min-height: 40px;
 }
 
-/* actual input */
+/* input inside search bar */
 .searchInput {
   flex: 1;
   border: none;
   outline: none;
-  font-size: 18px;
-  color: #222;
+  font-size: 0.98rem;
   background: transparent;
   padding: 6px 8px;
+  color: #333;
 }
 
-/* placeholder style */
 .searchInput::placeholder {
   color: #8b8b8b;
-  font-size: 16px;
 }
 
-/* magnifier button on the right of inner bar */
-.searchBtn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+/* Search button with icon */
+.searchButton {
   border: none;
   background: transparent;
-  display: inline-flex;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
-/* simple magnifier icon (uses border to draw lens + line) */
-.searchIcon {
+.searchIconImage {
   width: 18px;
   height: 18px;
-  position: relative;
-  display: inline-block;
-  border-radius: 50%;
-  border: 2px solid #333;
-}
-.searchIcon::after {
-  content: "";
-  position: absolute;
-  right: -6px;
-  bottom: -6px;
-  width: 8px;
-  height: 2px;
-  background: #333;
-  transform: rotate(-45deg);
-  transform-origin: center;
-  border-radius: 1px;
 }
 
-/* small decorative right panel (like in the image) */
-.searchRightDecor {
-  width: 64px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 14px;
-  background: transparent;
-}
-
-/* optional preview of your uploaded image (reference only) */
-.sampleRef {
-  width: 360px;
-  max-width: 90%;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(20, 10, 20, 0.08);
-  border: 1px solid rgba(0,0,0,0.04);
-}
-
-/* appointments area (below search) — centered and constrained */
-.appointmentsArea {
+/* List of appointments — vertical stack of dark cards */
+.appointmentsList {
   width: 100%;
-  max-width: 880px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   gap: 16px;
-  margin-top: 6px;
 }
 
-/* appointment card */
+/* Single appointment card: dark background like DoctorDetails cards */
 .appointmentCard {
   background-color: var(--card-bg);
-  border: 1px solid #ddd;
-  border-radius: var(--radius-md);
-  padding: 16px;
-  transition: box-shadow 0.16s ease, transform 0.12s ease;
-}
-.appointmentCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 36px rgba(15,20,30,0.06);
+  border-radius: var(--border-radius-lg);
+  padding: 18px 18px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  color: var(--accent-light);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* Card header layout */
-.cardHeader {
+/* Top row with avatar + basic info */
+.cardTopRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 10px;
 }
+
 .patientInfo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
-.avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #eee;
-  object-fit: cover;
-  border: 1px solid rgba(0,0,0,0.04);
-}
-.patientName { font-weight: 600; }
-.meta { color: var(--muted); font-size: 0.92rem; }
 
-/* prescription area */
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #201821;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+.patientName {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.meta {
+  margin-top: 2px;
+  font-size: 0.9rem;
+  color: var(--accent-muted);
+}
+
+/* Prescription section layout */
+.prescriptionSection {
+  margin-top: 4px;
+}
+
+.sectionTitle {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  color: #f7e3da;
+}
+
+/* Comments textarea inside dark card */
 .commentsInput {
   width: 100%;
-  min-height: 72px;
+  min-height: 70px;
   resize: vertical;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fdfdfd;
+  margin-top: 4px;
 }
 
-/* medicine rows */
+.commentsInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Each medicine row */
 .medicineEntry {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
-.medicineInput, .dosageInput {
+
+.medicineInput,
+.dosageInput {
+  flex: 1 1 160px;
   padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  flex: 1;
+  font-size: 0.9rem;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fdfdfd;
 }
 
-/* buttons */
-.addButton, .removeButton, .submitButton, .videoCallButton {
-  padding: 10px 14px;
-  font-size: 14px;
+.medicineInput::placeholder,
+.dosageInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Action buttons row under prescription */
+.actionsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* Buttons styled similar to time buttons of DoctorDetails */
+.addButton,
+.removeButton,
+.submitButton,
+.videoCallButton {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: var(--border-radius-md);
   border: none;
-  border-radius: 6px;
-  margin-top: 12px;
   cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
-.addButton { background: #28a745; color: #fff; }
-.removeButton { background: #dc3545; color: #fff; }
-.submitButton { background: #007bff; color: #fff; }
-.videoCallButton { background: #17a2b8; color: #fff; }
 
-@media (max-width: 720px) {
-  .centerWrap { padding: 14px; gap: 18px; justify-content: flex-start; }
-  .searchShell { height: 60px; }
-  .searchRightDecor { display: none; }
-  .appointmentsArea { padding: 0 8px; }
-  .avatar { width: 40px; height: 40px; }
+.addButton {
+  background-color: #362722;
+  color: #fff;
+}
+
+.addButton:hover {
+  background-color: #271d1a;
+}
+
+.removeButton {
+  background-color: #cf4747;
+  color: #fff;
+}
+
+.removeButton:hover {
+  background-color: #ce3d3d;
+}
+
+.submitButton {
+  background-color: var(--chip-bg);
+  color: #3e2f2b;
+}
+
+.submitButton:hover {
+  background-color: var(--chip-bg-hover);
+}
+
+.videoCallButton {
+  background-color: #17a2b8;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Loading / empty text inside card */
+.loadingText {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--accent-light);
+}
+
+/* Responsive tweaks similar to DoctorDetails media query */
+@media (max-width: 768px) {
+  .appointmentsContainer {
+    max-width: 100%;
+    padding: 16px;
+    top: 0;
+  }
+
+  .headerRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pageTitle {
+    font-size: 1.6rem;
+  }
+
+  .searchBar {
+    max-width: 100%;
+  }
+
+  .appointmentCard {
+    padding: 14px 14px 16px;
+  }
+
+  .patientName {
+    font-size: 0.98rem;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+  }
+
+  .commentsInput {
+    font-size: 0.86rem;
+  }
+
+  .medicineInput,
+  .dosageInput {
+    font-size: 0.86rem;
+  }
+
+  .addButton,
+  .removeButton,
+  .submitButton,
+  .videoCallButton {
+    font-size: 0.85rem;
+    padding: 7px 14px;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
 }

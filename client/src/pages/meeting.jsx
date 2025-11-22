@@ -10,10 +10,10 @@ import {
   StreamVideoClient,
   useCall,
   useCallStateHooks,
-} from '@stream-io/video-react-sdk';
-import '@stream-io/video-react-sdk/dist/css/styles.css';
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+} from "@stream-io/video-react-sdk";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function VideoCall() {
   const [meetDetails, setMeetDetails] = React.useState(null);
@@ -27,54 +27,61 @@ export default function VideoCall() {
   // Prefer navigation state, but fall back to cached activeMeeting for doctor rejoin
   const stateData = location.state || {};
   const cachedMeeting =
-    JSON.parse(localStorage.getItem('activeMeeting') || '{}') || {};
+    JSON.parse(localStorage.getItem("activeMeeting") || "{}") || {};
 
   const specialization =
     stateData.specialization || cachedMeeting.specialization;
   const create =
-    typeof stateData.create === 'boolean' ? stateData.create : false;
+    typeof stateData.create === "boolean" ? stateData.create : false;
   const callId = stateData.callId || cachedMeeting.callId;
 
-  console.log('VideoCall init:', { stateData, cachedMeeting, specialization, callId });
+  console.log("VideoCall init:", {
+    stateData,
+    cachedMeeting,
+    specialization,
+    callId,
+  });
 
   const fetchMeetDetails = async (AuthToken) => {
     try {
       // Guard: if we have neither specialization nor callId, do not hit backend
       if (!specialization && !callId) {
         console.error(
-          'Missing specialization/callId for meeting, not calling /meet',
+          "Missing specialization/callId for meeting, not calling /meet",
         );
         setMeetDetails(null);
         setLoading(false);
         return;
       }
 
-      const url = `http://localhost:3000/meet/${specialization || 'none'}/${callId || 'none'}`;
-      console.log('GET', url);
+      const url = `http://localhost:3000/meet/${specialization || "none"}/${
+        callId || "none"
+      }`;
+      console.log("GET", url);
 
       const response = await fetch(url, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${AuthToken}`,
         },
       });
       const meetData = await response.json();
-      console.log('meetData: ', response.status, meetData);
+      console.log("meetData: ", response.status, meetData);
 
       if (response.status === 401) {
-        navigate('/');
+        navigate("/");
         return;
       }
 
       if (response.ok) {
         setMeetDetails(meetData);
       } else {
-        alert(meetData.msg || 'Failed to get meeting details');
+        alert(meetData.msg || "Failed to get meeting details");
         setMeetDetails(null);
       }
     } catch (error) {
-      console.error('Error fetching meet details:', error);
+      console.error("Error fetching meet details:", error);
       setMeetDetails(null);
     } finally {
       setLoading(false);
@@ -83,7 +90,7 @@ export default function VideoCall() {
 
   // Initial fetch of meeting details
   React.useEffect(() => {
-    const AuthToken = localStorage.getItem('AuthToken');
+    const AuthToken = localStorage.getItem("AuthToken");
     fetchMeetDetails(AuthToken);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -95,16 +102,16 @@ export default function VideoCall() {
 
     // Cache active meeting for doctor so they can rejoin without notification
     if (
-      meetDetails.role === 'doctor' &&
+      meetDetails.role === "doctor" &&
       specialization &&
       meetDetails.callId
     ) {
-      console.log('Caching activeMeeting for doctor:', {
+      console.log("Caching activeMeeting for doctor:", {
         specialization,
         callId: meetDetails.callId,
       });
       localStorage.setItem(
-        'activeMeeting',
+        "activeMeeting",
         JSON.stringify({
           specialization,
           callId: meetDetails.callId,
@@ -118,7 +125,7 @@ export default function VideoCall() {
       !meetDetails.user ||
       !meetDetails.callId
     ) {
-      console.error('Missing meetDetails fields:', meetDetails);
+      console.error("Missing meetDetails fields:", meetDetails);
       return;
     }
 
@@ -127,7 +134,7 @@ export default function VideoCall() {
       name: meetDetails.user.name,
       image:
         meetDetails.user.profile_picture ||
-        'https://getstream.io/random_svg/?id=oliver&name=Oliver',
+        "https://getstream.io/random_svg/?id=oliver&name=Oliver",
     };
 
     const clientInstance = new StreamVideoClient({
@@ -146,7 +153,7 @@ export default function VideoCall() {
         });
         if (!mounted) return;
 
-        const call = clientInstance.call('default', meetDetails.callId);
+        const call = clientInstance.call("default", meetDetails.callId);
         await call.join({ create: create });
 
         if (!mounted) {
@@ -162,7 +169,7 @@ export default function VideoCall() {
         setClient(clientInstance);
         setCallObj(call);
       } catch (err) {
-        console.error('Stream client/call error:', err);
+        console.error("Stream client/call error:", err);
         try {
           clientInstance.disconnect();
         } catch (e) {}
@@ -188,13 +195,13 @@ export default function VideoCall() {
     return (
       <div
         style={{
-          height: '100vh',
-          width: '100vw',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxSizing: 'border-box',
-          overflow: 'hidden',
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxSizing: "border-box",
+          overflow: "hidden",
         }}
       >
         <span>Loading...</span>
@@ -206,20 +213,20 @@ export default function VideoCall() {
     return (
       <div
         style={{
-          height: '100vh',
-          width: '100vw',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxSizing: 'border-box',
-          overflow: 'hidden',
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxSizing: "border-box",
+          overflow: "hidden",
         }}
       >
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: "center" }}>
           <p>Unable to load meeting details.</p>
           <button
-            onClick={() => navigate('/')}
-            style={{ padding: '8px 12px', borderRadius: 6 }}
+            onClick={() => navigate("/")}
+            style={{ padding: "8px 12px", borderRadius: 6 }}
           >
             Go home
           </button>
@@ -232,15 +239,15 @@ export default function VideoCall() {
     return (
       <div
         style={{
-          height: '100vh',
-          width: '100vw',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
           gap: 12,
-          boxSizing: 'border-box',
-          overflow: 'hidden',
+          boxSizing: "border-box",
+          overflow: "hidden",
         }}
       >
         <div>Joining meeting...</div>
@@ -253,19 +260,19 @@ export default function VideoCall() {
   return (
     <div
       style={{
-        height: '100vh',
-        width: '100vw',
-        boxSizing: 'border-box',
-        overflow: 'hidden',
+        height: "100vh",
+        width: "100vw",
+        boxSizing: "border-box",
+        overflow: "hidden",
       }}
     >
       <StreamVideo client={client}>
         <StreamCall call={callObj}>
           <div
             style={{
-              width: '100%',
-              height: '100%',
-              boxSizing: 'border-box',
+              width: "100%",
+              height: "100%",
+              boxSizing: "border-box",
             }}
           >
             <MyUILayout meeting_id={meetDetails.callId} role={role} />
@@ -295,7 +302,7 @@ export const MyUILayout = ({ meeting_id, role }) => {
   const { camera } = useCameraState();
   const { microphone } = useMicrophoneState();
 
-  const isDoctor = role === 'doctor';
+  const isDoctor = role === "doctor";
 
   const [endingForEveryone, setEndingForEveryone] = React.useState(false);
   const endingForEveryoneRef = React.useRef(false);
@@ -309,16 +316,16 @@ export const MyUILayout = ({ meeting_id, role }) => {
   const deleteMeetDetails = async (AuthToken, id) => {
     try {
       const response = await fetch(`http://localhost:3000/meet/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${AuthToken}`,
         },
       });
       const data = await response.json();
-      console.log('delete response:', data);
+      console.log("delete response:", data);
     } catch (error) {
-      console.error('Error deleting meeting data:', error);
+      console.error("Error deleting meeting data:", error);
     }
   };
 
@@ -351,7 +358,7 @@ export const MyUILayout = ({ meeting_id, role }) => {
           try {
             await call.endCall();
           } catch (e) {
-            console.error('Failed to end call after patient left', e);
+            console.error("Failed to end call after patient left", e);
           }
         })();
       }
@@ -372,25 +379,31 @@ export const MyUILayout = ({ meeting_id, role }) => {
         try {
           if (camera) await camera.disable();
         } catch (e) {
-          console.warn('camera disable error', e);
+          console.warn("camera disable error", e);
         }
         try {
           if (microphone) await microphone.disable();
         } catch (e) {
-          console.warn('mic disable error', e);
+          console.warn("mic disable error", e);
         }
 
-        const token = localStorage.getItem('AuthToken');
+        const token = localStorage.getItem("AuthToken");
 
-        // Delete meeting + clear cache when:
-        // - patient leaves, OR
-        // - doctor explicitly ended meeting
-        if (!isDoctor || endingForEveryoneRef.current) {
+        if (!isDoctor) {
+          // PATIENT: delete meeting, clear cache, go home
           await deleteMeetDetails(token, meeting_id);
-          localStorage.removeItem('activeMeeting');
+          localStorage.removeItem("activeMeeting");
+          navigate("/");
+        } else if (endingForEveryoneRef.current) {
+          // DOCTOR explicitly ended for everyone
+          await deleteMeetDetails(token, meeting_id);
+          localStorage.removeItem("activeMeeting");
+          navigate("/doctor-home");
+        } else {
+          // DOCTOR left without ending: keep meeting + cache so FAB/heartbeat can re-notify
+          navigate("/doctor-home");
         }
 
-        navigate('/');
         window.location.reload();
       })();
     }
@@ -404,7 +417,7 @@ export const MyUILayout = ({ meeting_id, role }) => {
       try {
         await call.endCall();
       } catch (e) {
-        console.error('Error ending call for everyone', e);
+        console.error("Error ending call for everyone", e);
       }
     })();
   }, [call]);
@@ -413,11 +426,11 @@ export const MyUILayout = ({ meeting_id, role }) => {
     return (
       <div
         style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <div>Connecting to meeting...</div>
@@ -428,22 +441,22 @@ export const MyUILayout = ({ meeting_id, role }) => {
   return (
     <StreamTheme
       style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
+        position: "relative",
+        width: "100%",
+        height: "100%",
       }}
     >
       {!isDoctor && doctorDisconnected && (
         <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 16,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            padding: '8px 16px',
+            left: "50%",
+            transform: "translateX(-50%)",
+            padding: "8px 16px",
             borderRadius: 8,
-            background: 'rgba(0,0,0,0.75)',
-            color: '#fff',
+            background: "rgba(0,0,0,0.75)",
+            color: "#fff",
             zIndex: 20,
           }}
         >
@@ -454,7 +467,7 @@ export const MyUILayout = ({ meeting_id, role }) => {
       {isDoctor && (
         <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             bottom: 16,
             right: 16,
             zIndex: 20,
@@ -463,12 +476,12 @@ export const MyUILayout = ({ meeting_id, role }) => {
           <button
             onClick={handleDoctorEndMeeting}
             style={{
-              padding: '8px 12px',
+              padding: "8px 12px",
               borderRadius: 6,
-              backgroundColor: '#d32f2f',
-              color: '#fff',
-              border: 'none',
-              cursor: 'pointer',
+              backgroundColor: "#d32f2f",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
             }}
           >
             End meeting
@@ -487,16 +500,16 @@ export const MyParticipantList = (props) => {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'row',
-        gap: '8px',
-        width: '100vw',
+        display: "flex",
+        flexDirection: "row",
+        gap: "8px",
+        width: "100vw",
       }}
     >
       {participants.map((participant) => (
         <div
           key={participant.sessionId}
-          style={{ width: '100%', aspectRatio: '3 / 2' }}
+          style={{ width: "100%", aspectRatio: "3 / 2" }}
         >
           <ParticipantView muteAudio participant={participant} />
         </div>
@@ -510,13 +523,13 @@ export const MyFloatingLocalParticipant = (props) => {
   return (
     <div
       style={{
-        position: 'absolute',
-        top: '15px',
-        left: '15px',
-        width: '240px',
-        height: '135px',
-        boxShadow: 'rgba(0,0,0,0.1) 0px 0px 10px 3px',
-        borderRadius: '12px',
+        position: "absolute",
+        top: "15px",
+        left: "15px",
+        width: "240px",
+        height: "135px",
+        boxShadow: "rgba(0,0,0,0.1) 0px 0px 10px 3px",
+        borderRadius: "12px",
       }}
     >
       {participant && <ParticipantView muteAudio participant={participant} />}

@@ -14,15 +14,25 @@ const getHeartBeat = async (token) => {
       return { status: 404, msg: "User is not a doctor" };
     }
 
-    // If doctor is already in a pending meeting, don't offer new ones
+    // If doctor already has a pending meeting, use that so they can rejoin
     const existing = await Meet.findOne({
       doctorId: user.user._id,
       status: "pending",
     });
     if (existing) {
+      const meetToken = jwt.sign(
+        { user_id: user.user._id },
+        process.env.SECRET_MEET_TOKEN,
+        { expiresIn: "1h" },
+      );
+
       return {
         status: 200,
-        msg: "Doctor is in a meeting",
+        msg: "You have a meeting scheduled",
+        callId: existing._id,
+        specialization: existing.specialization,
+        apiKey: process.env.API_KEY,
+        token: meetToken,
       };
     }
 
