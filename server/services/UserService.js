@@ -1,4 +1,4 @@
-// userController.js
+// UserService.js
 import {jwtDecode} from "jwt-decode";            // corrected import
 import { User } from '../models/User.js';
 import Slot  from '../models/Slot.js';      // make sure Slot model exists & exported

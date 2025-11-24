@@ -98,6 +98,9 @@ const addPrescription = async (token, body) => {
         if (!booking)
             return { status: 404, msg: "Booking not found" };
 
+        if (userRes.user.role === Role.PATIENT)
+            return { status: 403, msg: "Patient not authorized"};
+
         if (userRes.user.role === Role.DOCTOR && booking.doctor.toString() !== userRes.user._id.toString())
             return { status: 403, msg: "Doctor not authorized" };
 

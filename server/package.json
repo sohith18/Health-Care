@@ -5,7 +5,8 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "start": "nodemon index.js"
+        "start": "nodemon index.js",
+        "test": "node --experimental-vm-modules --no-warnings ./node_modules/jest/bin/jest.js --config ./jest.config.js"
     },
     "keywords": [],
     "author": "",
@@ -13,7 +14,7 @@
     "dependencies": {
         "bcrypt": "^5.1.1",
         "cors": "^2.8.5",
-        "dotenv": "^16.4.5",
+        "dotenv": "^16.6.1",
         "express": "^4.18.2",
         "jsonwebtoken": "^9.0.2",
         "jwt-decode": "^4.0.0",
