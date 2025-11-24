@@ -173,7 +173,8 @@ node tests/BookingTesting.test.js
 ### Bypass Testing Validation
 ![Bypass Testing Validation](testImages/client-bypass.png)
 *Terminal output with API error responses from bypass payload tests.*
-### Field Validation Error
+
+
 ![Project Directory Structure](testImages/server-bypass.png)
 *Server error trace for missing required email field during signup.* 
 
