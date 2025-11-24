@@ -154,7 +154,7 @@ node tests/BookingTesting.test.js
 - **Total Tests:** 104 (1 integration + 103 unit)
 - **Mutation Score:** ~50%
 - **Coverage:** Important JSX files
-- **Note:** Translation logic and equivalent mutants account for survivors
+- **Note:** Translation logic and equivalent mutants account for survivors and upon running stryker it generates a detailed report in `client/report/` in html format which can be opened in any browser to see detailed results.
 
 ### Bypass Testing
 
