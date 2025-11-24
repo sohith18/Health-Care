@@ -23,7 +23,7 @@ For website setup, see the detailed guide in the [Setup README](README-Setup.md)
 ## Testing Approach
 
 ### Unit Testing
-Individual component testing for isolated functionality. 11 test files focus on specific components.
+Individual component testing for isolated functionality. 11 test files (client-side) and 6 test files (server-side) focus on specific components.
 
 ### Integration Testing
 Multi-component tests implemented in `App.test.jsx` for the client side and `integration` folder for the server side.
