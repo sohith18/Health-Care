@@ -13,6 +13,9 @@
 
 React-based healthcare application with role-based workflows for patients and doctors, including authentication, video consultations, prescription management, and profile customization.
 
+For website setup, see the detailed guide in the [Setup README](README-Setup.md).
+
+
 **Testing Focus:**
 1. Client-side mutation testing (Jest + Stryker)
 2. Client and server-side bypass testing (Selenium + Axios)
