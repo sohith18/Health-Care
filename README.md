@@ -164,6 +164,21 @@ node tests/BookingTesting.test.js
 - **HTTP 500 Responses:** 36 (54.5%)
 - **Validation:** Proper rejection of invalid booking states
 
+## Images
+
+### Mutation Testing Coverage
+![Mutation Testing Coverage](testImages/stryker.png)
+*Stryker dashboard showing mutation scores and killed/survived mutants for client files.* 
+
+### Bypass Testing Validation
+![Bypass Testing Validation](testImages/client-bypass.png)
+*Terminal output with API error responses from bypass payload tests.*
+### Field Validation Error
+![Project Directory Structure](testImages/server-bypass.png)
+*Server error trace for missing required email field during signup.* 
+
+
+
 ### Directory Structure
 ```
 client/
@@ -174,7 +189,9 @@ client/
 ├── jest.setup.js
 └── stryker.config.mjs
 
-tests/
+testImages/            # Screenshots for README
+
+bypass-tests/
 ├── BlankRegister.test.js   # Client bypass
 └── BookingTesting.test.js  # Server bypass
 ```
@@ -189,3 +206,12 @@ Comprehensive testing through:
 - **Bypass testing** via payload mutation for security validation
 
 All tests validate functionality, robustness, and security of the healthcare application.
+
+## Usage of AI
+
+AI tools were actively used to enhance this project's documentation and test code quality. The comments within `.test.js` files were primarily written with the assistance of AI, improving clarity and consistency. While the design of test cases and test logic was mainly my own, GitHub Copilot was sometimes leveraged to generate and suggest code for certain test cases. Additionally, this README's structure and formatting were organized with AI guidance based on content I provided, giving credit for the polished layout and presentation to AI tools.
+
+## Contribution
+
+Sai Venkata Sohith Gutta(IMT2022042) 
+
