@@ -39,9 +39,9 @@ Change the following .env.example in the respective server and client to the fol
 
 `SECRET_ACCESS_TOKEN`    (Use any JWT generator to generate a token)
 
-`PORT` (Contains port number for backend server)
+`PORT` (Contains port number for backend server. Keep it 3000.
 
-
+`SECRET_ACCESS_TOKEN` and `API_KEY` (Get from https://getstream.io/)
 
 
 ## Run Locally
