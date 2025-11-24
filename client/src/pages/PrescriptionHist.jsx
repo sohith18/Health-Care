@@ -1,3 +1,4 @@
+import React from "react"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import styles from "../Styles/PrescriptionHist.module.css"; // Import CSS module

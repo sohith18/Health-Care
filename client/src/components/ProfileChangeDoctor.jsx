@@ -1,3 +1,4 @@
+import React from "react"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import classes from "../Styles/ProfileChangeDoctor.module.css";
@@ -349,10 +350,11 @@ export default function DoctorProfileChange() {
           }
         />
 
-        <label className={classes.label}>
+        <label className={classes.label} htmlFor="gender-select">
           {translatedTexts["Gender"] || "Gender"}
         </label>
         <select
+          id="gender-select"
           className={classes.select}
           value={doctorData.gender}
           onChange={(e) =>
@@ -363,6 +365,7 @@ export default function DoctorProfileChange() {
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
+
 
         <label className={classes.label}>
           {translatedTexts["Available Slots"] || "Available Slots"}

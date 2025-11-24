@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export async function translation(sentence, source='en', target) {
-  const API_KEY = import.meta.env.VITE_API_KEY;
+    const API_KEY = process.env.API_KEY;
     const options = {
         method: 'POST',
         url: 'https://deep-translate1.p.rapidapi.com/language/translate/v2',

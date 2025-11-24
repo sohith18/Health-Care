@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "../../Styles/Unauthorised.module.css";
 
 export default function Unauthorized() {

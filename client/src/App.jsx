@@ -1,3 +1,4 @@
+import React from "react";
 import './Styles/App.css';
 import { createBrowserRouter, RouterProvider, useNavigate} from 'react-router-dom';
 import Home from '../src/pages/Home';

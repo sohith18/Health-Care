@@ -1,3 +1,4 @@
+import React from "react"
 import Hero from '../components/Hero';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';

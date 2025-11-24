@@ -1,3 +1,4 @@
+import React from "react"
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "../Styles/Register.module.css";
@@ -29,7 +30,6 @@ export default function Register() {
                 body: JSON.stringify(data),
             });
             const userData = await response.json();
-            alert(userData.msg);
             if (response.ok) {
                 localStorage.setItem('AuthToken', userData.token);
                 // setToken(userData.token);

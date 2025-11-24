@@ -1,3 +1,4 @@
+import React from "react"
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -26,7 +27,6 @@ export default function Login() {
                 body: JSON.stringify(data), 
             });
             const userData = await response.json();
-            alert(userData.msg);
             if (response.ok) {
                 localStorage.setItem('AuthToken', userData.token);
                 // setToken(userData.token);

@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "../Styles/JoinPage.module.css";
 import { useState, useContext } from "react";
 import { TranslationContext } from "../store/TranslationContext";

@@ -1,3 +1,4 @@
+import React from "react"
 import { useState, useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom'; 
 import classes from '../Styles/Navbar.module.css';

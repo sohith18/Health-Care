@@ -1,3 +1,4 @@
+import React from "react"
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import SearchIcon from '../assets/search.png';
@@ -89,8 +90,11 @@ export default function DoctorSearch() {
                 <h2 className={styles.filtersHeading}>{translatedTexts["Search By"] || "Search By"}</h2>
                 <div className={styles.filtersContainer}>
                     <div className={styles.filter}>
-                        <label>{translatedTexts["Gender"] || "Gender"}</label>
+                        <label htmlFor="gender-select">
+                            {translatedTexts["Gender"] || "Gender"}
+                        </label>
                         <select
+                            id="gender-select"
                             value={search.gender}
                             onChange={(e) => setSearch({ ...search, gender: e.target.value })}
                         >
@@ -98,10 +102,12 @@ export default function DoctorSearch() {
                             <option value="Male">{translatedTexts["Male"] || "Male"}</option>
                             <option value="Female">{translatedTexts["Female"] || "Female"}</option>
                         </select>
-                    </div>
+                        </div>
+
                     <div className={styles.filter}>
-                        <label>{translatedTexts["Experience"] || "Experience"}</label>
+                        <label htmlFor="experience-select">{translatedTexts["Experience"] || "Experience"}</label>
                         <select
+                            id="experience-select"
                             value={search.experience}
                             onChange={(e) => setSearch({ ...search, experience: e.target.value })}
                         >
@@ -112,19 +118,27 @@ export default function DoctorSearch() {
                         </select>
                     </div>
                     <div className={styles.filter}>
-                        <label>{translatedTexts["Specialization"] || "Specialization"}</label>
+                        <label htmlFor="specialization-select">
+                            {translatedTexts["Specialization"] || "Specialization"}
+                        </label>
                         <select
+                            id="specialization-select"
                             value={search.specialization}
-                            onChange={(e) => setSearch({ ...search, specialization: e.target.value })}
+                            onChange={(e) =>
+                            setSearch({ ...search, specialization: e.target.value })
+                            }
                         >
-                            <option value="">{translatedTexts["Select Specialization"] || "Select Specialization"}</option>
+                            <option value="">
+                            {translatedTexts["Select Specialization"] || "Select Specialization"}
+                            </option>
                             {specialties.map((specialty, index) => (
-                                <option key={index} value={specialty}>
-                                    {translatedTexts[specialty] || specialty}
-                                </option>
+                            <option key={index} value={specialty}>
+                                {translatedTexts[specialty] || specialty}
+                            </option>
                             ))}
                         </select>
                     </div>
+
                 </div>
             </div>
             {doctorsData ? <DoctorsInfo doctorsData={doctorsData} /> : <p>{translatedTexts["Loading..."] || "Loading..."}</p>}

@@ -1,3 +1,4 @@
+import React from "react"
 import { useContext } from 'react';
 import photo1 from '../assets/Hero1.jpg';
 import classes from '../Styles/Hero.module.css'; // Import the CSS module

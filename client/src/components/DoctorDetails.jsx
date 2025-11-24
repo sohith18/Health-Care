@@ -1,3 +1,4 @@
+import React from "react"
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import styles from '../Styles/DoctorDetails.module.css';

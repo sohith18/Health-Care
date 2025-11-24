@@ -1,3 +1,4 @@
+import React from "react"
 import { useState, useEffect, useContext } from 'react';
 import styles from '../Styles/Reviews.module.css';
 import reviews from '../assets/reviewsData.json';

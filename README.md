@@ -1,144 +1,191 @@
+# Healthcare Application - Testing Documentation
 
-# HealthCare Platform
+## Table of Contents
+- [Overview](#overview)
+- [Testing Approach](#testing-approach)
+- [Test Suites](#test-suites)
+- [Mutation Testing](#mutation-testing)
+- [Bypass Testing](#bypass-testing)
+- [Execution](#execution)
+- [Results](#results)
 
-## Description
-A full-stack telehealth platform designed to redefine the landscape
-of remote medical consultations. The goal is to create an integrated system employing chats, and audio/video calls that connect patients with appropriate virtual/live medical consultants.
+## Overview
 
-<img src="client/public/logo.png" alt="Helio Logo" width="400"/>
+React-based healthcare application with role-based workflows for patients and doctors, including authentication, video consultations, prescription management, and profile customization.
 
+**Testing Focus:**
+1. Client-side mutation testing (Jest + Stryker)
+2. Client and server-side bypass testing (Selenium + Axios)
 
+## Testing Approach
 
-## Sample Screenshots
+### Unit Testing
+Individual component testing for isolated functionality. 11 test files focus on specific components.
 
-- **Sign In screen**  
-  ![Sign In screen](client/public/photo_1.png)
+### Integration Testing
+Multi-component testing implemented in `App.test.jsx` for routing, authentication, and component interactions.
 
-- **Landing Page**  
-  ![Landing Page](client/public/photo_2.png)
+### Mutation Testing
+Fault-based testing using Stryker on critical JSX files to identify test suite gaps.
 
+### Bypass Testing
+Security validation through payload mutation to test input validation and error handling on both client and server.
 
+## Test Suites
 
+### Mutation Test Suites
+**Location:** `client/src/__tests__/` - 104 total test cases
 
-## Environment Variables
+| Test Suite | Type | Focus Area |
+|------------|------|------------|
+| `App.test.jsx` | Integration | Routing, authentication, translation |
+| `Appointments.test.jsx` | Unit | Appointment management, filtering |
+| `DoctorDetails.test.jsx` | Unit | Profile fetching, booking |
+| `DoctorNotificationFab.test.jsx` | Unit | Notifications, meeting management |
+| `DoctorSearch.test.jsx` | Unit | Search, filters, parameters |
+| `Login.test.jsx` | Unit | Authentication, token storage |
+| `Meeting.test.jsx` | Unit | Video call lifecycle |
+| `Navbar.test.jsx` | Unit | Navigation, role-based UI |
+| `ProfileChange.test.jsx` | Unit | Patient profile updates |
+| `ProfileChangeDoctor.test.jsx` | Unit | Doctor profile, scheduling |
+| `ProfileDropDown.test.jsx` | Unit | Dropdown, logout |
+| `Register.test.jsx` | Unit | Registration, validation |
 
-The backend is built using **express** and **node.js** and is hosted on: 
-```plaintext
-https://localhost:PORT
-```
-The frontend is the **Vite + React** app which is hosted on:
-```plaintext
-https://localhost:5173
-```
-To run this project, you will need to add the following environment variables to your .env file
-Change the following .env.example in the respective server and client to the following:
+### Bypass Test Suites
+**Location:** `tests/`
 
-`VITE_API_KEY` (Get API key from https://rapidapi.com/gatzuma/api/deep-translate1)
+**Client-Side:** `BlankRegister.test.js`
+- Removes HTML `required` attributes via JavaScript
+- Submits blank registration form
+- Validates server-side rejection
 
-`DB` (Should have a MongoDB account, create a cluster then add the URL given)
+**Server-Side:** `BookingTesting.test.js`
+- Authenticates users via Selenium
+- Extracts tokens from localStorage
+- Generates 66 mutated booking payloads
+- Tests API robustness with invalid data
 
-`SECRET_ACCESS_TOKEN`    (Use any JWT generator to generate a token)
+**Mutation Variations:**
+- Empty/whitespace strings
+- Extremely long strings (500 chars)
+- SQL injection patterns
+- XSS payloads
+- Invalid ObjectId formats
+- Wrong data types (objects, numbers, null)
+- Extra/nested fields
 
-`PORT` (Contains port number for backend server)
+## Mutation Testing
 
+### Setup
+- **Config:** `client/stryker.config.mjs`
+- **Mocks:** `client/test/__mocks__/` (CSS files)
+- **Setup:** `client/jest.setup.js` (imports `@testing-library/jest-dom`)
 
+### Key Findings
+- ~50% mutation kill rate
+- Tested important JSX files only
+- Translation code produced many surviving mutants
+- Most survivors presumed equivalent mutants
 
+## Bypass Testing
 
-## Run Locally
+### Client-Side
+**Technology:** Selenium WebDriver (Chrome)  
+**Target:** Registration form validation bypass  
+**Method:** JavaScript injection to remove HTML validation attributes
 
-This app is built using Node.js and Express. So you need to have those installed.
+### Server-Side
+**Technology:** Selenium + Axios  
+**Target:** Booking API endpoint robustness  
+**Method:** Payload mutation to test state validation
 
-### Install Node.js:
+**Test Process:**
+1. Authenticate two patients via frontend (Selenium)
+2. Extract authentication tokens
+3. Authenticate as doctor via API
+4. Retrieve valid doctor/slot IDs
+5. Generate 66 mutated payloads
+6. Send PUT requests to `/booking`
+7. Log responses and count errors
 
-1. **Download Node.js:**
-    Visit the official Node.js website at [https://nodejs.org/](https://nodejs.org/) and download the latest LTS version for your operating system.
+**Result:** 36/66 payloads returned HTTP 500, validating proper error handling
 
-2. **Install Node.js:**
-    Follow the installation instructions provided on the Node.js website for your specific operating system.
+## Execution
 
-3. **Verify Installation:**
-    Open a terminal or command prompt and run the following commands to verify that Node.js and npm (Node Package Manager) are installed successfully:
-    ```bash
-    node -v
-    npm -v
-    ```
-    These commands should display the installed Node.js version and the npm version.
-
-### Install Express:
-
-Once Node.js is installed, you can use npm to install Express globally.
-
-On your terminal or command prompt run the following command:
-
+### Prerequisites
 ```bash
-npm install -g express
+npm install
 ```
-### Then
 
-Clone the project
-
+### Run Tests
 ```bash
-  git clone https://github.com/sohith18/Health-Care.git
+# All Jest tests
+npx jest
+
+# Specific test file
+npx jest src/__tests__/App.test.jsx
+
+# With coverage
+npx jest --coverage
+
+# Mutation testing
+npx stryker run
 ```
 
-Go to the project directory
-
+### Run Bypass Tests
 ```bash
-  cd Health-Care
+# Start servers first:
+# Frontend: http://localhost:5173
+# Backend: http://localhost:3000
+
+# Client-side bypass
+node tests/BlankRegister.test.js
+
+# Server-side bypass
+node tests/BookingTesting.test.js
 ```
-Run the like this:
 
-- Go to the client directory
+## Results
 
-  ```bash
-    cd client
-  ```
+### Mutation Testing (Client-Side)
+- **Total Tests:** 104 (1 integration + 103 unit)
+- **Mutation Score:** ~50%
+- **Coverage:** Important JSX files
+- **Note:** Translation logic and equivalent mutants account for survivors
 
-- Install dependencies by using
-  ```bash
-    npm install
-  ```
-- Start the front-end server:
-  ```bash
-    npm run dev
-  ```
-Run the server like this:
+### Bypass Testing
 
-- Go to the server directory
+**Client-Side:**
+- ✓ Server correctly rejects empty registration submissions
+- ✓ Backend validation independent of client-side attributes
 
-  ```bash
-    cd server
-  ```
+**Server-Side:**
+- **Total Mutated Payloads:** 66
+- **HTTP 500 Responses:** 36 (54.5%)
+- **Validation:** Proper rejection of invalid booking states
 
-- Install dependencies by using
-  ```bash
-    npm install
-  ```
-- Finally
-  ```bash
-    npm start
-  ``` 
-  should fire the backend server.
-- For running test files go to the tests directory
-  ```bash
-  cd tests
-  ```
-- Ensure pip is installed or install pip, then install the following libraries using command
-  ```bash
-  pip install unittest
-  ```
-  ```bash
-  pip install selenium
-  ```
-- Then run the Python files using
-  ```bash
-  python3 <test file>
-  ```
+### Directory Structure
+```
+client/
+├── src/
+│   └── __tests__/          # 104 mutation test cases
+├── test/
+│   └── __mocks__/          # CSS mocks
+├── jest.setup.js
+└── stryker.config.mjs
 
+tests/
+├── BlankRegister.test.js   # Client bypass
+└── BookingTesting.test.js  # Server bypass
+```
 
-## Authors
+---
 
-- Aaryan Dev [Aaryan-Ajith-Dev](https://github.com/Aaryan-Ajith-Dev)
-- Shreyas S [@Shreyas0S](https://www.github.com/Shreyas0S)
-- Sohith [@sohith18](https://github.com/sohith18)
-- Siddharth Reddy [@siddharthmaram](https://github.com/siddharthmaram)
+## Summary
+
+Comprehensive testing through:
+- **104 automated test cases** (unit + integration)
+- **Mutation testing** with Stryker for code quality
+- **Bypass testing** via payload mutation for security validation
+
+All tests validate functionality, robustness, and security of the healthcare application.

@@ -1,3 +1,4 @@
+import React from "react"
 import { useState, useEffect } from "react";
 import classes from "../Styles/AppointmentsPage.module.css";
 import SearchIcon from "../assets/search.png";

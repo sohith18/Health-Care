@@ -1,3 +1,4 @@
+import React from "react"
 import {
   Call,
   CallControls,
@@ -12,7 +13,6 @@ import {
   useCallStateHooks,
 } from "@stream-io/video-react-sdk";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function VideoCall() {

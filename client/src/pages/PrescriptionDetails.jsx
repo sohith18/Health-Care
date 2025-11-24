@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "../Styles/PrescriptionDetails.module.css"; // Import new CSS for details component
 
 const PrescriptionDetails = ({ prescription, onClose }) => {

@@ -1,5 +1,8 @@
-import  { createContext, useState} from 'react';
+// import  { createContext, useState} from 'react';
+import React, { createContext, useState } from "react";
 import { translation } from '../Controllers/Translation';
+
+
 
 export const TranslationContext = createContext({
     language: '',

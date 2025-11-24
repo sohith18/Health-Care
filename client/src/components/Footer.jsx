@@ -1,3 +1,4 @@
+import React from "react"
 import styles from '../Styles/Footer.module.css';
 import { useContext } from 'react';
 import { TranslationContext } from "../store/TranslationContext"; // Assuming TranslationContext is implemented
