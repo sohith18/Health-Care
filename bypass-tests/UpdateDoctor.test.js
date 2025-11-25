@@ -2,10 +2,62 @@ const { Builder, By, until } = require("selenium-webdriver");
 
 const FRONT_URL = "http://localhost:5173";
 
+// Helper function to register the test user
+async function registerTestUser(driver) {
+    console.log("Pre-step: Registering test user (if not exists)...");
+    await driver.get(`${FRONT_URL}/register`);
+
+    // 0. Select "Doctor" Role
+    // We look for a button with text "Doctor" to switch the registration type
+    try {
+        const doctorBtn = await driver.wait(
+            until.elementLocated(By.xpath("//button[contains(text(), 'Doctor') or contains(text(), 'doctor')]")),
+            3000
+        );
+        await driver.executeScript("arguments[0].click();", doctorBtn);
+        console.log("Selected 'Doctor' role for registration.");
+    } catch (e) {
+        console.warn("Warning: Could not find 'Doctor' button. Proceeding with default registration.");
+    }
+
+    // 1. Fill Name (Assuming first input or type='text')
+    try {
+        const nameInput = await driver.findElement(By.xpath("//input[@type='text'] | //input[not(@type)]"));
+        await nameInput.sendKeys("test");
+    } catch (e) {
+        // Fallback: grab the very first input if specific selector fails
+        const inputs = await driver.findElements(By.tagName("input"));
+        if (inputs.length > 0) await inputs[0].sendKeys("test");
+    }
+
+    // 2. Fill Email
+    await driver.findElement(By.css("input[type='email']")).sendKeys("test@gmail.com");
+
+    // 3. Fill Password
+    await driver.findElement(By.css("input[type='password']")).sendKeys("test@123");
+
+    // 4. Click Submit
+    const submitBtn = await driver.findElement(By.xpath("//button[@type='submit']"));
+    await driver.executeScript("arguments[0].click();", submitBtn);
+
+    // 5. Handle potential "User already exists" alert
+    try {
+        await driver.wait(until.alertIsPresent(), 2000);
+        const alert = await driver.switchTo().alert();
+        console.log(`Registration Alert: "${await alert.getText()}" (Ignoring and proceeding to login)`);
+        await alert.accept();
+    } catch (e) {
+        console.log("No registration alert appeared (User likely created successfully).");
+    }
+}
+
 async function doctorSlotTest() {
     let driver = await new Builder().forBrowser("chrome").build();
 
     try {
+        // --- PRE-STEP: REGISTER USER ---
+        await registerTestUser(driver);
+
         // --- STEP 1: LOGIN ---
         console.log("Step 1: Logging in...");
         await driver.get(`${FRONT_URL}/login`);
