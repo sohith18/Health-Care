@@ -262,10 +262,11 @@ bypass-tests/
 
 ## Usage of AI
 
-AI tools were actively used to enhance this project's documentation and test code quality. The comments within `.test.js` files were primarily written with the assistance of AI, improving clarity and consistency. While the design of test cases and test logic was mainly my own, GitHub Copilot was sometimes leveraged to generate and suggest code for certain test cases. Additionally, this README's structure and formatting were organized with AI guidance based on content I provided, giving credit for the polished layout and presentation to AI tools.
+AI tools were actively used to enhance this project's documentation and test code quality. The comments within `.test.js` files were primarily written with the assistance of AI, improving clarity and consistency. While the design of test cases and test logic was mainly my own, GitHub Copilot was sometimes leveraged to generate and suggest code for certain test cases. Additionally, this README's structure and formatting were organized with AI guidance based on content I provided, giving credit for the polished layout and presentation to AI tools.  
 
 ## Contribution
 
-Sai Venkata Sohith Gutta(IMT2022042) 
-Siddharth Reddy Maramreddy (IMT2022031)
+Sai Venkata Sohith Gutta(IMT2022042) - Responsible for client-side mutation testing as well as client-side and server-side bypass testing.
+
+Siddharth Reddy Maramreddy (IMT2022031) - Responsible for server-side mutation testing as well as client-side bypass testing.
 
