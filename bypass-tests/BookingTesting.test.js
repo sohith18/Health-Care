@@ -147,7 +147,7 @@ async function getDoctorDetails() {
     };
 
     // Create doctor account
-    await axios.post(`${API_URL}/auth/register`, createPayload);
+    await axios.post(`${API_URL}/auth/signup`, createPayload);
 
     // Login again after creation
     const loginResponse = await axios.post(`${API_URL}/auth/login`, {
