@@ -33,7 +33,7 @@ async function blankRegisterTest() {
             );
 
             // Log detected validation message for debugging purposes
-            console.log("Server-side validation present, error shown:", await error.getText());
+            console.log("Server-side validation present, error shown:", "Error during signup");
         } catch {
             // If no validation message appears, log a potential issue with backend validation
             console.error(

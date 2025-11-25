@@ -6,76 +6,168 @@ const API_URL = "http://localhost:3000";
 
 // Function to perform login on the frontend using Selenium and retrieve the AuthToken from localStorage
 async function loginAndGetToken(driver, email, password) {
-  // Navigate to the login page
-  await driver.get(`${FRONT_URL}/login`);
+  async function tryLogin() {
+    await driver.get(`${FRONT_URL}/login`);
 
-  // Wait for the email input, clear any existing value, and enter the email
-  const emailInput = await driver.wait(
-    until.elementLocated(By.xpath("//input[@type='email']")),
-    10000
-  );
-  await emailInput.clear();
-  await emailInput.sendKeys(email);
-
-  // Wait for the password input, clear any existing value, and enter the password
-  const passwordInput = await driver.wait(
-    until.elementLocated(By.xpath("//input[@type='password']")),
-    10000
-  );
-  await passwordInput.clear();
-  await passwordInput.sendKeys(password);
-
-  // Click the submit button to trigger login
-  await driver.findElement(By.xpath("//button[@type='submit']")).click();
-
-  // Wait until the AuthToken is stored in localStorage (indicating login success)
-  await driver.wait(async () => {
-    const tok = await driver.executeScript(
-      "return window.localStorage.getItem('AuthToken');"
+    const emailInput = await driver.wait(
+      until.elementLocated(By.xpath("//input[@type='email']")),
+      10000
     );
-    return !!tok;
-  }, 10000);
+    await emailInput.clear();
+    await emailInput.sendKeys(email);
 
-  // Retrieve the AuthToken from localStorage
+    const passwordInput = await driver.wait(
+      until.elementLocated(By.xpath("//input[@type='password']")),
+      10000
+    );
+    await passwordInput.clear();
+    await passwordInput.sendKeys(password);
+
+    await driver.findElement(By.xpath("//button[@type='submit']")).click();
+
+    // Return true if token appears, false otherwise
+    try {
+      await driver.wait(async () => {
+        const tok = await driver.executeScript(
+          "return window.localStorage.getItem('AuthToken');"
+        );
+        return !!tok;
+      }, 5000);
+
+      return true; // login success
+    } catch (e) {
+      return false; // login failed
+    }
+  }
+
+  async function registerUser() {
+    await driver.get(`${FRONT_URL}/register`);
+
+    const nameInput = await driver.wait(
+      until.elementLocated(By.xpath("//input[@type='text']")),
+      10000
+    );
+    await nameInput.clear();
+    await nameInput.sendKeys("Test User");
+
+    const emailInput = await driver.wait(
+      until.elementLocated(By.xpath("//input[@type='email']")),
+      10000
+    );
+    await emailInput.clear();
+    await emailInput.sendKeys(email);
+
+    const passwordInput = await driver.wait(
+      until.elementLocated(By.xpath("//input[@type='password']")),
+      10000
+    );
+    await passwordInput.clear();
+    await passwordInput.sendKeys(password);
+
+    await driver.findElement(By.xpath("//button[@type='submit']")).click();
+
+    // Wait for token after registration
+    await driver.wait(async () => {
+      const tok = await driver.executeScript(
+        "return window.localStorage.getItem('AuthToken');"
+      );
+      return !!tok;
+    }, 10000);
+  }
+
+  //TRY LOGIN FIRST
+  const loginSuccess = await tryLogin();
+
+  if (!loginSuccess) {
+    console.log(`Login failed for ${email}. Auto-registering...`);
+    await registerUser();
+  }
+
+  // Retrieve the AuthToken (after login or registration)
   const token = await driver.executeScript(
     "return window.localStorage.getItem('AuthToken');"
   );
 
-  // Log the current URL and a truncated token for debugging
   const currentUrl = await driver.getCurrentUrl();
-  console.log(`Login result for ${email}:`);
+  console.log(`Final result for ${email}:`);
   console.log("  URL:", currentUrl);
   console.log("  AuthToken:", token ? token.slice(0, 20) + "..." : token);
 
   return token;
 }
 
+
 // Function to authenticate directly via API as a doctor and get token, slots, and doctorId
 async function getDoctorDetails() {
   const email = "batman@gmail.com";
   const password = "batman";
 
-  // Login API call to retrieve token and user info
-  const response = await axios.post(`${API_URL}/auth/login`, {
-    email,
-    password,
-  });
+  try {
+    // Try login first
+    const response = await axios.post(`${API_URL}/auth/login`, {
+      email,
+      password,
+    });
 
-  const { token, user } = response.data;
+    const { token, user } = response.data;
 
-  // Verify that a token was returned
-  if (!token) {
-    throw new Error("Login did not return a token");
+    if (!token) {
+      throw new Error("Login did not return a token");
+    }
+    if (!user || user.role !== "DOCTOR") {
+      throw new Error("Logged in user is not a doctor");
+    }
+
+    return { token, slots: user.slots, doctorId: user._id };
+  } catch (loginErr) {
+    // If login failed or user is not doctor, create new doctor account with fixed slots
+
+    const createPayload = {
+      email,
+      password,
+      role: "DOCTOR",
+      name: "Batman",
+      qualifications: ["MBBS", "MD"],
+      specializations: ["Cardiology", "Neurology"],
+      experience: "10",
+      description: "Superhero doctor",
+      slots: [
+        {
+          timeInterval: "9am - 12pm",
+          capacity: 10,
+          isAvailable: true,
+        },
+        {
+          timeInterval: "1pm - 4pm",
+          capacity: 15,
+          isAvailable: true,
+        },
+      ],
+      gender: "Male",
+    };
+
+    // Create doctor account
+    await axios.post(`${API_URL}/auth/register`, createPayload);
+
+    // Login again after creation
+    const loginResponse = await axios.post(`${API_URL}/auth/login`, {
+      email,
+      password,
+    });
+
+    const { token, user } = loginResponse.data;
+
+    if (!token) {
+      throw new Error("Login after create did not return a token");
+    }
+    if (!user || user.role !== "DOCTOR") {
+      throw new Error("Created user is not a doctor");
+    }
+
+    return { token, slots: user.slots, doctorId: user._id };
   }
-
-  // Verify that the logged-in user has the "DOCTOR" role
-  if (!user || user.role !== "DOCTOR") {
-    throw new Error("Logged in user is not a doctor");
-  }
-
-  // Return token, available slots, and the doctor ID
-  return { token, slots: user.slots, doctorId: user._id };
 }
+
 
 // Function to get user ID using token via API call
 async function getId(token) {
