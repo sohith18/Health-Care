@@ -224,17 +224,44 @@ node tests/BookingTesting.test.js
 
 ### Mutation Testing Coverage
 ![Mutation Testing Coverage](testImages/stryker.png)
+
 *Stryker dashboard showing mutation scores and killed/survived mutants for client files.* 
 
 ![Mutation Testing Coverage](testImages/stryker-server.png)
+
 *Stryker dashboard showing mutation scores and killed/survived mutants for server files.* 
 
 ### Bypass Testing Validation
 ![Bypass Testing Validation](testImages/client-bypass.png)
+
 *Terminal output with API error responses from bypass payload tests.*
 
+![Bypass Testing Validation](testImages/blank-login.png)
+
+*Output of BlankLogin.test.js.*
+
+![Bypass Testing Validation](testImages/invalid-email-register.png)
+
+*Output of InvalidEmailRegister.test.js.*
+
+![Bypass Testing Validation](testImages/invalid-email-register-console.png)
+
+*Terminal output showing the user is registered.*
+
+![Bypass Testing Validation](testImages/doctor-update.png)
+
+*Output of UpdateDoctor.test.js.*
+
+![Bypass Testing Validation](testImages/doctor-slot-update-1.png)
+
+*Terminal output showing the error response of the server due to an invalid slot update.*
+
+![Bypass Testing Validation](testImages/doctor-slot-update-2.png)
+
+*Terminal output showing the error response of the server due to an invalid slot update.*
 
 ![Project Directory Structure](testImages/server-bypass.png)
+
 *Server error trace for missing required email field during signup.* 
 
 
