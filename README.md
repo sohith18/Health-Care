@@ -287,8 +287,11 @@ server/
 testImages/            # Screenshots for README
 
 bypass-tests/
-├── BlankRegister.test.js   # Client bypass
-└── BookingTesting.test.js  # Server bypass
+├── BlankRegister.test.js        # Client bypass
+├── BlankLogin.test.js           # Client bypass
+├── InvalidEmailRegister.test.js # Client bypass
+├── UpdateDoctor.test.js         # Client bypass
+└── BookingTesting.test.js       # Server bypass
 ```
 
 ---
