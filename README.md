@@ -74,9 +74,9 @@ Security validation through payload mutation to test input validation and error 
 ### Bypass Test Suites
 **Location:** `tests/`
 
-**Client-Side:** `BlankRegister.test.js`
-- Removes HTML `required` attributes via JavaScript
-- Submits blank registration form
+**Client-Side:** `BlankRegister.test.js`, `BlankLogin.test.js`, `InvalidEmailRegisted.test.js` and `UpdateDoctor.test.js`
+- Removes HTML `required` attributes and changes the `type` field via JavaScript
+- Submits blank registration form, blank login form, registration form filled with incorrect email format and updates doctor profile with invalid slot information.
 - Validates server-side rejection
 
 **Server-Side:** `BookingTesting.test.js`
@@ -184,6 +184,9 @@ npx stryker run
 
 # Client-side bypass
 node tests/BlankRegister.test.js
+node tests/BlankLogin.test.js
+node tests/InvalidEmailRegister.test.js
+node tests/UpdateDoctor.test.js
 
 # Server-side bypass
 node tests/BookingTesting.test.js
@@ -207,7 +210,10 @@ node tests/BookingTesting.test.js
 
 **Client-Side:**
 - ✓ Server correctly rejects empty registration submissions
-- ✓ Backend validation independent of client-side attributes
+- ✓ Server correctly rejects empty login submissions
+- ✗ Server does not reject invalid email addresses
+- ✓ Server rejects empty slot submissions
+- ✓ Server rejects incorrect data types for slot numbers
 
 **Server-Side:**
 - **Total Mutated Payloads:** 66
